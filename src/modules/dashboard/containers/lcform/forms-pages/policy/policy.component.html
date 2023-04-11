@@ -1,0 +1,224 @@
+<form [formGroup]="policyform">
+
+	<div class="m-2">
+		<b> Details of Insurance Policy taken by applicant
+
+			<span class="red">*</span>
+		</b>
+		<hr />
+
+	</div>
+
+	<div class="card" style="margin: 10px;">
+
+		<div class="form-row">
+			<label class="">Insurance Company</label>
+			<div class="col">
+				<div class="form-group">
+					<input type="text" class="form-control form-control-sm" formControlName="insCmpny"
+						placeholder="Insurance Company" maxlength="35">
+				</div>
+			</div>
+			<label class="">Policy No. </label>
+			<div class="col">
+				<div class="form-group">
+					<input type="text" class="form-control form-control-sm" placeholder="Policy No"
+						formControlName="policyNo" maxlength="35">
+				</div>
+			</div>
+			<label class="">Policy Amount </label>
+			<div class="col">
+				<div class="form-group ">
+					<input type="text" NumbersOnly class="form-control form-control-sm" placeholder="Policy Amount"
+						formControlName="policyAmnt" maxlength="22">
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin: 5px;">
+			<div class="">
+				<label for="name" class="col col-form-label" style="padding-right: 40px;"> <span>Cover Date </span>
+				</label>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" formControlName="coverDate"
+						placeholder="cover date" name="coverDate" [class.is-invalid]="getlcErrorplcy('coverDate') !=''">
+					</ng-bootstrap-datetime-angular>
+					<div class="invalid-feedback">
+						{{getlcErrorplcy('coverDate')}} </div>
+				</div>
+			</div>
+
+			<!-- endDate -->
+			<div class="">
+				<label for="name" class="col-form-label">End Date</label>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group">
+					<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" formControlName="endDate"
+						placeholder="end date" name="endDate" [class.is-invalid]="getlcErrorplcy('endDate') !=''">
+					</ng-bootstrap-datetime-angular>
+					<div class="invalid-feedback">
+						{{getlcErrorplcy('endDate')}} </div>
+				</div>
+			</div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-2"></div>
+
+		</div>
+	</div>
+
+
+	<!-- endDate -->
+
+
+	<div class="col">
+		<div class="form-check">
+			<input class="form-check-input" type="checkbox" formControlName="isAgree" value="EQTY_SHARES">
+			<label class="form-check-label">I agree <span class="red">*</span></label>
+
+			<div class="red" style="text-align: left!important;">
+				{{getlcErrorplcy('isAgree')}}
+			</div>
+		</div>
+	</div>
+
+	<p class="m-2">I/We engage that insurance shall be effected in the shipments to the full value thereof such
+		insurance to be made available for your benefit by the deposit of the policies or Certificate of Insurance and
+		in case of default your Bank is at liberty to effect insurance thereon and made the premia and expenses
+		connected therewith. I/We engage to repay.
+	</p>
+
+	<p class="m-2"> And further I/We agree that all goods covered by such draft/s shall remain in your possession until
+		each date draft/s shall have been paid by me/us and I/We hereby hypothecate and pledge, the said goods to you as
+		security for the payment at maturity of the drafts/s , and hereby give you authority if there shall be any
+		breach by me/us of any terms thereof to sell the said goods either by public auction or private contract, and to
+		apply the net proceeds thereof, towards payment of any sum which then or shall thereafter become owing by me/us
+		to you.</p>
+	<p class="m-2"> I/We hereby undertake to pay on demand all sight drafts and to accept on presentation and pay at
+		maturity all usance drafts which may have been negotiated under, this credit, reimbursing you at the current
+		rate of exchange ruling on the day of payment by me/us together with interest thereof at Bank`s prevailing rate
+		from the date of the advance to the date of recovery plus Bank Commission, Postage and all other charges which,
+		may become due thereon.</p>
+	<p class="m-2"> I/We hereby authorise you to make such arrangements as may be necessary for providing reimbursement
+		to your correspondents in respect of drafts or documents purchased or negotiated under this credit and where
+		required your correspondents abroad may be authorised to "reimburse the negotiating banks for their payment and
+		charges if any and to claim from us the Foreign Currency equivalent converted at the ruling rate prevailing on
+		the date of negotiation of documents and/or the date of receipt of the payment advice from the negotiating Bank.
+		I/We further undertake and agree to pay the Foreign Currency equivalent of the drafts or documents at the rate
+		of exchange ruling on the date of payment by us.</p>
+	<p class="m-2"> Wherever, based on reimbursement clause of the Credit, the negotiating bank has claimed
+		reimbursement and your NOSTRO account is debited before receipt of documents/payments, we agree to pay
+		applicable interest from the date of NOSTRO debit till the date of payment of import bill.</p>
+	<p class="m-2"> And further I/We agree that on no account shall any claim be made against the Bank after the Draft
+		is, retired by me/us.</p>
+	<p class="m-2"> I/We further agree that I/We open this credit entirely at my/our own risk and will honour all drafts
+		presented even should the goods not arrive or be refused landing through any act of war or restrictions imposed
+		by Government Ordinance should this Credit be extended or amended in any way and such amendment will be treated
+		as part of this agreement and we agree to pay all charges in connection therewith.</p>
+	<p class="m-2"> I/We hereby confirm that I/We relieve you entirely from all responsibility whatsoever for regularity
+		genuineness and/or validity of any document which you may be called upon to receive on my/our behalf and for
+		genuineness, or the endorsement and/or signatures thereon and for the "weight, quantity, quality or nature of
+		the goods to which such documents refer and in the event of their loss in transit. I/We will at once reimburse
+		the amount of the payment and charges upon your furnishing evidence of such payments having been effected.</p>
+	<p class="m-2"> I/We agree that neither you nor your Correspondents shall be responsible for/any loss or damage to
+		goods however and wherever caused or for failure for any reason by you/your Correspondents or any other person
+		to store and insure the goods and I/We further agree that all act and omissions of the drawers and /or
+		Correspondents and/or any other person shall be at my/our risk.</p>
+	<p class="m-2"> I/We agree to comply with any Import Trade control, Foreign Exchange regulations, Customs
+		regulations applicable to import of goods into India.</p>
+	<p class="m-2"> I/We put on record, this agreement arrived at by and between you and me/us to the effect that on
+		receipt of the documents, drawn under the foreign currency letter of Credit to be established by you as per
+		my/our request you have irrevocable authority to convert our foreign currency liability represented by the said
+		documents towards yourselves into rupee liability as per the Bank`s policy at your Bank's prevailing Bills
+		selling rate for the currency in which the documents have been drawn, whether I/We have received the
+		presentation memo or not provided no forward sale contract for the retirement of the said documents have been
+		entered into between the Bank and me/us. Where the documents received under L/c are covered under a forward
+		contract you are authorised to convert the foreign currency at the contracted rate. In case the delinking
+		results in early/late delivery under the forward contract it would be in order for you to levy early/late
+		delivery charges, if any, as per FEDAI rules. Such conversion when made from time to time shall be fully and
+		completely binding on me/us.</p>
+	<p class="m-2"> I/We hereby undertake to submit all necessary control documents at the appropriate time so as to
+		enable you to do all that is necessary in connection with or relating to the Bills received under LCs from time
+		to time.</p>
+	<p class="m-2"> I/We authorise you without any prior notice to me/us which right is specifically waived by me/us to
+		debit any of my/our deposit/advances accounts with you or create a separate advance account in my/our name under
+		your terms and condition which will be binding on me/us for adjusting any pending bill/s.</p>
+	<p class="m-2"> Our above irrevocable authority to you will also hold and apply where you are to establish usance
+		Letters of Credit on our behalf. However, the conversion of our foreign currency liability into a rupee
+		liability towards yourselves will be on the date of maturity of the bill. When called upon by the Bank I/We
+		hereby undertake to execute all necessary loan papers, and comply with all relative terms and conditions for the
+		proper conduct of the transactions herein above mentioned.</p>
+	<p class="m-2"> The receipt by you at any time of other collateral of whatsoever nature shall not be deemed a waiver
+		of any of your rights or powers relating to any collateral which you may hold at the time of receipt.</p>
+	<p class="m-2"> This obligation to continue in force not withstanding any change in membership of any partnership of
+		the undersigned whether arising from the death or retirement of one or more partners or accession of one or more
+		new partners.</p>
+	<p class="m-2"> This letter of credit can be revoked or altered only with the, consent of all parties interested.
+		The documents accepted in connection with this credit may be those which are generally acceptable in accordance
+		with the laws customs and usages at the place of negotiation or which may be considered, satisfactory by you or
+		your branch or Correspondents.</p>
+	<p class="m-2"> I/We therefore authorise you to return the documents to me/us without any engagement on your part in
+		case the items to be imported mentioned herein is banned/brought under control by the Import Control Authorities
+		until compliance of the revised Control requirements.</p>
+	<b> Declaration/Undertaking</b>
+	<p class="m-2"> I/We hereby declare that the transaction covered under the Credit ("the transaction"), does not
+		involve, and is not designed for the purpose of any contravention of the provisions of the Foreign Exchange
+		Management Act 1999 or of any rule, regulation, notification, direction or order made there under. I/We also
+		hereby agree and undertake to give such information/documents as will reasonably satisfy you about the
+		transaction in terms of above declaration.</p>
+	<b> We hereby confirm and certify that:</b>
+	<p class="m-2"> a) The goods imported by me/us under the Credit are not covered under Negative List of Imports as
+		mentioned in Foreign Trade Policy 2015-2020 and amendments thereto till date and the original licence issued by
+		the DGFT is attached herewith.</p>
+	<p class="m-2"> b) I/We are eligible to import the above mentioned goods under the current Foreign Trade Policy in
+		place.</p>
+	<p class="m-2"> c) The said goods imported/being imported by me/us are not restricted for import through specific
+		licensing under the above mentioned policy and amendments thereto till date.</p>
+	<p class="m-2"> d) The carrying vessel and the ports from/to which the goods are shipped as mentioned in my/our
+		application form for issuance of irrevocable documentary letter of credit and guarantee, are free from embargos
+		and that there are no subsisting sanctions imposed on the vessel/s and the port/s.</p>
+	<p class="m-2"> We also undertake to submit the relative Exchange Control Copy of the Bill of Entry / Postal
+		Wrappers to you immediately after clearance of the said goods, in any case within 3 months from the date of
+		remittance/payment. Further, we declare that the items imported will be used / disposed of as per the provision
+		contained in the policy/procedure. I/We further declare that the undersigned has the authority to give the
+		declarations, undertakings and instructions as above, on behalf of the Applicant.</p>
+	<p class="m-2"> I/We hereby agree and confirm that the Credit is subject to the terms and conditions as contained
+		herein and in the Letter of Credit Facility entered into between Applicant and CANARA BANK.</p>
+	<p class="m-2"> Except as otherwise expressly stated in this application and the Facility Agreement, this Credit is
+		subject to Uniform Customs and Practices for Documentary Credits (Latest Version), International Chamber of
+		Commerce Publications Number 600 or Latest Version, along with ICC Document No URR725 or Latest Version and ISBP
+		Latest Version.</p>
+	<p class="m-2"> We hereby authorize you to issue the Letter of Credit with default instructions mentioned herewith,
+		in case of incomplete information provided by us.</p>
+	<p class="m-2"> I/We further declare that the undersigned has/have the authority to give this application,
+		declaration and undertaking on behalf of the firm/company.</p>
+
+
+	<div class="row mt-4" style="padding: 10px;">
+		<div class="col-1">
+			<label for="name">Place</label>
+			<span class="red">*</span>
+		</div>
+		<div class="col-sm-5">
+			<div class="form-group">
+				<input type="text" appAlphabetOnly class="form-control form-control-sm" formControlName="formPlace" placeholder="PLACE"
+					maxlength="35" [class.is-invalid]="getlcErrorplcy('formPlace') !=''">
+				<div class="invalid-feedback">
+					{{getlcErrorplcy('formPlace')}} </div>
+			</div>
+		</div>
+		<div class="col-1">
+			<label for="name">Date</label>
+			<span class="red">*</span>
+		</div>
+		<div class="col-sm-5">
+			<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+				formControlName="formDt" placeholder="DATE" [class.is-invalid]="getlcErrorplcy('formDt') !=''">
+			</ng-bootstrap-datetime-angular>
+			<div class="invalid-feedback">
+				{{getlcErrorplcy('formDt')}} </div>
+		</div>
+	</div>
+</form>

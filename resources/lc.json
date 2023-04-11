@@ -1,0 +1,142 @@
+{
+  "reqType": "POST",
+  "reqUrl": "lcFormLoad/save/INIT88764945",
+  "reqBodyObject": {
+    "lcFormId": "",
+    "taskId": "",
+    "sysRefNo": "",
+    "transRefNo": "",
+    "sysRefDt": "",
+    "appRefDt": "",
+    "lcCustDtls": {
+      "custId": 88764945,
+      "accNo": "0402201052556",
+      "custNm": "Manoj Gupta",
+      "brnchNm": "BKC",
+      "dpCode": "1231",
+      "telNo": "",
+      "mobNo": "919994741275",
+      "eMail": "mashaallah.mm@gmail.com",
+      "altEmail": "",
+      "address1": "S/O BHASKAR MALLICK",
+      "address2": "AT MARADA PoBIRTUNGA PSGOP",
+      "address3": "PURI",
+      "ieCode": "2123123123",
+      "panNo": "AYSPB4422D"
+    },
+    "lcTransThrgh": "SAME_BNK",
+    "currency": "1",
+    "amount": 100,
+    "amntWords": "one hundred ",
+    "lcTransBnk": {
+      "swiftCode": "KABADKKK",
+      "cntryId": "1",
+      "bnkNm": "bsb",
+      "cifId": 39956420,
+      "fullAddr": "dfsdfsdf",
+      "fullAddr1": "fasdasf",
+      "fullAddr2": "fsdfdsfds"
+    },
+    "othrTransBnk": {
+      "cifId": 39956420,
+      "bnkNm": "Canara Bank",
+      "fullAddr": "Mumbai A1",
+      "fullAddr1": "Mumbai A1",
+      "fullAddr2": "Mumbai A2",
+      "cntryId": "1",
+      "swiftCode": "12121212121"
+    },
+    "lCBnfDtls": {
+      "cifId": 39956420,
+      "name": "Mohan M",
+      "addr1": "Mumbai 1",
+      "addr2": "Mumbai 2",
+      "cntryNm": "1"
+    },
+    "isAgree": 1,
+    "formPlace": "cxzxczxcxz",
+    "formDt": "2022-04-07T06:33:08.000Z",
+    "insCmpny": "sdfsdf",
+    "policyNo": "21312312",
+    "policyAmount": "123",
+    "formCoverDt": "2022-04-01T06:32:57.000Z",
+    "formEndDt": "2022-04-07T06:33:00.000Z",
+    "draftTenor": "SIGHT",
+    "tpSecurity": "CASH_MARGIN",
+    "priority": "",
+    "lCChrgDtls": {
+      "accOf": "BENEFICIARY",
+      "prdPresentation": "233",
+      "chrgCnfrm": "MAY_ADD",
+      "cnfrmChrsAccOf": "APPLICANT",
+      "pymntInstruc": "sdfsd",
+      "sndrRcvrInfo": "fsdf",
+      "docReq": "dsfs",
+      "addCondition": "dfsdfs"
+    },
+    "lCShipDtls": {
+      "descGdsRmrks": "xczxczxc",
+      "dgftPolicy": "NO_IMP_LIC_NO",
+      "hsCode": "504",
+      "hsDesc": "Default",
+      "impLicNo": "",
+      "inCoTerms": "EXW",
+      "ltstShpMntDt": "2022-03-31T06:32:15.000Z",
+      "plDlvry": "zxczxczx",
+      "plRcpt": "xczxczxc",
+      "pod": "zxczxc",
+      "pol": "zxczxc",
+      "proInvNo": "2342434"
+    },
+    "lCFormDtls": {
+      "tollerance": "232",
+      "tolAvlWith": "SPECIFIC_BNK",
+      "bnkNm": "asdasd",
+      "swiftCode": "KABADKKK",
+      "tolAvlBy": "PAYMENT",
+      "defPymntRmrks": "",
+      "mixPymntRmrks": "",
+      "draftTenor": "SIGHT",
+      "tpSecurity": "CASH_MARGIN",
+      "draftBy": "",
+      "draftDays": "",
+      "partialShipment": "PERMITTED",
+      "transShipment": "PERMITTED",
+      "expiryDate": "2022-03-31T06:31:26.000Z",
+      "placeExpiry": "sdasdsad"
+    },
+    "officeUse": {
+      "offcReqDocList": [
+        {
+          "docTp": "TRANSPORT",
+          "docDesc": "AIRWAY BILL",
+          "docCd": "AIRWAY BILL",
+          "noOfOrgnls": "1",
+          "noOfCopies": "1",
+          "docRefNo": "2qassda",
+          "docDt": "2022-03-31T06:31:39.000Z",
+          "atchmnt": "C:\\fakepath\\Angular13.docx.pdf",
+          "file": {},
+          "docTpReqq": false,
+          "docDescReq": false,
+          "docCdReqq": false,
+          "noOfOrgnlsReqq": false,
+          "docDtReqq": false,
+          "atchmntReqq": false,
+          "noOfCopiesReqq": false,
+          "docRefNoReqq": false,
+          "docAttchNm": "20220328_4890028042233900_TRANSPORT.pdf"
+        }
+      ],
+      "officeAttchList": [
+        {
+          "docAttchNm": "20220328_4890028288157426_STMPD_LC_APP.pdf",
+          "attchCd": "STMPD_LC_APP",
+          "isChckd": 1
+        }
+      ],
+      "officeDclrtnList": [],
+      "officeMisList": []
+    }
+  }
+}

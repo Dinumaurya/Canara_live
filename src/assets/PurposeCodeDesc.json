@@ -1,0 +1,13 @@
+[
+    {
+        "purposeId": 41,
+        "code": "P0003",
+        "description": "Repatriation of Indian investment abroad in equity capital (shares)",
+        "purposeGroup": {
+          "grpId": 21,
+          "grpNum": "00",
+          "grpName": "Capital Account"
+        }
+      
+    }
+]

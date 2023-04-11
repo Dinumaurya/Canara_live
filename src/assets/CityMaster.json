@@ -1,0 +1,581 @@
+
+[
+  {
+    "cityId": 1,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "Mumbai"
+  },
+  {
+    "cityId": 2,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "Thane"
+  },
+  {
+    "cityId": 3,
+    "state": {
+      "stateId": 2,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Delhi"
+    },
+    "name": "Parliament street"
+  },
+  {
+    "cityId": 4,
+    "state": {
+      "stateId": 4,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Tamil Nadu"
+    },
+    "name": "Chennai  jaya nagar"
+  },
+  {
+    "cityId": 6,
+    "state": {
+      "stateId": 7,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttar Pradesh"
+    },
+    "name": "Agra"
+  },
+  {
+    "cityId": 7,
+    "state": {
+      "stateId": 7,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttar Pradesh"
+    },
+    "name": "Noida"
+  },
+  {
+    "cityId": 8,
+    "state": {
+      "stateId": 7,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttar Pradesh"
+    },
+    "name": "Mathura"
+  },
+  {
+    "cityId": 10,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "Pune"
+  },
+  {
+    "cityId": 200,
+    "state": {
+      "stateId": 8,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttarakhand"
+    },
+    "name": "Dehradun"
+  },
+  {
+    "cityId": 201,
+    "state": {
+      "stateId": 8,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttarakhand"
+    },
+    "name": "Aurangabad"
+  },
+  {
+    "cityId": 202,
+    "state": {
+      "stateId": 8,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttarakhand"
+    },
+    "name": "Patiala"
+  },
+  {
+    "cityId": 203,
+    "state": {
+      "stateId": 8,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttarakhand"
+    },
+    "name": "Golikhal"
+  },
+  {
+    "cityId": 9,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "Navi Mumbai"
+  },
+  {
+    "cityId": 31,
+    "state": {
+      "stateId": 2,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Delhi"
+    },
+    "name": "corol bagh"
+  },
+  {
+    "cityId": 100,
+    "state": {
+      "stateId": 7,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttar Pradesh"
+    },
+    "name": "Jaithpur Kalan"
+  },
+  {
+    "cityId": 169,
+    "state": {
+      "stateId": 17,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Bihar"
+    },
+    "name": " nm"
+  },
+  {
+    "cityId": 5,
+    "state": {
+      "stateId": 7,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Uttar Pradesh"
+    },
+    "name": "Jhansi"
+  },
+  {
+    "cityId": 209,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "solapur"
+  },
+  {
+    "cityId": 229,
+    "state": {
+      "stateId": 12,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Daman and Diu"
+    },
+    "name": "kutch"
+  },
+  {
+    "cityId": 270,
+    "state": {
+      "stateId": 215,
+      "country": {
+        "countryId": 292,
+        "name": "Ajman",
+        "code": "#98",
+        "alfaCode": "ajm",
+        "altCode": "a12",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "ghf"
+    },
+    "name": "ghf"
+  },
+  {
+    "cityId": 271,
+    "state": {
+      "stateId": 216,
+      "country": {
+        "countryId": 293,
+        "name": "UAE",
+        "code": "#98",
+        "alfaCode": "uae",
+        "altCode": "u12",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "klm"
+    },
+    "name": "klm"
+  },
+  {
+    "cityId": 272,
+    "state": {
+      "stateId": 217,
+      "country": {
+        "countryId": 294,
+        "name": "qq",
+        "code": "#98",
+        "alfaCode": "qq",
+        "altCode": "q12",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "qq"
+    },
+    "name": "qq"
+  },
+  {
+    "cityId": 291,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Hyderabad"
+  },
+  {
+    "cityId": 295,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Kota"
+  },
+  {
+    "cityId": 299,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Nellore"
+  },
+  {
+    "cityId": 289,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Delhi"
+  },
+  {
+    "cityId": 290,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Madurai"
+  },
+  {
+    "cityId": 292,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Chikmagalur"
+  },
+  {
+    "cityId": 296,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Nashik"
+  },
+  {
+    "cityId": 297,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Panchkula"
+  },
+  {
+    "cityId": 298,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Udupi"
+  },
+  {
+    "cityId": 189,
+    "state": {
+      "stateId": 1,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Maharashtra"
+    },
+    "name": "Madurai 123"
+  },
+  {
+    "cityId": 293,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Palghat"
+  },
+  {
+    "cityId": 294,
+    "state": {
+      "stateId": 16,
+      "country": {
+        "countryId": 1,
+        "name": "India",
+        "code": "+91",
+        "alfaCode": "IN",
+        "altCode": "103",
+        "restrict": "Y",
+        "fatf": "N"
+      },
+      "name": "Sikkim"
+    },
+    "name": "Jamnagar"
+  }
+]

@@ -1,0 +1,119 @@
+// Import Custom Variables
+@import "variables.scss";
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap.scss";
+
+// Import Custom SCSS
+@import "global.scss";
+
+
+// Layout
+@import "layout/authentication.scss";
+@import "layout/dashboard-default.scss";
+@import "layout/dashboard-fixed.scss";
+@import "layout/error.scss";
+// Navigation
+@import "navigation/nav.scss";
+@import "navigation/topnav.scss";
+@import "navigation/sidenav/sidenav.scss";
+@import "navigation/sidenav/sidenav-dark.scss";
+@import "navigation/sidenav/sidenav-light.scss";
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+
+.form-group.required .col-form-label:after { 
+    content:"*";
+    color:red;
+ }
+ .sb-sidenav .sb-sidenav-menu .nav .nav-link {
+    display: flex;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    position: relative;
+    font-size: 14px;
+}
+.red{
+    color:#dc3545;
+    font-size: 12.8px;
+}
+.form-control{
+    text-transform: uppercase;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid{
+    background-image:none;
+}
+.bs-stepper .step-trigger{
+    padding: 10px;
+}
+.col-form-label{
+    font-size: 14px;
+}
+.modal-dialog{
+    margin-top: 8rem;
+}
+.popover-body{
+    padding:0px;
+}
+
+.bgcolor1{
+    background-color: #9edaab;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}
+.bgcolor2{
+    background-color: #86d7ff;
+    color: white;
+
+    border-radius: 4px;
+    border: 1px solid black;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}
+.bgcolor3{
+    background-color: #ffd573;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}
+.bgcolor4{
+    background-color: #bac3d2;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}
+.bgcolor5{
+    background-color: chocolate;
+    border-radius: 4px;
+    border: 1px solid black;
+    color: white;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}
+.bgcolor6{
+    background-color: lightpink;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid black;
+    a {
+        color: black;
+        cursor: pointer;
+    }
+}

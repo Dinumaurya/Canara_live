@@ -1,0 +1,64 @@
+<form [formGroup]="billPolicyDetails">
+
+    <div class="card" style="background-color: rgb(238, 232, 225);">
+
+        <p class=" m-3" style="size: 15px;"> <b>DECLARTION </b> </p>
+        <p class=" m-3" style="size: 15px;"> <b>(Under Section 10 (5), Chapter III of the Foreign Exchange Management
+                Act, 1999)</b></p>
+
+
+
+        <br>
+        <div style="background-color: rgb(238, 232, 225);">
+
+            <P class="m-3" style="text-align: left;">I/We declare that transaction , the details of which are
+                specifically mentioned in the schedule hereunder , does not involve, and is not designed for the purpose
+                of any contravention or evasion of the provisions of the Foreign Exchange Management Act, 1999, or any
+                rule, regulation, notification, direction or order made there under.</P>
+            <P class="m-3" style="text-align: left;">I/We further agree to give you all such information/particulars as
+                may be required by you and called for by you to determine whether such transaction contravenes any of
+                the provisions of the Foreign Exchange Management Act or any other rule, regulation, notification of
+                order there under. </P>
+            <P class="m-3" style="text-align: left;">I/We hereby declare that all the information /particulars given by
+                us are true and correct to the best of my/our knowledge and information</P>
+            <P class="m-3" style="text-align: left;">I/We also understand and agree that if I/we refuse to comply with
+                any such requirement or make only unsatisfactory compliance therewith, the bank is always at liberty to
+                refuse in writing to undertake the transaction and shall if it has reason to believe that any
+                contravention / evasion is contemplated by me/us report the matter to Reserve Bank of India.</P>
+            <P class="m-3" style="text-align: left;">*I/We further declare that the undersigned has /have the authority
+                to five this declaration and undertaking on behalf of the firm/company.</P>
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-2">
+            <label for="name">Place <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <input type="text" appAlphabetOnly class="form-control form-control-sm" formControlName="formPlace"
+                    placeholder="PLACE" maxlength="35" [class.is-invalid]="getBillPolicyError('formPlace') !=''">
+                <div class="invalid-feedback">
+                    {{getBillPolicyError('formPlace')}}
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <label for="name">Date <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+
+            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                formControlName="formDt" placeholder="DATE" [class.is-invalid]="getBillPolicyError('formDt') !=''"
+                [disabled]="billPolicyDetails.disabled">
+
+            </ng-bootstrap-datetime-angular>
+
+            <div class="invalid-feedback">
+                {{getBillPolicyError('formDt')}}
+            </div>
+        </div>
+    </div>
+</form>

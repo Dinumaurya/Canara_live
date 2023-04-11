@@ -1,0 +1,323 @@
+<form [formGroup]="advBeneficiaryForm">
+    <!-- <div class="card">
+        <h6 class="mt-2">
+            <b>IV. BENEFICIARY BANK DETAILS</b> <span class="red"> *</span>
+        </h6>
+        <hr />
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.cifId') !=''" />
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.cifId')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Account No.</label>
+                    <div class="col-sm-7">
+                        <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="drweAccNo"
+                            placeholder="Account No" maxlength="34"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.drweAccNo') !=''" />
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.drweAccNo')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Bank Name:</label>
+                    <div class="col-sm-7">
+                        <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                            formControlName="drweBnkNm" placeholder="Bank Name"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.drweBnkNm') !=''" />
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.drweBnkNm')}}
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr1"
+                            placeholder="ADDRESS LINE 1"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.addr1') !=''"></textarea>
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.addr1')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr2"
+                            placeholder="ADDRESS LINE 2"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.addr2') !=''"></textarea>
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.addr2')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Country:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.cntryId') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let con of country " value="{{con.countryId}}">
+                                {{con.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.cntryId')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                        <label class="col-sm-5 col-form-label">Swift Code:</label>
+                        <div class="col-sm-7">
+                            <input maxlength="11" type="text" class="form-control form-control-sm"
+                                formControlName="swiftCode" placeholder="Swift Code"
+                                [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.swiftCode') !=''" />
+                            <div class="invalid-feedback">
+                                {{getBeneError('advRemDrweBnkDtlsVo.swiftCode')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Intermediary bank SWIFT CODE (If any):</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" type="text" class="form-control form-control-sm"
+                            formControlName="interSwiftCode" placeholder="Intermediary bank SWIFT CODE (If any)"
+                            (click)="getBeneficiaryDetails()" Numbers
+                            [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.interSwiftCode') !=''" />
+                        <div class="invalid-feedback">
+                            {{getBeneError('advRemDrweBnkDtlsVo.interSwiftCode')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div> -->
+
+    <div class="row" formGroupName="advRemDrweBnkDtlsVo" (change)="onChecked($event)">
+        <div class="col-12 col-form-label">
+            <div class="form-check m-2">
+                <input type="checkbox" class="form-check-input" formControlName="isSwiftCodeNotAvl" />
+                <label class="form-check-label">If Beneficiary Bank SWIFT Code not available</label>
+            </div>
+        </div>
+    </div>
+    <div class="row" [hidden]="!advBeneficiaryDetailsVal.advRemDrweBnkDtlsVo.isSwiftCodeNotAvl">
+        <div class="col-2 col-form-label">
+            <label for="name">Bank Name <span class="red">*</span></label>
+        </div>
+        <div class="col-2">
+            <div class="form-group" formGroupName="advRemDrweBnkDtlsVo">
+                <input type="text" class="form-control form-control-sm" placeholder="BANK NAME"
+                    formControlName="swiftBnkNm"
+                    [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.swiftBnkNm') !=''" />
+                <div class="red" *ngIf="!isNoBeneficiary()" maxlength="35">
+                    This field is required
+                </div>
+            </div>
+        </div>
+        <div class="col-2 col-form-label">
+            <label for="name">Full Address <span class="red">*</span></label>
+        </div>
+        <div class="col-2">
+            <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAddr1"
+                    placeholder="Full Address" maxlength="35"
+                    [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.swiftBnkAddr1') !=''" />
+                <div class="red" *ngIf="!isNoBeneficiary()">This field is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="row" [hidden]="!advBeneficiaryDetailsVal.advRemDrweBnkDtlsVo.isSwiftCodeNotAvl">
+        <div class="col-2">
+            <label for="name">ABA Code <span class="red">*</span></label>
+        </div>
+        <div class="col-2">
+            <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                <select class="form-control form-control-sm" formControlName="swiftBnkAbacd"
+                    [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.name') !=''">
+                    <!-- options -->
+                    <option value="">SELECT</option>
+
+                    <option *ngFor="let data of ABA_CDlist" value="{{data.code}}">
+                        {{data.value}}
+                    </option>
+                </select>
+                <div class="red" *ngIf="!isNoBeneficiary()">This field is required</div>
+            </div>
+        </div>
+        <div class="col-2">
+            <label for="name">ABA Code Description</label>
+        </div>
+        <div class="col-2">
+            <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAbaCdDesc"
+                    placeholder="ABA Code Description"
+                    [class.is-invalid]="getBeneError('advRemDrweBnkDtlsVo.swiftBnkAbaCdDesc') !=''" maxlength="32" />
+                <div class="invalid-feedback">
+                    {{getBeneError('advRemDrweBnkDtlsVo.swiftBnkAbaCdDesc')}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <fieldset [disabled]="advBeneficiaryForm.disabled">
+            <h6 class="mt-2">
+                <b>V. REMITTANCE DETAILS</b> <span class="red"> *</span>
+            </h6>
+            <p>We authorize to debit our below account/s for above remittance</p>
+            <hr />
+            <table class="table table-bordered">
+                <tr style="text-align: center;text-align: center; font-size: 14px;">
+                    <th class="th-lg" rowspan="2">Account Number</th>
+                    <th class="th-lg" rowspan="2">Account Type</th>
+                    <th style="text-align: center;" colspan="2">
+                        Amount Foreign Curency
+                    </th>
+                    <th rowspan="2">Action</th>
+                </tr>
+                <tr style="text-align: center;text-align: center; font-size: 14px;">
+                    <th>FCY/LCY</th>
+                    <th>Amount</th>
+                </tr>
+                <tr *ngFor="let accountDetail of accountDetailsList;let indexOfelement=index;">
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm"    [(ngModel)]="accountDetail.accNo"
+                            [ngModelOptions]="{standalone: true}">
+                            <!-- options -->
+                            <option value="">SELECT</option>
+                           
+                            <option *ngFor="let con of accountNumberList " [value]="con">
+                                {{con}}
+                            </option>
+
+                        </select>
+                        <!-- <input type="text" class="form-control form-control-sm" NumbersOnly placeholder="ACCOUNT NO"
+                            [(ngModel)]="accountDetail.accNo" [ngModelOptions]="{standalone: true}" maxlength="13" /> -->
+                        <div class="red ml-2" *ngIf=" accountDetail.accNoReq == true  && submittedAdvBeneFrom3 ">
+                            <p>This filed is required</p>
+                        </div>
+                      <!--   <div class="red ml-2" *ngIf="accountDetail.accNoMax== true  && submittedAdvBeneFrom3 ">
+                            <p>Maximum 16 characters allowed</p>
+                        </div> -->
+                        </div>
+                        
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" [(ngModel)]="accountDetail.accTp"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of accountTypeList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <div class="red ml-2" *ngIf=" accountDetail.accTpReq  && submittedAdvBeneFrom3 ">
+                                <p>This filed is required</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" [(ngModel)]="accountDetail.fcy"
+                                [ngModelOptions]="{standalone: true}">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                    {{currency.code}}
+                                </option>
+                            </select>
+                            <div class="red ml-2" *ngIf=" accountDetail.fcyReq  && submittedAdvBeneFrom3 ">
+                                <p>This filed is required</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="accountDetail.amnt" NumbersOnly type="text"
+                            class="form-control form-control-sm" placeholder="Amount"
+                            [ngModelOptions]="{standalone: true}" (keyup)="accountDetailTabl1TotalCal()"
+                            maxlength="22" />
+                        <div class="red ml-2" *ngIf=" accountDetail.amountReq  && submittedAdvBeneFrom3 ">
+                            <p>This filed is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                            (click)="deleteAccountDetail(indexOfelement)" *ngIf="!isEditable">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>
+                        <input type="number" value="{{accountDetailTabl1Total}}" class="form-control form-control-sm"
+                            placeholder="TOTAL" disabled="disabled" maxlength="30" />
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary m-1 mb-0 btn-sm" (click)="onAddRowClick()"
+                            style="width: 70px;" *ngIf="!isEditable">
+                            Add +
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-row">
+                <div class="red ml-2" *ngIf=" accountDetailsList.length === 0  && submittedAdvBeneFrom3 ">
+                    <p>Conversion Details table is required</p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+            Close
+        </button>
+    </div>
+</ng-template>

@@ -1,0 +1,1434 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="New Forward Contract" [hideBreadcrumbs]="true"></sb-dashboard-head>
+
+    <div id="stepper1" class="bs-stepper" #stepper1>
+        <div class="row">
+            <div class="col">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#test-l-1">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">1</span> <span
+                                class="bs-stepper-label">Applicant Details</span> </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-2">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">2</span> <span
+                                class="bs-stepper-label">Shipment Details</span> </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-3">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">3</span> <span
+                                class="bs-stepper-label">Charge Details</span> </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-4">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">4</span> <span
+                                class="bs-stepper-label">Conversion Details</span> </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-5">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">5</span> <span
+                                class="bs-stepper-label">Office User</span> </button>
+                    </div>
+                    <div class="step" data-target="#test-l-6" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                        <button class="step-trigger"> <span class="bs-stepper-circle">6</span> <span
+                                class="bs-stepper-label">Remarks History </span> </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <div id="test-l-1" class="content">
+                <form [formGroup]="fwdCntDtlsVo" (ngSubmit)="onSubmitCustTab()">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">System Ref No: </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="sysRefNo" placeholder="SYSTEM REF.NO" disabled>
+                                            <div class="invalid-feedback">
+                                                {{getError('sysRefNo')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="transRefNo" placeholder="TRANS REF NO" disabled>
+                                            <div class="invalid-feedback">
+                                                {{getError('transRefNo')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                                        <div class="col-sm-7">
+                                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                formControlName="sysRefDt" name="sysRefDt" disabled="disabled">
+                                            </ng-bootstrap-datetime-angular>
+                                            <div class="invalid-feedback">
+                                                {{getError('sysRefDt')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="mt-2">To:</h6>
+                            <br>
+                            <h6 class="mt-2">THE BRANCH MANAGER,CANARA BANK</h6>
+                            <br>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-3 col-form-label">Branch: </label>
+                                        <div class="col-sm-7">
+                                            <input appAlphabetOnly type="text" maxlength="35"
+                                                class="form-control form-control-sm" placeholder="BRANCH"
+                                                formControlName="brnchNmMng"
+                                                [class.is-invalid]="getError('brnchNmMng') !=''">
+                                            <div class="invalid-feedback">
+                                                {{getError('brnchNmMng')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-3 col-form-label">DP Code: </label>
+                                        <div class="col-sm-7">
+                                            <!-- <input type="text" class="form-control form-control-sm" formControlName="dpCode"
+                                                placeholder=" "> -->
+                                            <input type="text"  NumbersOnly inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="DP CODE" maxlength="5"
+                                                formControlName="dpCodeMng"
+                                                [class.is-invalid]="getError('dpCodeMng') !=''">
+                                            <div class="invalid-feedback">
+                                                {{getError('dpCodeMng')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4>Sir,</h4>
+                            <br>
+
+                            <h6 class="mt-2"> Please book on our behalf the following forward exchange contract covering
+                                transaction with the following details </h6>
+
+
+                            <div class="form-group">
+                                <div class="form-row required">
+
+                                    <div class="col-sm-9">
+                                        <div class="form-check forgvfem-check-inline">
+                                            <input class="form-check-input" type="radio" value="EXPORT_FC_DPST"
+                                                formControlName="expimpRdio">
+                                            <label class="form-check-label">PURCHASE (Export / FC Deposits) </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" value="IMPORT_NRE"
+                                                formControlName="expimpRdio">
+                                            <label class="form-check-label">SALE (Import / NRE TD) </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" value="CANCELLATION"
+                                                formControlName="expimpRdio" (click)="fwdExeClick($event)">
+                                            <label class="form-check-label">CANCELLATION </label>
+                                        </div>
+                                        <div class="red">
+                                            {{getError('expimpRdio')}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <hr />
+                            <div *ngIf="fwdCntDtlsVal.expimpRdio !==('CANCELLATION')">
+                                <h5 class="mt-2"> Basis of Contract</h5>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="form-row required">
+
+                                                <div class="col-sm-9">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            formControlName="contractRdio" #radio value="DCMNTRY_EVDNC"
+                                                            [(ngModel)]="contractRdio">
+                                                        <label class="form-check-label">Documentary Evidence </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            formControlName="contractRdio" #radio value="PAST_PRFRMNC"
+                                                            [(ngModel)]="contractRdio">
+                                                        <label class="form-check-label">Past Performance </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            formControlName="contractRdio" #radio value="SIMPLFD_HEDGNG"
+                                                            [(ngModel)]="contractRdio">
+                                                        <label class="form-check-label">Simplified Hedging
+                                                        </label>
+                                                    </div>
+                                                    <div class="red">
+                                                        {{getError('contractRdio')}}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h5 class="mt-2"> Type of Delivery</h5>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="form-row required">
+
+                                                <div class="col-sm-9">
+                                                    <div class="form-check form-check-inline">
+                                                        <input formControlName="deliveryRdio" class="form-check-input"
+                                                            #radio type="radio" value="FIXD_DT"
+                                                            [(ngModel)]="deliveryRdio">
+                                                        <label class="form-check-label">Fixed Date </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input formControlName="deliveryRdio" class="form-check-input"
+                                                            #radio type="radio" value="OPTN_PRIOD"
+                                                            [(ngModel)]="deliveryRdio">
+                                                        <label class="form-check-label">Option Period </label>
+                                                    </div>
+
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <div class="form-group row required">
+                                                                <select class="form-control form-control-sm"
+                                                                    formControlName="docDelivery"
+                                                                    [disabled]="(fwdCntDtlsVal.deliveryRdio=='OPTN_PRIOD' || fwdCntDtlsVal.deliveryRdio =='FIXD_DT' || fwdCntDtlsVal.deliveryRdio =='DEL_FUNDS' || fwdCntDtlsVo.disabled)"
+                                                                    data-role="select-dropdown">
+                                                                    <option value="">SELECT</option>
+                                                                    <option *ngFor="let data of docDeliveryList"
+                                                                        value="{{data.code}}">
+                                                                        {{data.value}}
+                                                                    </option>
+                                                                </select>
+                                                                <div class="invalid-feedback">
+                                                                </div>
+                                                            </div>
+                                                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <div class="col">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input"
+                                                                    formControlName="deliveryRdio" type="radio" #radio
+                                                                    value="DEL_DOCMNTS" [(ngModel)]="deliveryRdio">
+                                                                <label class="form-check-label">Documents Delivery
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="form-group row required">
+                                                                <select class="form-control form-control-sm"
+                                                                    formControlName="dlvryOfFunds"
+                                                                    [disabled]="(fwdCntDtlsVal.deliveryRdio=='OPTN_PRIOD' || fwdCntDtlsVal.deliveryRdio =='FIXD_DT' || fwdCntDtlsVal.deliveryRdio =='DEL_DOCMNTS') || fwdCntDtlsVo.disabled"
+                                                                    data-role="select-dropdown">
+                                                                    <option value="">SELECT</option>
+                                                                    <option *ngFor="let data of dlvryOfFundsList"
+                                                                        value="{{data.code}}">
+                                                                        {{data.value}}
+                                                                    </option>
+                                                                </select>
+                                                                <div class="">
+                                                                </div>
+                                                            </div>
+                                                        </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <div class="col">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input"
+                                                                    [(ngModel)]="deliveryRdio"
+                                                                    formControlName="deliveryRdio" type="radio" #radio
+                                                                    value="DEL_FUNDS">
+                                                                <label class="form-check-label"> Delivery Of Funds
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="red">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h5 class="mt-2"> Underlying transaction for which booking of forward exchange rate
+                                    requested:</h5>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <div class="col">
+                                                <div class="form-group row required">
+                                                    <label class="col-sm-5 col-form-label">Deposit Account Number*:
+                                                    </label>
+                                                    <div class="col-sm-7">
+                                                        <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                                        placeholder=" "> -->
+                                                        <input maxlength="11" NumbersOnly type="text"
+                                                            class="form-control form-control-sm"
+                                                            placeholder="Deposit Account Number*"
+                                                            formControlName="depAcc">
+                                                        <div class="invalid-feedback">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div>
+                                                    <ng-bootstrap-datetime-angular
+                                                        inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                                                        placeholder="Contract Date" formControlName="cntDate">
+                                                    </ng-bootstrap-datetime-angular>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group row required">
+                                                    <label class="col-sm-5 col-form-label">CBS Contract Number </label>
+                                                    <div class="col-sm-7">
+                                                        <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                                    placeholder=" "> -->
+                                                        <input maxlength="11" NumbersOnly type="text"
+                                                            class="form-control form-control-sm"
+                                                            placeholder="CUSTOMER ID" formControlName="cbs">
+                                                        <div class="invalid-feedback">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h5 class="mt-2">Applicant Details</h5>
+                            <hr />
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Customer ID: </label>
+                                                <div class="col-sm-7">
+                                                    <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                                        placeholder=" "> -->
+                                                    <input maxlength="11" NumbersOnly type="text"
+                                                        class="form-control form-control-sm" formControlName="custId"
+                                                        placeholder="CUSTOMER ID" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.custId') !=''"
+                                                         >
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.custId')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Account No: </label>
+                                                <div class="col-sm-7">
+
+                                                    <select class="form-control form-control-sm" formControlName="accNo"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.accNo') !=''"
+                                                        data-role="select-dropdown">
+                                                        <option value="">SELECT</option>
+                                                        <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                                            {{con}}</option>
+
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.accNo')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Customer Name:<span
+                                                        class="red">*</span>
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    <input appAlphabetOnly type="text" maxlength="35"
+                                                        class="form-control form-control-sm" formControlName="custNm"
+                                                        placeholder="CUSTOMER NAME" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.custNm') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.custNm')}} </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Branch: </label>
+                                                <div class="col-sm-7">
+                                                    <input appAlphabetOnly type="text" maxlength="35"
+                                                        class="form-control form-control-sm" formControlName="brnchNm"
+                                                        placeholder="BRANCH"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.brnchNm') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.brnchNm')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">DP Code: </label>
+                                                <div class="col-sm-7">
+                                                    <!-- <input type="text" class="form-control form-control-sm" formControlName="dpCode"
+                                                        placeholder=" "> -->
+                                                    <input type="text" NumbersOnly inputmode="numeric"
+                                                        class="form-control form-control-sm" formControlName="dpCode"
+                                                        placeholder="DP CODE" maxlength="5" 
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.dpCode') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.dpCode')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row " formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Telephone: </label>
+                                                <div class="col-sm-7">
+                                                    <!-- <input type="number" class="form-control form-control-sm" formControlName="telNo"
+                                                         placeholder=" "> -->
+                                                    <input NumbersOnly type="text" maxlength="13" max="13"
+                                                        class="form-control form-control-sm" formControlName="telNo"
+                                                        placeholder="TELEPHONE" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.telNo') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.telNo')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Mobile No: </label>
+                                                <div class="col-sm-7">
+                                                    <!-- <input type="number" class="form-control form-control-sm"  formControlName="mobNo"
+                                                      placeholder=" "> -->
+                                                    <input NumbersOnly type="text" maxlength="13"
+                                                        class="form-control form-control-sm" formControlName="mobNo"
+                                                        placeholder="mobile Number" max="13" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.mobNo') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.mobNo')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Email: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="email" class="form-control form-control-sm"
+                                                        formControlName="eMail" placeholder="EMAIL" maxlength="70"
+                                                        max="70" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.eMail') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.eMail')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="email" class="form-control form-control-sm"
+                                                        formControlName="altEmail" placeholder="ALTERNATE EMAIL"
+                                                        maxlength="70" max="70" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.altEmail') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.altEmail')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                                                <div class="col-sm-7">
+                                                    <textarea class="form-control" formControlName="address1"
+                                                        placeholder="ADDRESS LINE 1" maxlength="35" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.address1') !=''"></textarea>
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.address1')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                                                <div class="col-sm-7">
+                                                    <textarea class="form-control" formControlName="address2"
+                                                        placeholder="ADDRESS LINE 2" maxlength="35" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.address2') !=''"></textarea>
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.address2')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                                                <div class="col-sm-7">
+                                                    <textarea class="form-control" formControlName="address3"
+                                                        placeholder="ADDRESS LINE 3" maxlength="29" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.address3') !=''"></textarea>
+                                                    {{getError('fwdCntCustDtlsVo.address3')}}
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.address3')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">Country: </label>
+                                                <div class="col-sm-7">
+                                                    <select class="form-control form-control-sm"
+                                                        formControlName="cntryId"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.cntryId') !=''"
+                                                        data-role="select-dropdown">
+                                                        <!-- options -->
+                                                        <option value="">SELECT</option>
+                                                        <option *ngFor="let con of country " value="{{con.countryId}}">
+                                                            {{con.name}}</option>
+                                                    </select>
+
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.cntryId')}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group row required" formGroupName="fwdCntCustDtlsVo">
+                                                <label class="col-sm-5 col-form-label">PAN No.: </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" maxlength="10" minlength="10"
+                                                        class="form-control form-control-sm" formControlName="panNo"
+                                                        placeholder="PAN NO" disabled="disabled"
+                                                        [class.is-invalid]="getError('fwdCntCustDtlsVo.panNo') !=''">
+                                                    <div class="invalid-feedback">
+                                                        {{getError('fwdCntCustDtlsVo.panNo')}} </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col"> </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-row">
+                                <div class="col text-center">
+                                    <button type="submit" class="btn btn-primary m-2 mb-0">Continue</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                        (click)="saveDraft()">
+                                        Draft
+                                    </button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                        Approve
+                                    </button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                        Reject
+                                    </button>
+                                    <button type="button" class="btn btn-danger m-2 mb-0"
+                                        (click)="redirectHome()">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="test-l-2" class="content">
+                <form [formGroup]="shipmentDetails" (ngSubmit)="onSubmitShipTab()">
+                    <hr />
+                    <h5 class="mt-2">Forward Exchange rate sought for:</h5>
+                    <hr />
+                    <div class="card"
+                        *ngIf="(fwdCntDtlsVal.expimpRdio =='EXPORT_FC_DPST' || fwdCntDtlsVal.expimpRdio =='IMPORT_NRE')">
+                        <div class="card-body">
+                            <!--footer Form Start-->
+                            <div class="form-row">
+                                <div class="col row form-group">
+                                    <label class="col-sm-5 col-form-label">Currency: </label>
+                                    <div class="col-sm-7">
+
+                                        <select formControlName="currency" class="form-control form-control-sm"
+                                            [class.is-invalid]="getError('shipmentDetails.amount') !=''">
+                                            <option value="">SELECT</option>
+                                            <option *ngFor="let currency of currency "
+                                                value="{{currency.currencyMstId}}"> {{currency.code}}
+                                            </option>
+                                        </select>
+
+                                        <div class="invalid-feedback">
+                                            {{getError('shipmentDetails.currency')}}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col row">
+                                    <label class="col-sm-5 col-form-label">Amount: </label>
+                                    <div class="col-sm-7">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            maxlength="22" formControlName="amount" placeholder="AMOUNT" maxlength="22"
+                                            max="22" (keyup)="inputChange($event)"
+                                            [class.is-invalid]="getError('shipmentDetails.amount') !=''">
+                                        <div class="invalid-feedback">
+                                            {{getError('shipmentDetails.amount')}} </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <div class="form-group row required">
+                                        <label for="text" class="col-sm-4 col-form-label">Amount In Words:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="email" class="form-control form-control-sm"
+                                                [(ngModel)]="amountval" [ngModelOptions]="{standalone: true}"
+                                                placeholder="AMOUNT IN WORDS" disabled="disabled">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col row">
+                                    <label class="col-sm-5 col-form-label">Currency:(Counter Currency) </label>
+                                    <div class="col-sm-7">
+
+                                        <select formControlName="agnstCurr" class="form-control form-control-sm"
+                                            [class.is-invalid]="getError('shipmentDetails.agnstCurr') !=''">
+                                            <option value="">SELECT</option>
+                                            <option *ngFor="let currency of currency "
+                                                value="{{currency.currencyMstId}}"> {{currency.code}}
+                                            </option>
+                                        </select>
+
+                                        <div class="invalid-feedback">
+                                            {{getError('shipmentDetails.agnstCurr')}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col row">
+                                    <label class="col-sm-5 col-form-label">Against Amount: </label>
+                                    <div class="col-sm-7">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="AMOUNT" formControlName="agnstAmt" maxlength="22"
+                                            [class.is-invalid]="getError('shipmentDetails.agnstAmt') !=''">
+                                        <div class="invalid-feedback">
+                                            {{getError('shipmentDetails.agnstAmt')}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                            </div>
+
+                            <!--Footer Form Ends-->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <!--In Case On Non-lrs we need to open this cart Section 12-->
+                            <div class="row"
+                                *ngIf="(fwdCntDtlsVal.expimpRdio =='EXPORT_FC_DPST' || fwdCntDtlsVal.expimpRdio =='IMPORT_NRE')">
+                                <div class="col-12">
+                                    <div class="card mt-2">
+
+                                        <div class="card-body">
+                                            <div class="row form-group">
+
+                                                <div class="col-sm-2">
+                                                    <label for="name">
+                                                        VALUE DATE
+                                                        <span class="red">*</span>
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <ng-bootstrap-datetime-angular
+                                                            inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                            [class.is-invalid]="getError('valDate') !=''"
+                                                            [disabled]="shipmentDetails.disabled"
+                                                            formControlName="valDate" name="valDate">
+                                                        </ng-bootstrap-datetime-angular>
+                                                        <div class="invalid-feedback">
+                                                            {{getError('valDate')}} </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-2">
+                                                    <label for="name">FUNDS DELIVERY START DATE</label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <ng-bootstrap-datetime-angular
+                                                            inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                            [class.is-invalid]="getError('fdStDate') !=''"
+                                                            [disabled]="shipmentDetails.disabled"
+                                                            formControlName="fdStDate" name="fdStDate">
+                                                        </ng-bootstrap-datetime-angular>
+                                                        <div class="invalid-feedback">
+                                                            {{getError('fdStDate')}} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <label for="name">FUNDS DELIVERY END DATE </label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <ng-bootstrap-datetime-angular
+                                                            inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                            [class.is-invalid]="getError('fdEdDate') !=''"
+                                                            [disabled]="shipmentDetails.disabled"
+                                                            formControlName="fdEdDate" name="fdEdDate">
+                                                        </ng-bootstrap-datetime-angular>
+                                                        <div class="invalid-feedback">
+                                                            {{getError('fdEdDate')}} </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <label for="name">DOCUMENT DELIVERY START DATE</label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <ng-bootstrap-datetime-angular
+                                                            inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                            [class.is-invalid]="getError('docStDate') !=''"
+                                                            [disabled]="shipmentDetails.disabled"
+                                                            formControlName="docStDate" name="docStDate">
+                                                        </ng-bootstrap-datetime-angular>
+                                                        <div class="invalid-feedback">
+                                                            {{getError('docStDate')}} </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <label for="name">
+
+                                                        DOCUMENT DELIVERY END DATE</label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <ng-bootstrap-datetime-angular
+                                                            inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                            [class.is-invalid]="getError('docEdDate') !=''"
+                                                            [disabled]="shipmentDetails.disabled"
+                                                            formControlName="docEdDate" name="docEdDate">
+                                                        </ng-bootstrap-datetime-angular>
+                                                        <div class="invalid-feedback">
+                                                            {{getError('docEdDate')}} </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <label for="name">Tenor in Days</label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <input maxlength="35" type="text"
+                                                            class="form-control form-control-sm"
+                                                            formControlName="draftDays" placeholder="Tenor in Days">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-primary m-2 mb-0"
+                                        (click)="toStep(1)">Previous</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                        (click)="saveDraft()">
+                                        Draft
+                                    </button>
+                                    <button type="button" class="btn btn-danger m-2 mb-0"
+                                        (click)="redirectHome()">Cancel</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                        Approve
+                                    </button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                        Reject
+                                    </button>
+                                    <button type="submit" class="btn btn-success m-2 mb-0">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="test-l-3" class="content text-left">
+                <form [formGroup]="chargeDetails" (ngSubmit)="onSubmitChargeTab()">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox"
+                                            [class.is-invalid]="getChargeError('takeConvsnRtOnBhlf') !=''"
+                                            formControlName="takeConvsnRtOnBhlf">
+                                        <label class="form-check-label" for="radio"><b>We hereby request CANARA BANK to
+                                                take Conversion Rate on our behalf.</b></label>
+                                        <div class="invalid-feedback">
+                                            {{getChargeError('takeConvsnRtOnBhlf')}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <br>
+                                <div *ngIf="fwdCntDtlsVal.expimpRdio =='CANCELLATION'">
+                                    <h5 class="mt-2"> III. FOR CANCELLATION OF EXISTING FORWARD EXCHANGE RATE CONTRACT
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div style="text-align: center;">
+                                                <fieldset [disabled]="chargeDetails.disabled">
+                                                    <div style="text-align: center;">
+                                                        <table class="table table-bordered ">
+                                                            <tr
+                                                                style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                                                <th class="th-lg">CBS Contract No.</th>
+                                                                <th class="th-lg">BOUGHT/SOLD CCY</th>
+                                                                <th class="th-lg">ORIGINAL AMOUNT</th>
+                                                                <th class="th-lg">UTILIZED AMOUNT</th>
+                                                                <th class="th-lg">AMOUNT TO BE CANCELLED</th>
+                                                                <th class="th-lg">SOLD/BOUGHT CCY</th>
+                                                                <th class="th-lg">Action</th>
+                                                            </tr>
+                                                            <tbody>
+                                                                <tr
+                                                                    *ngFor="let row of canTableList;let indexOfelement=index;">
+                                                                    <td>
+                                                                        <input inputmode="numeric" NumbersOnly
+                                                                            maxlength="16" minlength="16"
+                                                                            class="form-control form-control-sm"
+                                                                            placeholder="CBS Contract No."
+                                                                            [(ngModel)]="row.cbsNo"
+                                                                            [ngModelOptions]="{standalone: true}">
+                                                                        <div class="red ml-2"
+                                                                            *ngIf=" row.cbsNoReq  && this.submitChargeTab">
+                                                                            <p>This filed is required</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group col">
+
+                                                                            <select class="form-control form-control-sm"
+                                                                                data-role="select-dropdown"
+                                                                                [(ngModel)]="row.botCCY"
+                                                                                [ngModelOptions]="{standalone: true}">
+                                                                                <!-- options -->
+                                                                                <option value="">SELECT</option>
+                                                                                <option
+                                                                                    *ngFor="let currency of currency "
+                                                                                    value="{{currency.currencyMstId}}">
+                                                                                    {{currency.code}}
+                                                                                </option>
+                                                                            </select>
+                                                                            <div class="red ml-2"
+                                                                                *ngIf=" row.botCCYReq  && this.submitChargeTab">
+                                                                                <p>This filed is required</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input NumbersOnly type="text"
+                                                                            inputmode="numeric" NumbersOnly
+                                                                            class="form-control form-control-sm"
+                                                                            placeholder="ORIGINAL AMOUNT"
+                                                                            [(ngModel)]="row.orgAmt"
+                                                                            [ngModelOptions]="{standalone: true}"
+                                                                            maxlength="22">
+                                                                        <div class="red ml-2"
+                                                                            *ngIf=" row.orgAmtReq && this.submitChargeTab">
+                                                                            <p>This filed is required</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input NumbersOnly type="text"
+                                                                            inputmode="numeric" NumbersOnly
+                                                                            class="form-control form-control-sm"
+                                                                            placeholder="UTILIZED AMOUNT"
+                                                                            [(ngModel)]="row.amntutlz"
+                                                                            [ngModelOptions]="{standalone: true}"
+                                                                            maxlength="22">
+                                                                        <div class="red ml-2"
+                                                                            *ngIf=" row.amntutlzReq && this.submitChargeTab">
+                                                                            <p>This filed is required</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input NumbersOnly type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            placeholder="AMOUNT TO BE CANCELLED"
+                                                                            maxlength="22" [(ngModel)]="row.cancelAmt"
+                                                                            [ngModelOptions]="{standalone: true}">
+                                                                        <div class="red ml-2"
+                                                                            *ngIf=" row.cancelAmtReq  && this.submitChargeTab">
+                                                                            <p>This filed is required</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input NumbersOnly inputmode="numeric"
+                                                                            type="text"
+                                                                            class="form-control form-control-sm"
+                                                                            placeholder="SOLD/BOUGHT CCY"
+                                                                            [(ngModel)]="row.soldCCY" maxlength="22"
+                                                                            [ngModelOptions]="{standalone: true}">
+                                                                        <div class="red ml-2"
+                                                                            *ngIf="row.soldCCYReq  && this.submitChargeTab">
+                                                                            <p>This filed is required</p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-danger m-1 mb-0 btn-sm"
+                                                                            type="button"
+                                                                            (click)="onDeleteCanTable(indexOfelement)"
+                                                                            *ngIf="!isEditable"><i
+                                                                                class="fa fa-trash"></i></button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td> </td>
+                                                                    <td></td>
+                                                                    <td> </td>
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary m-1 mb-0 btn-sm"
+                                                                            (click)="onAddCanTable()"
+                                                                            style="width: 70px;" *ngIf="!isEditable">
+                                                                            Add +
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-primary m-2 mb-0"
+                                        (click)="toStep(2)">Previous</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                        (click)="saveDraft()">
+                                        Draft
+                                    </button>
+                                    <button type="button" class="btn btn-danger m-2 mb-0"
+                                        (click)="redirectHome()">Cancel</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                        Approve
+                                    </button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                        Reject
+                                    </button>
+                                    <button type="submit" class="btn btn-success m-2 mb-0">Next</button>
+                                    <!-- (click)="toStep(4)" -->
+                                </div>
+                            </div>
+                            <!--Form for benefcia-->
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="test-l-4" class="content text-left">
+                <form [formGroup]="conversionDetails" (ngSubmit)="onSubmitConvrnTab()">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card" style="text-align: center;background-color: rgb(238, 232, 225);">
+                                We declare that: -
+                                a) We have not booked Forward Exchange Contract in respect of the underlying transaction
+                                mentioned above.
+                                <br>
+                                b) We have noted to utilise the contract against the same underlying transaction for
+                                which the forward exchange has been covered on or before the due date.
+                                <br>
+                                c) We have noted to quote the reference number of the contract, while delivery of
+                                relative documents/funds.
+                                <br>
+                                d) We undertake not to hold the Bank responsible for loss arising out of the exchange
+                                rate fluctuations or any other loss which we may incur.
+                                <br>
+                                e) We authorise the bank to debit/ credit our account the exchange loss/gain on account
+                                of cancellation of forward exchange rate contract.
+                                <br>
+                                f) We confirm that all the forward contracts booked by us including this are within our
+                                eligibility / permitted limits whatsoever.
+                                <br>
+                                g) I/We confirm that the underlying exposure is genuine and no cover is existing with
+                                any other AD bank. Also confirm that I/We will not book any other Forward exchange rate
+                                contract /derivative contract for the same underlying transaction with you or any other
+                                AD bank.
+                                <br>
+                                h) We authorise you to mark suitable lien on the FC deposits / NRE term deposits against
+                                which the forward exchange rate contract is booked on delivery basis.
+                                <br>
+                                i) I/We authorise the bank that in the event of premature withdrawal of the underlying
+                                Term deposits, to cancel the associated forward exchange rate contract simultaneously at
+                                the prevailing market rate.
+                                <br>
+                                j) I/We hereby authorise the Bank to recover the loss on account of cancellation of
+                                forward exchange rate contract, if any, from the proceeds of premature withdrawal of
+                                underlying deposit. I/We are agreeable to receive the exchange gain arising out of
+                                cancellation of forward exchange rate contract, if any, to our operative account as per
+                                the prevailing Bank rules.
+                                <br>
+
+                                IT IS UNDERSTOOD THAT THE CONTRACT IS SUBJECT TO FEDAI RULES AND WE AUTHORISE YOU TO
+                                RECOVER CHARGES IF ANY, TO THE DEBIT OF OUR ACCOU
+                                NT. FURTHER, IF WE FAIL TO UTILIZE THE CONTRACT WITHIN ITS VALIDITY OR EXTEND THE
+                                CONTRACT BY CANCELLATION AND REBOOKING WITHIN LAST DATE OF DELIVERY, YOU MAY CANCEL IT
+                                WITHOUT FURTHER REFERENCE TO US
+                                <p class=" m-3" style="size: 15px;text-align: center;"> <b>DECLARATION CUM UNDERTAKING
+                                    </b> </p>
+                                <p class=" m-3" style="size: 15px;text-align: center;"> <b>(Under Section 10 (5),
+                                        Chapter III of the Foreign exchange management Act, 1999)</b></p>
+                                <P class="m-3" style="text-align: left;">I/We hereby declare that all Foreign Exchange
+                                    transaction, as may be entrusted me/us to the Canara Bank Limited from time to time,
+                                    will be strict conformity with the provisions of the Foreign Exchange Management
+                                    Act, 1999 ("the Act"). Further, we also declare that said transactions, as and when
+                                    initiated, shall not involve and shall not be designed for the purpose of any
+                                    contravention or evasion of the provisions of the Act or of any rule, regulation,
+                                    notification, direction or order made under the Act. I/We further declare that the
+                                    undersigned has/have the authority to give this declaration and undertaking on
+                                    behalf of the firm/company.</P>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-2">
+                                    <label for="name">Place <span class="red">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <input type="text" appAlphabetOnly class="form-control form-control-sm"
+                                            [class.is-invalid]="getConversionError('formPlace') !=''"
+                                            formControlName="formPlace" placeholder="PLACE" maxlength="35">
+                                        <div class="invalid-feedback">
+                                            {{getConversionError('formPlace')}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <label for="name">Date <span class="red">*</span>
+                                    </label>
+                                </div>
+                                <div class="col-4">
+
+                                    <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                        name="sysRefDt" formControlName="formDt"
+                                        [class.is-invalid]="getConversionError('formDt') !=''"
+                                        [disabled]="conversionDetails.disabled" placeholder="DATE">
+                                    </ng-bootstrap-datetime-angular>
+
+                                    <div class="invalid-feedback">
+                                        {{getConversionError('formDt')}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col text-center">
+                                    <button type="button" class="btn btn-primary m-2 mb-0"
+                                        (click)="toStep(3)">Previous</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                        (click)="saveDraft()">
+                                        Draft
+                                    </button>
+                                    <button type="button" class="btn btn-danger m-2 mb-0"
+                                        (click)="redirectHome()">Cancel</button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                        Approve
+                                    </button>
+                                    <button type="button" class="btn btn-success m-2 mb-0"
+                                        (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                        Reject
+                                    </button>
+                                    <button type="submit" class="btn btn-success m-2 mb-0">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="test-l-5" class="content text-center">
+                <form [formGroup]="officeform">
+                    <div class="card">
+                        <fieldset [disabled]="officeform.disabled">
+                            <div class="tab-pane" role="tabpanel" id="offcTab">
+                                <div class=" clearfix">
+                                    <h4 class="page-sub-header text-center">OFFICE USE</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" [checked]='!isRtCvrdwithTrdr'
+                                            (change)="isRtCvrdwithTrdr =! isRtCvrdwithTrdr"
+                                            formControlName="isRtCvrdwithTrdr">
+                                        <label class="form-check-label"> Rate covered IF ANY with our Trader, please
+                                            mention the details below (APPLICABLE ONLY FOR THE DAY)</label>
+
+                                    </div>
+                                    <div class="red ml-2">
+                                        <!-- {{getErrorCon('formCmmnAccVo.isRtCvrdwithTrdr')}}  -->
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="!isRtCvrdwithTrdr">
+                                    <div class="col-md-12">
+                                        <div style="text-align: center;">
+                                            <fieldset [disabled]="rateTableList.disabled">
+                                                <table class="table table-bordered ">
+                                                    <tr
+                                                        style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                                        <th class="th-lg">From FCY/LCY</th>
+                                                        <th class="th-lg">To FCY/LCY</th>
+                                                        <th class="th-lg">Amount</th>
+                                                        <th class="th-lg">Rate</th>
+                                                        <th class="th-lg">RET-AD NO</th>
+                                                        <th class="th-lg">Action</th>
+                                                    </tr>
+                                                    <tbody>
+                                                        <tr
+                                                            *ngFor="let rtCvrDtlsVo of rateTableList; let indexOfelement = index">
+                                                            <td>
+
+                                                                <div class="form-group">
+                                                                    <select class="form-control form-control-sm"
+                                                                        data-role="select-dropdown"
+                                                                        [(ngModel)]="rtCvrDtlsVo.frmFcy"
+                                                                        [ngModelOptions]="{standalone: true}">
+                                                                        <!-- options -->
+                                                                        <option value="">SELECT</option>
+                                                                        <option *ngFor="let currency of currency "
+                                                                            value="{{currency.currencyMstId}}">
+                                                                            {{currency.code}}
+                                                                        </option>
+                                                                    </select>
+                                                                    <div class="red ml-2"
+                                                                        *ngIf=" rtCvrDtlsVo.frmFcyReq  && this.submitSave">
+                                                                        <p>This filed is required</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-group">
+                                                                    <select class="form-control form-control-sm"
+                                                                        [(ngModel)]="rtCvrDtlsVo.toFcy"
+                                                                        [ngModelOptions]="{standalone: true}"
+                                                                        data-role="select-dropdown">
+                                                                        <!-- options -->
+                                                                        <option value="">SELECT</option>
+                                                                        <option *ngFor="let currency of currency "
+                                                                            value="{{currency.currencyMstId}}">
+                                                                            {{currency.code}}
+                                                                        </option>
+                                                                    </select>
+                                                                    <div class="red ml-2"
+                                                                        *ngIf=" rtCvrDtlsVo.rateReq  && this.submitSave">
+                                                                        <p>This filed is required</p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input NumbersOnly inputmode="numeric" type="text"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="AMOUNT" maxlength="22"
+                                                                    (keyup)="getRateTableTotal()"
+                                                                    [(ngModel)]="rtCvrDtlsVo.amnt"
+                                                                    [ngModelOptions]="{standalone: true}">
+                                                                <div class="red ml-2"
+                                                                    *ngIf=" rtCvrDtlsVo.amntReq  && this.submitSave">
+                                                                    <p>This filed is required</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input NumbersOnly inputmode="numeric" type="text"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="RATE" [(ngModel)]="rtCvrDtlsVo.rate"
+                                                                    maxlength="22" [ngModelOptions]="{standalone: true}"
+                                                                    maxlength="8">
+                                                                <div class="red ml-2"
+                                                                    *ngIf=" rtCvrDtlsVo.rateReq  && this.submitSave">
+                                                                    <p>This filed is required</p>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                    placeholder="RET-AD NO" disabled
+                                                                    [(ngModel)]="rtCvrDtlsVo.retAdno"
+                                                                    [ngModelOptions]="{standalone: true}">
+                                                                <!-- <div class="red ml-2" *ngIf=" rtCvrDtlsVo.retAdnoReq  && this.submittedForm4">
+                                                                        <p>This filed is required</p>
+                                                                    </div> -->
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-danger m-1 mb-0 btn-sm"
+                                                                    type="button"
+                                                                    (click)="onDeleteRateTable(indexOfelement)"
+                                                                    *ngIf="!isEditable"><i
+                                                                        class="fa fa-trash"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> </td>
+                                                            <td> Total</td>
+                                                            <td>
+                                                                <input [(ngModel)]="rateTableTotal" type="number"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="TOTAL"
+                                                                    [ngModelOptions]="{standalone: true}"
+                                                                    disabled="disabled">
+                                                            </td>
+                                                            <td> </td>
+                                                            <td> </td>
+                                                            <td>
+                                                                <button type="button"
+                                                                    class="btn btn-primary m-1 mb-0 btn-sm"
+                                                                    (click)="onAddRateTable()" style="width: 70px;"
+                                                                    *ngIf="!isEditable">Add
+                                                                    +</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p> <b> Documents enclosed (Please tick all that is relevant)</b></p>
+                                <div *ngFor="let outwardDoc of forwardMandatoryDocList;let i =index">
+                                    <div class="row">
+
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                (ngModelChange)="checkedFileList($event, i, outwardDoc)"
+                                                [(ngModel)]="outwardDoc.isChckd" [ngModelOptions]="{standalone: true}"
+                                                [checked]="outwardDoc.isChckd">
+                                            <!--[class.is-invalid]="getErrorOfc('signedCopy',index) !=''"-->
+
+                                            <div>
+                                                <label class="form-check-label" for="exampleCheck1">
+                                                    {{outwardDoc.attchNm}} <span
+                                                        *ngIf="isThisFieldRequired(outwardDoc,i)" class="red"> *
+                                                    </span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="input-group md-1 ml-3" [hidden]="outwardDoc.isChckd != true">
+                                            <div [hidden]="getImageText(outwardDoc.attchCd) !=''">
+                                                <div class="input-group-prepend"> </div>
+                                                <div class="custom-file col-6">
+                                                    <input type="file" class="custom-file-input"
+                                                        (change)="setFileForDocument($event,i)" />
+                                                    <label class="custom-file-label"
+                                                        for="exampleCheck1">{{getFileText(outwardDoc.attchCd)}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h6 class="md-1 ml-2" class="red"
+                                        *ngIf="isThisFieldRequired(outwardDoc,i)  && submittedForm5">
+                                        This field is required
+                                    </h6>
+                                    <h6 class="md-1 ml-2" style="color:blue">
+                                        <a href="#" (click)="viewDoc(outwardDoc)"> {{getImageText(outwardDoc.attchCd)}}
+                                        </a>
+                                    </h6>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </form>
+                <div class="form-row">
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(4)">
+                            Previous
+                        </button>
+                        <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft" (click)="saveDraft()">
+                            Draft
+                        </button>
+                        <button type="button" class="btn btn-danger m-2 mb-0" (click)="redirectHome()">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-success m-2 mb-0" (click)="openApproveModal(approveModal)"
+                            *ngIf="canAppRej">
+                            Approve
+                        </button>
+                        <button type="button" class="btn btn-success m-2 mb-0" (click)="openRejectModal(rejectModal)"
+                            *ngIf="canAppRej">
+                            Reject
+                        </button>
+                        <button type="submit" class="btn btn-success m-2 mb-0" (click)="onSubmitSave()"
+                            *ngIf="!isSaved">
+                            Save
+                        </button>
+                        <button type="submit" class="btn btn-success m-2 mb-0" (click)="onSubmitSave()"
+                            *ngIf="canUpdate">
+                            Update
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-6" class="content text-center" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                <div class="card">
+
+                    <div class="card-body">
+                        <table class="table table-bordered container" style="border-color: black">
+                            <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                                <th class="th-lg">Sr.No. </th>
+                                <th class="th-lg">Remarks</th>
+                                <th class="th-lg">Status </th>
+                                <th class="th-lg">Date
+                                </th>
+                                <th class="th-lg">User</th>
+                                <!-- <th class="th-lg">Login Id</th>
+                                <th class="th-lg">Cont No</th> -->
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let row of remarkDetails;let indexOfelement=index;">
+                                    <td>{{indexOfelement + 1}} </td>
+                                    <td>{{row.remarks}} </td>
+                                    <td>{{row.processStatus}} </td>
+                                    <td>{{row.statChngdDt}} </td>
+                                    <td>{{row.statChngdUser}} </td>
+                                    <!-- <td>{{row.usrId}} </td>
+                                    <td>{{row.contNo}} </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(5)">Previous</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</sb-layout-dashboard>
+<ngx-spinner></ngx-spinner>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<ng-template #approveModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Approve request?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(approveModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="approveremarks" rows="3"></textarea>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="approveForm()">
+            Approve
+        </button>
+    </div>
+</ng-template>
+<ng-template #rejectModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reject Application</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(rejectModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="rejectremarks" rows="3"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="rejectForm()">
+            Reject
+        </button>
+    </div>
+</ng-template>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

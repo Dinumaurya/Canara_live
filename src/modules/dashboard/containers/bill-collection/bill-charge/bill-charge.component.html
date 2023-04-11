@@ -1,0 +1,747 @@
+<form [formGroup]="billChargeForm">
+    <!-- *ngIf="applicantValue.bills == 'DIRCT_EXPRT_DSCNT'" -->
+    <div class="card">
+        <h6 class="mt-2"> <b>IX. INWARD REMITTANCE DETAILS</b> </h6>
+        <div>
+            <div class="form-row" *ngIf="applicantValue.bills == 'ADV_PYMNT_RCVD'" (change)="onChnageCanara($event)">
+                <div class="col-sm-3"></div>
+
+                <div class="col-sm-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="isCanaraBnk" value="CAN_BNK">
+                        <label class="form-check-label">
+                            Canara Bank
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="isCanaraBnk" value="OTHR_BNK">
+                        <label class="form-check-label">
+                            Other Bank
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+
+                <div class="red ml-2" *ngIf="!isCanaraBnkReq()">
+                    This field is required
+                </div>
+            </div>
+            <!-- <div [childToMaster]=master></div> -->
+            <div class="row"
+                *ngIf="applicantValue.bills == 'ADV_PYMNT_RCVD' && billChargeValue.isCanaraBnk == 'CAN_BNK'">
+                <div class="col-md-12">
+
+                    <fieldset [disabled]="billChargeForm.disabled">
+                        <div style="text-align: center;">
+                            <table class="table table-bordered ">
+                                <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg"> CONTRACT REF NO. </th>
+                                    <th class="th-lg"> FCY </th>
+                                    <th class="th-lg">ORIGINAL AMOUNT</th>
+                                    <th class="th-lg">AMOUNT TO BE UTILIZED </th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let row of canarabankDetails;let indexOfelement=index;">
+                                        <td>
+                                            <input inputmode="numeric" sbCharNumberNoSpace maxlength="16" minlength="16"
+                                                class="form-control form-control-sm" placeholder="CONTRACT REF NO."
+                                                [(ngModel)]="row.cntctRefNum" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.cntctRefNumReq  && this.submittedNBillChargeFrom4  ">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col">
+
+                                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                    [(ngModel)]="row.fcy" [ngModelOptions]="{standalone: true}">
+                                                    <!-- options -->
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" row.fcyReq  && this.submittedNBillChargeFrom4">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input numberTwoDigit type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="ORIGINAL AMOUNT"
+                                                [(ngModel)]="row.oriAmnt" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.oriAmntReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="AMOUNT TO BE UTILIZED" maxlength="22"
+                                                [(ngModel)]="row.utiAmnt" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.utiAmntReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="deleteChargeCanara(indexOfelement)" *ngIf="!isEditable"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="onAddRowChargeCanara()" style="width: 70px;"
+                                                *ngIf="!isEditable">
+                                                Add +
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="red ml-2"
+                            *ngIf="canarabankDetails && canarabankDetails.length === 0 && submittedNBillChargeFrom4">
+                            <p>Table is required</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row"
+                *ngIf="applicantValue.bills == 'ADV_PYMNT_RCVD' && billChargeValue.isCanaraBnk == 'OTHR_BNK'">
+                <div class="col-md-12">
+
+                    <fieldset [disabled]="billChargeForm.disabled">
+                        <div style="text-align: center;">
+                            <table class="table table-bordered ">
+                                <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg"> E-FIRC REF NO. </th>
+                                    <th class="th-lg"> FCY </th>
+                                    <th class="th-lg">ORIGINAL AMOUNT</th>
+                                    <th class="th-lg">AMOUNT TO BE UTILIZED </th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let row of otherbankDetails;let indexOfelement=index;">
+                                        <td>
+                                            <input inputmode="numeric" sbCharNumberNoSpace maxlength="16" minlength="16"
+                                                class="form-control form-control-sm" placeholder="E-FIRC REF NO."
+                                                [(ngModel)]="row.eFIRCRefNo" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.eFIRCRefNoReq  && this.submittedNBillChargeFrom4  ">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col">
+                                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                    [(ngModel)]="row.fcy" [ngModelOptions]="{standalone: true}">
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" row.fcyReq  && this.submittedNBillChargeFrom4">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input numberTwoDigit type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="ORIGINAL AMOUNT"
+                                                [(ngModel)]="row.oriAmntOthr" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.oriAmntOthrReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="AMOUNT TO BE UTILIZED" maxlength="22"
+                                                [(ngModel)]="row.utiAmntOthr" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.utiAmntOthrReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="deleteChargeOther(indexOfelement)" *ngIf="!isEditable">
+                                                <i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="onAddRowChargeOther()" style="width: 70px;"
+                                                *ngIf="!isEditable">
+                                                Add +
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="applicantValue.bills == 'DIRCT_EXPRT_DSCNT'">
+            <fieldset [disabled]="billChargeForm.disabled">
+
+                <h6 class="mt-2"> <b>X. CREDIT DETAILS</b> </h6>
+                <hr />
+                <table class="table table-bordered">
+                    <tr style="text-align: center;text-align: center; font-size: 14px;">
+                        <th class="th-lg" rowspan="2"> Account Number </th>
+                        <th class="th-lg" rowspan="2"> Account Type </th>
+                        <th style="text-align: center;" colspan="2"> Amount Foreign Curency </th>
+                        <th rowspan="2"> Action </th>
+                    </tr>
+                    <tr style="text-align: center;text-align: center; font-size: 14px;">
+                        <th> FCY/LCY</th>
+                        <th>Amount</th>
+                    </tr>
+                    <tr *ngFor="let accountDetail of accountDetailsList;let indexOfelement=index;">
+                        <td>
+                            <input type="text" class="form-control form-control-sm" NumbersOnly placeholder="ACCOUNT NO"
+                                [(ngModel)]="accountDetail.accNo" [ngModelOptions]="{standalone: true}" maxlength="13">
+                            <div class="red ml-2"
+                                *ngIf=" accountDetail.accNoReq == true  && submittedNBillChargeFrom4 ">
+                                <p>This filed is required</p>
+                            </div>
+
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" [(ngModel)]="accountDetail.accTp"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <!-- options -->
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let data of accountTypeList" value="{{data.code}}">
+                                        {{data.value}}
+                                    </option>
+
+                                </select>
+                                <div class="red ml-2" *ngIf=" accountDetail.accTpReq  && submittedNBillChargeFrom4 ">
+                                    <p>This filed is required</p>
+                                </div>
+                                <!-- <div class="red ml-2" *ngIf=" accountDetail.accTpReq  && submittedNBillChargeFrom4 ">
+                        <p>This filed is required</p>
+                      </div>
+                      <div class="red ml-2" *ngIf=" accountDetail.accTpMax  && submittedNBillChargeFrom4 ">
+                        <p>Maximum</p>
+                      </div> -->
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" [(ngModel)]="accountDetail.fcy"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option>
+                                </select>
+                                <div class="red ml-2" *ngIf=" accountDetail.fcyReq  && submittedNBillChargeFrom4 ">
+                                    <p>This filed is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="accountDetail.amnt" NumbersOnly type="text"
+                                class="form-control form-control-sm" placeholder="Amount"
+                                [ngModelOptions]="{standalone: true}" (keyup)="accountDetailTabl1TotalCal()"
+                                maxlength="22">
+                            <div class="red ml-2" *ngIf=" accountDetail.amountReq  && submittedNBillChargeFrom4 ">
+                                <p>This filed is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger m-1 mb-0  btn-sm" type="button"
+                                (click)="deleteAccountDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                    class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Total</td>
+                        <td>
+
+                            <input type="number" value="{{accountDetailTabl1Total}}"
+                                class="form-control form-control-sm" placeholder="TOTAL" disabled="disabled"
+                                maxlength="30">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary m-1 mb-0  btn-sm" (click)="onAddRowClick()"
+                                style="width: 70px;" *ngIf="!isEditable">Add
+                                +</button>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="form-row">
+                    <div class="red ml-2" *ngIf=" accountDetailsList.length === 0  && submittedNBillChargeFrom4 ">
+                        <p>Remittance Details table is required.</p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset [disabled]="billChargeForm.disabled">
+                <div class="row" formGroupName="formCmmnAccVo">
+                    <div class="col-12 col-form-label">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" formControlName="isDtlsofFrwdCntrct">
+                            <label class="form-check-label">To utilized Forward Contract booked if any, as detailed
+                                herewith</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row" [hidden]="!billChargeValue.formCmmnAccVo.isDtlsofFrwdCntrct">
+                <div class="col-md-12">
+
+                    <fieldset [disabled]="billChargeForm.disabled">
+                        <div style="text-align: center;">
+                            <table class="table table-bordered ">
+                                <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg"> Forward Contract No. </th>
+                                    <th class="th-lg"> FCY </th>
+                                    <th class="th-lg">Original Amount </th>
+                                    <th class="th-lg"> Utilized Amount </th>
+                                    <th class="th-lg">Amount to be Utilized</th>
+                                    <th class="th-lg">Foreign Bank Charges(FBK)</th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let row of conversionList;let indexOfelement=index;">
+                                        <td>
+                                            <input inputmode="numeric" NumbersOnly maxlength="16" minlength="16"
+                                                class="form-control form-control-sm" placeholder="FORWORD CONTRACT"
+                                                [(ngModel)]="row.frwdCntrctNo" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.frwdCntrctNoReq  && this.submittedNBillChargeFrom4  ">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col">
+
+                                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                    [(ngModel)]="row.fcy" [ngModelOptions]="{standalone: true}">
+                                                    <!-- options -->
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" row.fcyReq  && this.submittedNBillChargeFrom4">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input numberTwoDigit type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="ORIGINAL AMOUNT"
+                                                [(ngModel)]="row.orgnlAmnt" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.orgnlAmntReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="UTILIZED AMOUNT"
+                                                [(ngModel)]="row.utlizAmnt" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.utlizAmntReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="AMOUNT TO BE UTILIZED" maxlength="22"
+                                                (keyup)="getConversationDetailForm1Total()"
+                                                [(ngModel)]="row.amntUtilizd" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.amntUtilizdReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly inputmode="numeric" type="text"
+                                                class="form-control form-control-sm" placeholder="FOREIGN BANK CHARGES"
+                                                [(ngModel)]="row.frgnBnkChrgs" maxlength="22"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf="row.frgnBnkChrgsReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="deleteConversionDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> Total</td>
+                                        <td>
+                                            <input type="number" value="{{conversationDetailForm1Total}}"
+                                                class="form-control form-control-sm" placeholder="TOTAL"
+                                                disabled="disabled">
+                                        </td>
+                                        <td> </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="onAddRowConvrsion()" style="width: 70px;" *ngIf="!isEditable">
+                                                Add +
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+            <div class="red ml-2"
+                *ngIf="conversionList && conversionList.length === 0  && submittedNBillChargeFrom4  && billChargeValue.formCmmnAccVo.isDtlsofFrwdCntrct == true">
+                <p>To utilized Forward Contract booked if any, as detailed
+                    herewith</p>
+            </div>
+            <fieldset [disabled]="billChargeForm.disabled">
+                <div class="row">
+                    <div class="col-12 col-form-label">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" formControlName="isPckgCredit" value="1">
+                            <label class="form-check-label">PACKING CREDIT IN FOREIGN CURRENCY to be adjusted</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row" [hidden]="!billChargeValue.isPckgCredit">
+                <div class="col-md-12">
+
+                    <fieldset [disabled]="billChargeForm.disabled">
+                        <div style="text-align: center;">
+                            <table class="table table-bordered ">
+                                <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg"> Forward Contract No.PCFC CONTRACT REF NO. </th>
+                                    <th class="th-lg"> FCY </th>
+                                    <th class="th-lg">LOAN AMOUNT </th>
+                                    <th class="th-lg"> LOAN ADJUSTED </th>
+                                    <th class="th-lg">Outstanding Amount</th>
+                                    <th class="th-lg">AMOUNT TO BE UTILISED</th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let row of conversionList2Table;let indexOfelement=index;">
+                                        <td>
+                                            <input type="text" maxlength="16" minlength="16"
+                                                class="form-control form-control-sm"
+                                                placeholder="Forward Contract No.PCFC CONTRACT REF NO."
+                                                [(ngModel)]="row.pcfcCntractRefNo"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.pcfcCntractRefNoReq  && this.submittedNBillChargeFrom4  ">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col">
+
+                                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                    [(ngModel)]="row.fcy" [ngModelOptions]="{standalone: true}">
+                                                    <!-- options -->
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" row.fcyReq  && this.submittedNBillChargeFrom4">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="LOAN AMOUNT"
+                                                [(ngModel)]="row.loanAmount" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.loanAmountReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" inputmode="numeric"
+                                                class="form-control form-control-sm" placeholder="LOAN ADJUSTED	"
+                                                [(ngModel)]="row.loanAdjst" [ngModelOptions]="{standalone: true}"
+                                                maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.loanAdjstReq && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="Outstanding Amount" maxlength="22"
+                                                (keyup)="getConversationDetailForm2Total()"
+                                                [(ngModel)]="row.outstdngAmt" [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.outstdngAmtReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly inputmode="numeric" type="text"
+                                                class="form-control form-control-sm" placeholder="AMOUNT TO BE UTILISED"
+                                                [(ngModel)]="row.amntToBeUtlzed" maxlength="22"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf="row.amntToBeUtlzedReq  && this.submittedNBillChargeFrom4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="PackingdeleteConversionDetail(indexOfelement)"
+                                                *ngIf="!isEditable"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> Total</td>
+                                        <td>
+                                            <input type="number" value="{{conversionList2TableeTotal}}"
+                                                class="form-control form-control-sm" placeholder="TOTAL"
+                                                disabled="disabled">
+                                        </td>
+                                        <td> </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="PackingonAddRowConvrsion()" style="width: 70px;"
+                                                *ngIf="!isEditable">
+                                                Add +
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+            <div class="red"
+                *ngIf="conversionList2Table && conversionList2Table.length === 0  && submittedNBillChargeFrom4 && billChargeValue.isPckgCredit === true">
+                <p>PACKING CREDIT IN FOREIGN CURRENCY to be adjusted</p>
+            </div>
+            <h6 class=""> <b>XI. OTHER DETAILS</b> </h6>
+            <fieldset [disabled]="billChargeForm.disabled">
+                <div class="row">
+                    <div class="col-12 col-form-label">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" formControlName="isPreSpmtAvl" value="1">
+                            <label class="form-check-label">If pre shipment is availed against the order from</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row" [hidden]="!billChargeValue.isPreSpmtAvl">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Other bank PC/ PCFC Number </label>
+                        <div class="col-sm-7">
+
+                            <input maxlength="35" type="text" class="form-control form-control-sm"
+                                formControlName="pcfcNum" placeholder="Other bank PC/ PCFC Number"
+                                [class.is-invalid]="getErrorBillCharge('pcfcNum') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorBillCharge('pcfcNum')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <fieldset [disabled]="billChargeForm.disabled">
+                <div class="row">
+                    <div class="col-12 col-form-label">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" formControlName="isNocPreSpmtAvl">
+                            <label class="form-check-label">NOC from the bank from which Pre shipment is availed and
+                                Bank details to which Funds is to be transferred:</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row card" [hidden]="!billChargeValue.isNocPreSpmtAvl">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="expBillOthrDtlsVo">
+                            <label class="col-sm-5 col-form-label">Bank Name</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control form-control-sm" formControlName="bankName"
+                                    placeholder="Bank Name" maxlength="35"
+                                    [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.bankName') !=''">
+                                <div class="invalid-feedback">{{getErrorBillCharge('expBillOthrDtlsVo.bankName')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="expBillOthrDtlsVo">
+                            <label class="col-sm-5 col-form-label">Account No: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control form-control-sm" formControlName="accNum"
+                                    placeholder="Account No" maxlength="12"
+                                    [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.accNum') !=''">
+                                <div class="invalid-feedback">
+                                    {{getErrorBillCharge('expBillOthrDtlsVo.accNum')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="expBillOthrDtlsVo">
+                            <label class="col-sm-5 col-form-label" style="font-size: 14px;">Bank Swift Code<span
+                                    class="red">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control form-control-sm" formControlName="swiftCode"
+                                    placeholder="Swift Code" maxlength="11"
+                                    [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.swiftCode') !=''">
+                                <div class="invalid-feedback">{{getErrorBillCharge('expBillOthrDtlsVo.swiftCode')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row" formGroupName="expBillOthrDtlsVo">
+                            <label class="col-sm-5 col-form-label" style="font-size: 14px;">Intermediary bank SWIFT CODE
+                                (If
+                                any)<span class="red">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input maxlength="11" type="text" class="form-control form-control-sm"
+                                    formControlName="interSwiftCode" placeholder="Intermediary bank SWIFT CODE (If any)"
+                                    [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.interSwiftCode') !=''">
+                                <div class="invalid-feedback">{{getErrorBillCharge('expBillOthrDtlsVo.interSwiftCode')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <fieldset [disabled]="billChargeForm.disabled">
+                <div class="row" formGroupName="expBillOthrDtlsVo">
+                    <div class="col-12 col-form-label">
+                        <div class="form-check m-2">
+                            <input type="checkbox" class="form-check-input" formControlName="isSwftCodeNotAvl">
+                            <label class="form-check-label">If Beneficiary Bank SWIFT Code not
+                                available</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row" [hidden]="!billChargeValue.expBillOthrDtlsVo.isSwftCodeNotAvl">
+                <div class="col-2 col-form-label">
+                    <label for="name">Bank Name <span class="red">*</span></label>
+                </div>
+                <div class="col-2">
+                    <div class="form-group" formGroupName="expBillOthrDtlsVo">
+                        <input type="text" class="form-control form-control-sm" placeholder="BANK NAME"
+                            formControlName="bnkName"
+                            [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.bnkName') !=''">
+                        <div class="red" *ngIf="!isNoBeneficiary()" maxlength="20">
+                            This field is required </div>
+                    </div>
+                </div>
+                <div class="col-2 col-form-label">
+                    <label for="name">Full Address<span class="red">*</span></label>
+                </div>
+                <div class="col-2">
+                    <div class="form-group row required" formGroupName="expBillOthrDtlsVo">
+                        <input type="text" class="form-control form-control-sm" formControlName="fullAdd"
+                            placeholder="Full Address" maxlength="35"
+                            [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.fullAdd') !=''">
+                        <div class="red" *ngIf="!isNoBeneficiary()">
+                            This field is required </div>
+                    </div>
+
+                </div>
+                <div class="col-2 ">
+                    <label for="name">ABA Code <span class="red">*</span></label>
+                </div>
+                <div class="col-2">
+                    <div class="form-group row required" formGroupName="expBillOthrDtlsVo">
+                        <select class="form-control form-control-sm" formControlName="abaCode"
+                            [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.abaCode') !=''">
+                            <!-- options -->
+                            <option value="">SELECT</option>
+
+                            <option *ngFor="let data of ABA_CDlist" value="{{data.code}}">
+                                {{data.value}}
+                            </option>
+                        </select>
+                        <div class="red" *ngIf="!isNoBeneficiary()">
+                            This field is required </div>
+                    </div>
+
+                </div>
+                <div class="col-2">
+                    <label for="name">ABA Code Description</label>
+                </div>
+                <div class="col-2">
+                    <div class="form-group row required" formGroupName="expBillOthrDtlsVo">
+                        <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAbaCdDesc"
+                            placeholder="ABA Code Description"
+                            [class.is-invalid]="getErrorBillCharge('expBillOthrDtlsVo.swiftBnkAbaCdDesc') !=''"
+                            maxlength="11">
+                        <div class="invalid-feedback">
+                            {{getErrorBillCharge('expBillOthrDtlsVo.swiftBnkAbaCdDesc')}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

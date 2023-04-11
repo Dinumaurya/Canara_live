@@ -1,0 +1,31 @@
+<div class="form-group" *ngIf="isText">
+    <label> {{label}}</label>
+    <input [type]="inputType" class="form-control form-control-sm" [formControl]="control" [placeholder]="placeholder"
+        [class.is-invalid]="isInvalid">
+    <div class="invalid-feedback">
+        {{controlError()}}
+    </div>
+</div>
+
+<div class="form-group" *ngIf="isSelect">
+    <label> {{label}}</label>
+    <select class="form-control form-control-sm" [formControl]="control" [class.is-invalid]="isInvalid">
+        <option value="">{{placeholder}}</option>
+        <option *ngFor="let item of selectList; let i = index" value="{{ item.id }}">
+            {{ item.text }}
+        </option>
+    </select>
+    <div class="invalid-feedback">
+        {{controlError()}}
+    </div>
+</div>
+<div class="form-group" *ngIf="isNumeric">
+    <label> {{label}} </label>
+    <div class="col-sm-7">
+        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm" formControlName="control"
+            placeholder="placeholder" disabled="isDisabled" [class.is-invalid]="isInvalid" (focusout)="emitEvent(focusoutname)">
+        <div class="invalid-feedback">
+            {{controlError()}}
+        </div>
+    </div>
+</div>

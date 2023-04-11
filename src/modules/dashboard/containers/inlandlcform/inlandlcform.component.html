@@ -1,0 +1,328 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="New LC Form" [hideBreadcrumbs]="true"></sb-dashboard-head>
+    <div class="form-row mt-2 text-center">
+        <div class="col text-centers">
+            <div class="input-group mb-3" style="margin: 0 auto;width:350px">
+                <div class="input-group-prepend"> </div>
+                <!-- <div class="custom-file">
+                    <input id="inputGroupFile01" type="file" class="custom-file-input" (change)="fileChange($event)">
+                    
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="form-row">
+        <div class="col text-center"> <span class="m-2"> -- OR -- </span> </div>
+    </div> -->
+    <div id="stepper1" class="bs-stepper" #stepper1>
+        <div class="row">
+            <div class="col">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#test-l-1">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">1</span>
+                            <span class="bs-stepper-label">Applicant Detail</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-2">
+                        <button class="step-trigger" sysRefNo>
+                            <span class="bs-stepper-circle">2</span>
+                            <span class="bs-stepper-label">Bank And<br> Beneficiary
+                                Detail</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-3">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">3</span>
+                            <span class="bs-stepper-label">Shipment Details</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-4">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">4</span>
+                            <span class="bs-stepper-label">Charge Details</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-5">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">5</span>
+                            <span class="bs-stepper-label">Policy</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-6">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">6</span>
+                            <span class="bs-stepper-label">Office Use</span>
+                        </button>
+                    </div>
+                    <div class="step" data-target="#test-l-7" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">7</span>
+                            <span class="bs-stepper-label">Remarks History</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <div id="test-l-1" class="content">
+                <div class="card">
+                    <sb-applicantdetail #applicant [country]="country" [savedData]="savedData"
+                        [currency]="currency">
+                    </sb-applicantdetail>
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0"
+                                (click)="onSubmitApp()">Continue</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" (click)="saveDraft()"
+                                *ngIf="isDraft">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-2" class="content">
+                <div class="card">
+                    <sb-benedetail #beneficiary [country]="country" [savedData]="savedData">
+                    </sb-benedetail>
+
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(1)">Previous</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0" (click)="onSubmitFrm()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-3" class="content text-left">
+                <div class="card">
+                    <sb-shipdetail #shipment></sb-shipdetail>
+                    <div class="form-row" style="padding-bottom: 30px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(2)">
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                (click)="saveDraft()">
+                                Draft
+                            </button>
+                            <button type="button" class="btn btn-danger m-2 mb-0" (click)="redirectHome()">
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0" (click)="onSubmitlcshipp()">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-4" class="content text-left">
+                <div class="card">
+
+                    <sb-chargedetail #charge></sb-chargedetail>
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(3)">Previous</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="onSubmitFormCharg()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-5" class="content text-center">
+                <div class="card">
+                    <sb-poli #policy></sb-poli>
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(4)">Previous</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="onSubmitFormPolicy()">Next</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-6" class="content text-center">
+                <div class="card">
+                    <sb-officedetail #office  [savedData]="savedData"></sb-officedetail>
+                    <div class="form-row" style="padding-bottom: 30px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(5)">Previous</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft"
+                                (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0" (click)="onSubmitFormlc()"
+                                *ngIf="!isSaved">Save</button>
+                            <button type="submit" class="btn btn-success m-2 mb-0" (click)="onSubmitFormlc()"
+                                *ngIf="canUpdate">
+                                Update
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-7" class="content text-center" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                <div class="card">
+
+                    <div class="card-body">
+                        <table class="table table-bordered container" style="border-color: black">
+                            <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                                <th class="th-lg">Sr.No. </th>
+                                <th class="th-lg">Remarks</th>
+                                <th class="th-lg">Status </th>
+                                <th class="th-lg">Date </th>
+                                <th class="th-lg">User</th>
+
+                            </tr>
+                            <tbody *ngIf="remarkDetails && remarkDetails.length > 0">
+                                <tr *ngFor="let row of remarkDetails;let indexOfelement=index;">
+                                    <td>{{indexOfelement + 1}} </td>
+                                    <td>{{row.remarks}} </td>
+                                    <td>{{row.processStatus}} </td>
+                                    <td>{{row.statChngdDt}} </td>
+                                    <td>{{row.statChngdUser}} </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(5)">Previous</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</sb-layout-dashboard>
+<ngx-spinner></ngx-spinner>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<ng-template #approveModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Approve request?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(approveModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="approveremarks" rows="3"></textarea>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="approveForm()">
+            Approve
+        </button>
+    </div>
+</ng-template>
+<ng-template #rejectModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reject Application</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(rejectModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="rejectremarks" rows="3"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="rejectForm()">
+            Reject
+        </button>
+    </div>
+</ng-template>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -1,0 +1,141 @@
+
+
+<div class="row">
+    <div class="col-xl-6">
+        <div class="card m-2">
+            <canvas #myBarChart id="createCurrYearHccGapChart" (click)="onClick($event)"
+                style="padding: 10px;"></canvas>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="card m-2" *ngIf="display">
+            <sb-charts-pie #mypiechart (tableDataRecv)="tablercv($event)"></sb-charts-pie>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card m-2">
+            <div class="" style="width: auto;padding-top: 20px;">
+                <div *ngIf="showModal" style="width: 100%;">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sr.NO</th>
+                                <th scope="col" sbSortable="name" (sort)="onSort($event)"><span>Trans Ref.No. </span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "name"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+
+                                <th scope="col" sbSortable="area" (sort)="onSort($event)"><span>Application Date </span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "area"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="population" (sort)="onSort($event)"><span>Amount </span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "population"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+                                <th scope="col" sbSortable="pendingWith" (sort)="onSort($event)"><span>Status </span>
+                                    <sb-sort-icon *ngIf='sortedColumn === "pendingWith"' [direction]="sortedDirection">
+                                    </sb-sort-icon>
+                                </th>
+
+                                <th scope="col"><span>Action </span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let country of tableData.list;let i =index">
+
+                                <td>
+                                    {{(i+1) * 1}}
+                                </td>
+                                <td>
+                                    {{country[5]}}
+                                </td>
+
+                                <td>
+                                    {{country[8] | date:'dd - MMM - yyyy'}}
+                                </td>
+                                <td>
+                                    {{country[6]}}
+                                </td>
+                                <td>
+                                    {{country[3]}}
+                                </td>
+                                <td>
+                                    {{country[3]}}
+                                    <button *ngIf="country[7] == 'OUTWARD_REMITTNCE'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/remittence/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button *ngIf="country[7] == 'ADVANCE_REMITTNCE'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/advRem/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button *ngIf="country[7] == 'EXPORT_BILLS'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/bill/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button *ngIf="country[7] == 'IRRVCBL_DOC_LTTR'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/lcForm/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button *ngIf="country[7] == 'PACKING_CREDIT'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/exports/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    <button *ngIf="country[7] == 'FORWARD_CONTRACT'" type="button"
+                                        class="btn btn-light ml-2"
+                                        routerLink="/dashboard/forwardCntct/view/{{country[1]}}/{{country[0]}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+
+                                    <span
+                                        *ngIf="country[3] == 'Pending' || country[3] == 'Draft' || country[3] == 'Reassigned'">
+                                        <button *ngIf="country[7] == 'PACKING_CREDIT'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/exports/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button *ngIf="country[7] == 'IRRVCBL_DOC_LTTR'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/lcForm/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button *ngIf="country[7] == 'EXPORT_BILLS'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/bill/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button *ngIf="country[7] == 'ADVANCE_REMITTNCE'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/advRem/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button *ngIf="country[7] == 'OUTWARD_REMITTNCE'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/remittence/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                        <button *ngIf="country[7] == 'FORWARD_CONTRACT'" type="button"
+                                            class="btn btn-light ml-2"
+                                            routerLink="/dashboard/forwardCntct/edit/{{country[1]}}/{{country[0]}}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </button>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

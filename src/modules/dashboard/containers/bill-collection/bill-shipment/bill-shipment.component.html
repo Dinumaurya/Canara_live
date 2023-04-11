@@ -1,0 +1,614 @@
+<form [formGroup]="billShipmentForm" class="m-4">
+    <h6 class="mt-2" style="margin-left: 10px;"><b>III. POSTSHIPMENT FINANCE DETAILS</b></h6>
+
+    <div
+        *ngIf="applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'SUB_SEQ_DSCNT' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT'">
+        <div class="row">
+            <div class="col-md-12">
+
+                <fieldset [disabled]="billShipmentForm.disabled">
+                    <div style="text-align: center;">
+                        <table class="table table-bordered ">
+                            <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                <th class="th-lg">Export Bill Ref No. </th>
+                                <th class="th-lg"> Date </th>
+                                <th class="th-lg">Bill Amount</th>
+                                <th class="th-lg"> Margin </th>
+                                <th class="th-lg">Loan Amount</th>
+                                <th class="th-lg">Action</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let row of conversionList;let indexOfelement=index;">
+                                    <td>
+                                        <input inputmode="numeric" NumbersOnly maxlength="16" minlength="16"
+                                            class="form-control form-control-sm" placeholder="Export Bill Ref No"
+                                            [(ngModel)]="row.expBRefNum" [ngModelOptions]="{standalone: true}">
+                                        <!-- <div class="red ml-2"
+                                            *ngIf=" row.expBRefNumReqq  && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div> -->
+                                    </td>
+                                    <td>
+                                        <div class="form-group col">
+                                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                maxlength="35" name="docDt" placeholder="Date" [(ngModel)]="row.expBDt"
+                                                [ngModelOptions]="{standalone: true}">
+                                            </ng-bootstrap-datetime-angular>
+                                            <!-- <div class="red ml-2"
+                                                *ngIf=" row.expBDtReqq  && this.submittedBillShipment">
+                                                <p>This filed is required</p>
+                                            </div> -->
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" inputmode="numeric"
+                                            class="form-control form-control-sm" placeholder="Bill Amount"
+                                            [(ngModel)]="row.billAmount" [ngModelOptions]="{standalone: true}"
+                                            maxlength="22">
+                                        <!-- <div class="red ml-2" *ngIf=" row.billAmountReqq && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div> -->
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" inputmode="numeric"
+                                            class="form-control form-control-sm" placeholder="Margin"
+                                            [(ngModel)]="row.margin" [ngModelOptions]="{standalone: true}"
+                                            maxlength="22">
+                                        <!-- <div class="red ml-2" *ngIf=" row.marginReqq && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div> -->
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="Loan Amount" (keyup)="getConversationDetailForm1Total()"
+                                            [(ngModel)]="row.loanAmount" [ngModelOptions]="{standalone: true}">
+                                        <!-- <div class="red ml-2"
+                                            *ngIf=" row.loanAmountReqq  && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div> -->
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                            (click)="deleteConversionDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                                class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> Total</td>
+                                    <td>
+                                        <input type="number" class="form-control form-control-sm" placeholder="TOTAL"
+                                            disabled="disabled" value="{{conversationDetailForm1Total}}">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                            (click)="onAddRowConvrsion()" style="width: 70px;" *ngIf="!isEditable">
+                                            Add +
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-md-12">
+                <div class="red ml-2" *ngIf="isConversionRequired()">
+                    POSTSHIPMENT FINANCE DETAILS table is required.
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="applicantValue.bills != 'SUB_SEQ_DSCNT'"
+        style="background-color: rgb(245, 244, 240);padding: 10px;">
+        <h6 class="mt-2" style="margin-left: 10px;"><b>IV. SHIPMENT DETAIL</b></h6>
+        <hr>
+        <div class="form-row">
+            <div class="col-md-3 col-form-label">
+                <label for="name">H. S. Code
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group" formGroupName="exportBillsShipDtlsVo">
+                    <input type="text" NumbersOnly inputmode="numeric" class="form-control form-control-sm"
+                        placeholder="H.S. Code " formControlName="hsCode" maxlength="8"
+                        [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.hsCode') !=''"
+                        (change)="loadPurposeDtls();">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getErrorBillShipment('exportBillsShipDtlsVo.hsCode')}} </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="exportBillsShipDtlsVo">
+                    <input type="text" class="form-control form-control-sm" placeholder="H.S Description"
+                        formControlName="hsDesc" disabled="disabled"
+                        [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.hsDesc') !=''">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getErrorBillShipment('exportBillsShipDtlsVo.hsDesc')}} </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <a class="col-md-auto" (click)="hsCodeDoc('hs-cd')"> View H. S. Code </a>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-6 col-form-label">Commodity Description: </label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="descGdsRmrks"
+                            placeholder="Goods Description"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.descGdsRmrks') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.descGdsRmrks')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-6 col-form-label">Performa Invoice No </label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="proInvNo"
+                            placeholder="Goods Description" maxlength="35"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.proInvNo') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.proInvNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <hr />
+
+
+      <!--   <div class="form-row" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+
+            <div class="row">
+                <div class="col" > 
+                    <p> Tenor1:<span class="red">*</span> </p>
+                </div>
+                <div class="form-check" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'">
+                    <input class="form-check-input" [checked]="true" disabled="Disabled"  type="radio" formControlName="draftTenor" value="SIGHT">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        Sight </label>
+                </div>
+                <div class="form-check" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'">
+                    <input class="form-check-input" type="radio" disabled="Disabled" formControlName="draftTenor" value="USANCE">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        Usance </label>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-row"*ngIf=" applicantValue.bills=='ADV_PYMNT_RCVD' || applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'" (change)="changeSight($event)">
+
+            <div class="row" >
+                <div class="col">
+                    <p> Tenor:<span class="red">*</span> </p>
+                </div>
+                <div class="form-check" >
+                    <input class="form-check-input" type="radio" formControlName="draftTenor" value="SIGHT">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        Sight </label>
+                </div>
+                <div class="form-check" [hidden]="applicantValue.bills =='DIRCT_EXPRT_BIL' || applicantValue.bills=='ADV_PYMNT_RCVD'">
+                    <input class="form-check-input" type="radio" formControlName="draftTenor" value="USANCE">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        Usance </label>
+                </div>
+            </div>
+            <div class="red ml-2">
+                {{getErrorBillShipment('draftTenor')}}
+            </div>
+        </div>
+       
+       <!--  <fieldset disabled="Disabled"  [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'">
+            <div class="row">
+                <div class="col">
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Days</label>
+                                <div class="col-sm-8">
+                                    <input type="text" NumbersOnly class="form-control form-control-sm"
+                                        placeholder="DAYS" maxlength="3" formControlName="draftDays">
+
+                                </div>
+                                <div class="red offset-md-5" *ngIf="isDraftDaysReq()">
+                                    This field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-sm-4">
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="FROM">
+                                        <label class="form-check-label">From</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="AFTER">
+                                        <label class="form-check-label">After</label>
+                                    </div>
+                                </div>
+                                <div class="red col-md-12" *ngIf="isDraftByReq()">
+                                    This field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" maxlength="35"
+                                    placeholder="DRAFT CUSTOMER NAME" formControlName="draftCustomerNm">
+                                <div class="red" *ngIf="isDraftCustomerNmReq()">
+                                    This field is required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset> -->
+
+        <fieldset *ngIf="applicantValue.bills =='ADV_PYMNT_RCVD'|| applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'"
+         [disabled]="appUserVal?.draftTenor == 'SIGHT'">
+            <div class="row">
+                <div class="col">
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                            <div class="form-group row">
+                                <label class="col-sm-4 col-form-label">Days</label>
+                                <div class="col-sm-8">
+                                    <input type="text" NumbersOnly class="form-control form-control-sm"
+                                        placeholder="DAYS" maxlength="3" formControlName="draftDays">
+
+                                </div>
+                                <div class="red offset-md-5" *ngIf="isDraftDaysReq()">
+                                    This field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-sm-4">
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="FROM">
+                                        <label class="form-check-label">From</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="AFTER">
+                                        <label class="form-check-label">After</label>
+                                    </div>
+                                </div>
+                                <div class="red col-md-12" *ngIf="isDraftByReq()">
+                                    This field is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-sm" maxlength="35"
+                                    placeholder="DRAFT CUSTOMER NAME" formControlName="draftCustomerNm">
+                                <div class="red" *ngIf="isDraftCustomerNmReq()">
+                                    This field is required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+     <!--  <div class="form-row" formGroupName="billShipmentForm" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+            <label for="">Document Date / Base Date </label>
+            <div class="col-sm-4">
+                <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                    formControlName="docDt" placeholder="Document Date / Base Date " value="01-JAN-2023 12:10" disabled="disabled"
+                    [class.is-invalid]="getErrorBillShipment('billShipmentForm.docDt') !=''"
+                    >
+
+                </ng-bootstrap-datetime-angular>
+               
+            </div>
+            
+        </div>  -->
+        
+        <div class="form-row">
+            <label for="">Document Date / Base Date </label>
+            <div class="col-sm-4">
+                <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                    formControlName="docDt" placeholder="Document Date / Base Date "
+                    [class.is-invalid]="getErrorBillShipment('docDt') !=''" [disabled]=" billShipmentForm.disabled">
+
+                </ng-bootstrap-datetime-angular>
+                <div class="invalid-feedback">
+                    {{getErrorBillShipment('docDt')}}
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+
+        </div>
+        <br>
+        <div class="form-row">
+           <!--  <div class="col" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+                <div class="form-group row" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Receipt</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="plRcpt"
+                            placeholder="Place of Receipt" maxlength="65" disabled="disabled"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.plRcpt') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.plRcpt')}} </div>
+                    </div>
+                </div>
+            </div>  -->
+            <div class="col" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'" *ngIf="applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'">
+                <div class="form-group row" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Receipt</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="plRcpt"
+                            placeholder="Place of Receipt" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.plRcpt') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.plRcpt')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Port of Loading/ Airport of Departure</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="pol"
+                            placeholder="Port of Loading/ Airport of Departure" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.pol') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.pol')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Port of Discharge/ Airport of Destination</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="pod"
+                            placeholder="Port of Discharge/ Airport of Destination" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.pod') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.pod')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <!--  <div class="col" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+                <div class="form-group row " formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Delivery</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="plDlvry"
+                            placeholder="Place of Delivery" maxlength="65" disabled="disabled"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.plDlvry') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.plDlvry')}} </div>
+                    </div>
+                </div>
+            </div>  -->
+            <div class="col" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'" *ngIf="applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'">
+                <div class="form-group row " formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Delivery</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="plDlvry"
+                            placeholder="Place of Delivery" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.plDlvry') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.plDlvry')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <!--  <div class="col" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+                <div class="form-group row" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Vessel /Carrier Name</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="carrierNm"
+                            placeholder="Vessel /Carrier Name" max="35" disabled="disabled"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.carrierNm') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.carrierNm')}} </div>
+                    </div>
+                </div>
+            </div>  -->
+            <div class="col" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'" *ngIf="applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'">
+                <div class="form-group row" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Vessel /Carrier Name</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="carrierNm"
+                            placeholder="Vessel /Carrier Name" max="35"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.carrierNm') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.carrierNm')}} </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'" formGroupName="exportBillsShipDtlsVo">
+                <div class="form-group row ">
+                    <div class="col-sm-3">
+                        <label class=" col-form-label" style="font-size: 14!important;">INCOTERMS 2010: </label>
+
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control form-control-sm" disabled="Disabled"  formControlName="inCoTerms1"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.inCoTerms1') !=''"
+                            data-role="select-dropdown">
+                            <option value="NA">SELECT</option>
+                            
+                        </select>
+                        <div class="invalid-feedback" style="text-align: right;">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.inCoTerms1')}}
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col required"  *ngIf=" applicantValue.bills =='ADV_PYMNT_RCVD' || applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'" formGroupName="exportBillsShipDtlsVo">
+                <div class="form-group row required">
+                    <div class="col-sm-3">
+                        <label class=" col-form-label" style="font-size: 14!important;">INCOTERMS 2010: </label>
+
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control form-control-sm" formControlName="inCoTerms"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.inCoTerms') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let data of incotermsList" value="{{data.code}}">
+                                {{data.value}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" style="text-align: right;">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.inCoTerms')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+       
+       <!--  <div class="form-row"  disabled="Disabled" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+            <div class="col-sm-3 col-form-label">
+                <label for="name">Latest Shipment Date1111
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row"   formGroupName="exportBillsShipDtlsVo">
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="ltstShpmntDt1" placeholder="Latest shipment detail" value="01-JAN-2023 00:00" disabled="disabled"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.ltstShpmntDt11') !=''"
+                            >
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.ltstShpmntDt1')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="form-row"  *ngIf=" applicantValue.bills =='ADV_PYMNT_RCVD'|| applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'">
+            <div class="col-sm-3 col-form-label" >
+                <label for="name">Latest Shipment Date
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="ltstShpmntDt" placeholder="Latest shipment detail"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.ltstShpmntDt') !=''"
+                            [disabled]=" billShipmentForm.disabled">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.ltstShpmntDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+          <!--  <div class="col" *ngIf="applicantValue.bills === 'ADV_PYMNT_RCVD'">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-2 col-form-label">Shipment Marks</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="shpmntMrks"
+                            placeholder="Shipment Marks" maxlength="35" value="NA" disabled="Disabled"
+                            >
+                    </div>
+                </div>
+            </div> -->
+            <div class="col" [hidden]="applicantValue.bills =='ADV_PYMNT_RCVD'" *ngIf="applicantValue.bills === 'BIL_PURCHS_COLCTN' || applicantValue.bills === 'DIRCT_EXPRT_BIL' || applicantValue.bills === 'DIRCT_EXPRT_DSCNT' || applicantValue.bills ==='EXPRT_COLCTN_BIL'">
+                <div class="form-group row required" formGroupName="exportBillsShipDtlsVo">
+                    <label class="col-sm-2 col-form-label">Shipment Marks</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="shpmntMrks"
+                            placeholder="Shipment Marks" maxlength="35"
+                            [class.is-invalid]="getErrorBillShipment('exportBillsShipDtlsVo.shpmntMrks') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('exportBillsShipDtlsVo.shpmntMrks')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row ml-2">
+            <div class="col-sm-4">
+                <div class="col" formGroupName="exportBillsShipDtlsVo">
+                    <input type="checkbox" class="form-check-input" value="TRNS_SHP_ALLWD"
+                        formControlName="transShpmntAllwd">
+                    <label> Partial Shipment Allowed </label>
+                </div>
+            </div>
+            <div class="col-sm-4" formGroupName="exportBillsShipDtlsVo">
+                <input type="checkbox" class="form-check-input" value="PRTL_SHP_ALLWD"
+                    formControlName="prtlShpmntAllwd">
+                <label> Trans Shipment Allowed
+                </label>
+            </div>
+        </div>
+    </div>
+</form>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

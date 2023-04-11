@@ -1,0 +1,242 @@
+[
+  {
+    "nostroId": 1,
+    "currency": "USD",
+    "swiftCode": "BKTRUS33",
+    "bankName": "DEUTSCHE BANK TRUST CO",
+    "city": "NEW YORK",
+    "accountNo": "4427255",
+    "cbsGlCode": "113771034",
+    "status": 0
+  },
+  {
+    "nostroId": 2,
+    "currency": "USD",
+    "swiftCode": "BOFAUS3N",
+    "bankName": "BANK OF AMERICA",
+    "city": "NEW YORK",
+    "accountNo": "6550791917",
+    "cbsGlCode": "113771032",
+    "status": 0
+  },
+  {
+    "nostroId": 3,
+    "currency": "USD",
+    "swiftCode": "CHASUS33",
+    "bankName": "J P MORGAN CHASE",
+    "city": "NEW YORK",
+    "accountNo": "001 1 395969",
+    "cbsGlCode": "113771031",
+    "status": 0
+  },
+  {
+    "nostroId": 4,
+    "currency": "USD",
+    "swiftCode": "CITIUS33",
+    "bankName": "CITI BANK",
+    "city": "NEW YORK",
+    "accountNo": "36053796",
+    "cbsGlCode": "113771033",
+    "status": 1
+  },
+  {
+    "nostroId": 5,
+    "currency": "USD",
+    "swiftCode": "IRVTUS3N",
+    "bankName": "BANK OF NEW YORK MELLON",
+    "city": "NEW YORK",
+    "accountNo": "8900033355",
+    "cbsGlCode": "-",
+    "status": 0
+  },
+  {
+    "nostroId": 6,
+    "currency": "USD",
+    "swiftCode": "PNBPUS3NNYC",
+    "bankName": "WELLS FARGO  BANK",
+    "city": "NEW YORK",
+    "accountNo": "2000193007934",
+    "cbsGlCode": "113771035",
+    "status": 0
+  },
+  {
+    "nostroId": 7,
+    "currency": "USD",
+    "swiftCode": "SCBLUS33",
+    "bankName": "STANDARD CHARTERED BANK",
+    "city": "NEW YORK",
+    "accountNo": "3582050114001",
+    "cbsGlCode": "-",
+    "status": 0
+  },
+  {
+    "nostroId": 8,
+    "currency": "EUR",
+    "swiftCode": "BARCDEFF",
+    "bankName": "BARCLAYS BANK PLC IRELAND",
+    "city": "FRANK FURT",
+    "accountNo": "DE60503104000210162100",
+    "cbsGlCode": "113771050",
+    "status": 1
+  },
+  {
+    "nostroId": 9,
+    "currency": "EUR",
+    "swiftCode": "COBADEFF",
+    "bankName": "COMMERZ BANK,",
+    "city": "FRANK FURT",
+    "accountNo": "400875020001 EUR",
+    "cbsGlCode": "113771042",
+    "status": 0
+  },
+  {
+    "nostroId": 10,
+    "currency": "EUR",
+    "swiftCode": "DEUTDEFF",
+    "bankName": "DEUTSCHE BANK",
+    "city": "FRANK FURT",
+    "accountNo": "100 9534587 1000",
+    "cbsGlCode": "113771041",
+    "status": 1
+  },
+  {
+    "nostroId": 11,
+    "currency": "EUR",
+    "swiftCode": "SCBLDEFX",
+    "bankName": "STANDARD CHARTERED BANK",
+    "city": "FRANK FURT",
+    "accountNo": "500057705",
+    "cbsGlCode": "113771044",
+    "status": 0
+  },
+  {
+    "nostroId": 12,
+    "currency": "EUR",
+    "swiftCode": "SOGEFRPP",
+    "bankName": "SOCIETY GENERALE",
+    "city": "PARIS",
+    "accountNo": "1016201860",
+    "cbsGlCode": "113771043",
+    "status": 0
+  },
+  {
+    "nostroId": 13,
+    "currency": "GBP",
+    "swiftCode": "CNRBGB2L ",
+    "bankName": "CANARA BANK",
+    "city": "LONDON",
+    "accountNo": "1120001001",
+    "cbsGlCode": "113771051",
+    "status": 0
+  },
+  {
+    "nostroId": 14,
+    "currency": "AED",
+    "swiftCode": "ADCBAEAA",
+    "bankName": "ABUDHABI COMMERICAL BANK",
+    "city": "ABUDHABI",
+    "accountNo": "10607357001001",
+    "cbsGlCode": "-",
+    "status": 0
+  },
+  {
+    "nostroId": 15,
+    "currency": "AED",
+    "swiftCode": "BOMLAEAD",
+    "bankName": "MASHREQ BANK PSC",
+    "city": "DUBAI",
+    "accountNo": "19030000133",
+    "cbsGlCode": "113771141",
+    "status": 0
+  },
+  {
+    "nostroId": 16,
+    "currency": "AUD",
+    "swiftCode": "ANZBAU3M",
+    "bankName": "ANZ BANKING CORPORATION ",
+    "city": "MELBOURNE",
+    "accountNo": "212894/00001CURRENT A/C NO.1",
+    "cbsGlCode": "113771091",
+    "status": 0
+  },
+  {
+    "nostroId": 17,
+    "currency": "CAD",
+    "swiftCode": "BOFMCAM2",
+    "bankName": "BANK OF MONTREAL",
+    "city": "MONTREAL",
+    "accountNo": "31691035502",
+    "cbsGlCode": "113771071",
+    "status": 0
+  },
+  {
+    "nostroId": 18,
+    "currency": "SGD",
+    "swiftCode": "OCBCSGSG",
+    "bankName": "OCBC BANK",
+    "city": "SINGAPORE",
+    "accountNo": "501071575001",
+    "cbsGlCode": "113771101",
+    "status": 0
+  },
+  {
+    "nostroId": 19,
+    "currency": "HKD",
+    "swiftCode": "IHIFHKHH",
+    "bankName": "CANARA BANK",
+    "city": "HONG KONG ",
+    "accountNo": "100-200054",
+    "cbsGlCode": "113771131",
+    "status": 0
+  },
+  {
+    "nostroId": 20,
+    "currency": "JPY",
+    "swiftCode": "BOFAJPJX",
+    "bankName": "BANK OF AMERICA",
+    "city": "TOKYO",
+    "accountNo": "606418411019",
+    "cbsGlCode": "113771111",
+    "status": 0
+  },
+  {
+    "nostroId": 21,
+    "currency": "CHF",
+    "swiftCode": "CRESCHZZ80A",
+    "bankName": "CREDIT SUISSE FIRST BOSTON",
+    "city": "ZURICH",
+    "accountNo": "0785634674534",
+    "cbsGlCode": "113771061",
+    "status": 0
+  },
+  {
+    "nostroId": 22,
+    "currency": "DKK",
+    "swiftCode": "DABADKKK",
+    "bankName": "DANSKE BANK",
+    "city": "COPENHAGEN",
+    "accountNo": "3007530811",
+    "cbsGlCode": "113771121",
+    "status": 0
+  },
+  {
+    "nostroId": 23,
+    "currency": "SEK",
+    "swiftCode": "ESSESESS",
+    "bankName": "SKANDINAVISKA ENSKILDA",
+    "city": "STOCKHOLM",
+    "accountNo": "52018528297",
+    "cbsGlCode": "113771081",
+    "status": 0
+  },
+  {
+    "nostroId": 24,
+    "currency": "USD",
+    "swiftCode": "BKTRUS33",
+    "bankName": "DEUTSCHE BANK",
+    "city": "NEW YORK",
+    "accountNo": "04427255",
+    "cbsGlCode": "113771034",
+    "status": 1
+  }
+]

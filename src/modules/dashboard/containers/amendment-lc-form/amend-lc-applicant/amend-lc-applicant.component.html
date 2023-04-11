@@ -1,0 +1,246 @@
+<form [formGroup]="lcappUserDetails">
+
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="SYSTEM REF.NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                            placeholder="TRANS REF NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('transRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" disabled="disabled"
+                            formControlName="sysRefDt" name="sysRefDt">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Amendment Date</label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="amendmentDt" name="amendmentDt"
+                            [class.is-invalid]="getError('lcaExpiryDate') !=''">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getError('amendmentDt')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">No. Of Amendment </label>
+                    <div class="col-sm-7">
+                        <input type="text" NumbersOnly class="form-control form-control-sm" formControlName="amendmentNo"
+                            placeholder="No. Of Amendment"  [class.is-invalid]="getError('amendmentNo') !=''">
+                        <div class="invalid-feedback">
+                            {{getError('amendmentNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4"></div>
+
+        </div>
+        <h6 class="mt-2"><b>I. IMPORT LC DETAILS TO BE AMMENDED</b> </h6>
+        <div class="">
+
+            <fieldset [disabled]="lcappUserDetails.disabled">
+
+                <table class="table table-bordered">
+                    <thead style="background-color: rgb(194, 200, 212);">
+                        <tr>
+                            <!-- <th class="th-lg"></th> -->
+                            <th class="th-lg">LC Ref No.</th>
+                            <th class="th-lg">Issue Date</th>
+                            <th class="th-lg">Expiry Date</th>
+                            <th class="th-lg">LC CCY</th>
+                            <th class="th-lg">LC Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <!-- <td>Commission </td> -->
+
+                            <td>
+                                <div class="form-group ">
+                                    <input NumbersOnly type="text" class="form-control form-control-sm"
+                                        placeholder="LC Ref No." maxlength="4" formControlName="lcRefNo">
+                                </div>
+                            </td>
+
+                            <td>
+
+                                <div class="form-group ">
+                                    <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                        formControlName="issueDate" name="issueDate" placeholder="Issue Date">
+                                    </ng-bootstrap-datetime-angular>
+                                    <div class="invalid-feedback">
+                                        {{getError('issueDate')}} </div>
+                                </div>
+                            </td>
+                            <!-- <td>SWIFT charges </td> -->
+                            <td>
+                                <div class="form-group ">
+                                    <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                        formControlName="lcExpiryDate" name="lcExpiryDate" placeholder="Expiry Date">
+                                    </ng-bootstrap-datetime-angular>
+                                    <div class="invalid-feedback">
+                                        {{getError('lcExpiryDate')}} </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    <input NumbersOnly type="text" class="form-control form-control-sm"
+                                        placeholder="LC CCY" formControlName="lcCcy" maxlength="22">
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="form-group ">
+                                    <input NumbersOnly type="text" class="form-control form-control-sm"
+                                        placeholder="LC Amount" formControlName="lcAmount" maxlength="22">
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+        <h6 class="mt-2"><b>I. IMPORT LC DETAILS TO BE AMMENDED</b> </h6>
+        <div class="card">
+            <div class="form-row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Expiry Date</label>
+                        <div class="col-sm-7">
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" 
+                                formControlName="lcaExpiryDate" name="lcaExpiryDate" placeholder="Expiry Date"
+                                [class.is-invalid]="getError('lcaExpiryDate') !=''">
+                            </ng-bootstrap-datetime-angular>
+                            <div class="invalid-feedback">
+                                {{getError('lcaExpiryDate')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Last Amendment Date</label>
+                        <div class="col-sm-7">
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                formControlName="lcaLastAmdDate" name="lcaLastAmdDate" placeholder="Last Amendment Date"
+                                [class.is-invalid]="getError('lcaLastAmdDate') !=''">
+                            </ng-bootstrap-datetime-angular>
+                            <div class="invalid-feedback">
+                                {{getError('lcaLastAmdDate')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Latest Shipment Date</label>
+                        <div class="col-sm-7">
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                formControlName="lcaLatestShipDate" name="lcaLatestShipDate"
+                                [class.is-invalid]="getError('lcaLatestShipDate') !=''" placeholder="Latest Shipment Date">
+                            </ng-bootstrap-datetime-angular>
+                            <div class="invalid-feedback">
+                                {{getError('lcaLatestShipDate')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6 class="mt-2"><b>III. AMOUNT DETAILS AFTER AMENDMENT</b> </h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Currency: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="currency"
+                                [class.is-invalid]="getError('currency') !=''" data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                    {{currency.code}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getError('currency')}} </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Amount: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="amount"
+                                placeholder="AMOUNT" [class.is-invalid]="getError('amount') !=''" maxlength="22"
+                                (keyup)="inputChange($event)">
+                            <div class="invalid-feedback">
+                                {{getError('amount')}} </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled="disabled" class="form-control form-control-sm"
+                                formControlName="amntWords" placeholder="AMOUNT IN WORDS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+            <div class="col">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Change in TOLERENACE </label>
+                    <div class="col-sm-7">
+                        <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="chngeTolerenace"
+                            placeholder="Change in TOLERENACE" [class.is-invalid]="getError('chngeTolerenace') !=''" maxlength="2"
+                            >
+                        <div class="invalid-feedback">
+                            {{getError('chngeTolerenace')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>

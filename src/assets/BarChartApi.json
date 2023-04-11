@@ -1,0 +1,7 @@
+{
+  "InProcess": 1,
+  "Declined": 1,
+  "Closed": 2,
+  "Approved": 3,
+  "Pending": 3
+}

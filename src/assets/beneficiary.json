@@ -1,0 +1,15 @@
+[
+    {
+        "beneId": 12278,
+        "beneficiaryType": "FTP",
+        "beneShrtNam": "XYZ",
+        "beneNam": "AJAY",
+        "addr1": "FD CHANDIGARH",
+        "addr2": "Ward No.6, Main G.T. Road, Grain Mandi",
+        "zipCode": "Gurdaspur",
+        "beneAcct": "143521",
+        "beneBankNam": "143521",
+        "beneSwiftCode": "143521"
+
+    }
+]

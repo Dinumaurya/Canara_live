@@ -1,0 +1,571 @@
+<form [formGroup]="advShipmentDetails">
+    <div class="m-3">
+        <b> Shipment Details
+            <span class="red">*</span>
+        </b>
+    </div>
+    <hr />
+    <div class="card-body">
+        <div class="card" style="background-color: rgb(245, 244, 240);padding: 10px;">
+            <div class="container-fluid">
+                <div class="form-row">
+                    <div class="col-sm-3">
+                        <label for="name">H. S. Code
+                            <span class="red">*</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" NumbersOnly inputmode="numeric" class="form-control form-control-sm"
+                                placeholder="H.S. Code " formControlName="hsCode" maxlength="8"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.hsCode') !=''"
+                                (change)="loadPurposeDtls();">
+                            <div class="invalid-feedback" style="text-align: right;">
+                                {{getAdvErrorship('advRemShipDtlsVo.hsCode')}} </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" class="form-control form-control-sm" placeholder="H.S Description"
+                                formControlName="hsDesc"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.hsDesc') !=''" disabled>
+                            <div class="invalid-feedback" style="text-align: right;">
+                                {{getAdvErrorship('advRemShipDtlsVo.hsDesc')}} </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="col-md-auto" (click)="hsCodeDoc('hs-cd')"> View H. S. Code </a>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-sm-12" formGroupName="advRemShipDtlsVo">
+                        <div class="row form-group required">
+                            <label class="col-sm-3" for="name">Expected Shipment Date
+                                <span class="red">*</span>
+                            </label>
+                            <div class="col-sm-6">
+                                <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                    formControlName="ltstShpMntDt" placeholder="Latest shipment detail"
+                                    [disabled]="advShipmentDetails.disabled"
+                                    [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.ltstShpMntDt') !=''">
+                                </ng-bootstrap-datetime-angular>
+                                <div class="invalid-feedback">
+                                    {{getAdvErrorship('advRemShipDtlsVo.ltstShpMntDt')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">Performa Invoice Date.</label>
+                    </div>
+                    <div class="col-sm-3" formGroupName="advRemShipDtlsVo">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="proInvDt" placeholder="Performa Invoice Date"
+                            [disabled]="advShipmentDetails.disabled"
+                            [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.proInvDt') !=''">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemShipDtlsVo.proInvDt')}} </div>
+                    </div>
+
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">Performa Invoice Amount
+                            <span class="red">*</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" NumbersOnly class="form-control form-control-sm"
+                                placeholder="Performa Invoice Amount" formControlName="invAmount" maxlength="65"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.invAmount') !=''">
+                            <div class="invalid-feedback" style="text-align: right;">
+                                {{getAdvErrorship('advRemShipDtlsVo.invAmount')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">Performa Invoice No.</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" class="form-control form-control-sm" formControlName="proInvNo"
+                                placeholder="Performa   Invoice No" maxlength="35"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.proInvNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvErrorship('advRemShipDtlsVo.proInvNo')}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">Port of Loading/ Airport of Departure
+                            <span class="red">*</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="Port of Landing/ Airport of Destination" formControlName="pol"
+                                maxlength="65" [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.pol') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvErrorship('advRemShipDtlsVo.proInvNo')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">Port of Discharge/ Airport of Destination</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <input type="text" class="form-control form-control-sm" formControlName="pod"
+                                placeholder="Port of Discharge/ Airport of Destination" maxlength="35"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.pod') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvErrorship('advRemShipDtlsVo.pod')}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-form-label">
+                        <label for="name">INCOTERMS 2010:
+                            <span class="red">*</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group" formGroupName="advRemShipDtlsVo">
+                            <select class="form-control form-control-sm" formControlName="inCoTerms"
+                                [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.inCoTerms') !=''"
+                                data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of incotermsList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback" style="text-align: right;">
+                                {{getAdvErrorship('advRemShipDtlsVo.inCoTerms')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col-12" formGroupName="advRemShipDtlsVo">
+                <label> <b>Description of Goods / Services (Goods & Services and relevant INCOTERMS * 2010, Brief
+                        description of goods & country of origin</b> <span class="red"> *</span></label>
+                <textarea name="message" class="form-control form-control-sm" rows="2" cols="30" wrap="off"
+                    formControlName="descGdsRmrks" placeholder="Description of Goods / Services "
+                    [class.is-invalid]="getAdvErrorship('advRemShipDtlsVo.descGdsRmrks') !=''"
+                    style="resize: none;">Description of Goods / Services</textarea>
+                <div class="invalid-feedback" style="text-align: right;">
+                    {{getAdvErrorship('advRemShipDtlsVo.descGdsRmrks')}} </div>
+            </div>
+        </div>
+        <br>
+        <div class="card">
+
+            <h6 class="mt-2"> <b> III. SUPPLIERS DETAILS</b> <span class="red"> *</span></h6>
+            <hr />
+            <div class="card">
+                <div class="form-row" formGroupName="advRemSupDrwDtlsVo">
+                    <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Name:</label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="name"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.name') !=''"
+                                    (change)="beneficiarySelected()" data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneNam}}">
+                                        {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getAdvErrorship('advRemSupDrwDtlsVo.name')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">CIF ID:</label>
+                            <div class="col-sm-7">
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.cifId') !=''">
+                                <div class="invalid-feedback">{{getAdvErrorship('advRemSupDrwDtlsVo.cifId')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Name:</label>
+                            <div class="col-sm-7">
+                                <input disabled="disabled" appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                    formControlName="name" placeholder="NAME"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.name') !=''">
+                                <div class="invalid-feedback">{{getAdvErrorship('advRemSupDrwDtlsVo.name')}}</div>
+                            </div>
+                            <div class="invalid-feedback">
+                                {{getAdvErrorship('advRemSupDrwDtlsVo.name')}}
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                            <div class="col-sm-7">
+                                <textarea disabled="disabled" class="form-control" maxlength="35"
+                                    formControlName="addr1" placeholder="ADDRESS LINE 1"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.addr1') !=''"></textarea>
+                                <div class="invalid-feedback">{{getAdvErrorship('advRemSupDrwDtlsVo.addr1')}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                            <div class="col-sm-7">
+                                <textarea disabled="disabled" class="form-control" maxlength="35"
+                                    formControlName="addr2" placeholder="ADDRESS LINE 2"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.addr2') !=''"></textarea>
+                                <div class="invalid-feedback">{{getAdvErrorship('advRemSupDrwDtlsVo.addr2')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Country:</label>
+                            <div class="col-sm-7">
+                                <select  class="form-control form-control-sm" placeholder="Select"
+                                    formControlName="cntryId"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.cntryId') !=''"
+                                    data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of country" value="{{con.alfaCode}}">
+                                        {{con.name}}</option>
+                                </select>
+                                <div class="invalid-feedback">{{getAdvErrorship('advRemSupDrwDtlsVo.cntryId')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Beneficiary Account Number or IBAN:</label>
+                            <div class="col-sm-7">
+                                <input disabled="disabled" maxlength="34" NumbersOnly type="text"
+                                    class="form-control form-control-sm" formControlName="bnfAccNo"
+                                    placeholder="Beneficiary Account Number or IBAN"
+                                    [class.is-invalid]="getAdvErrorship('advRemSupDrwDtlsVo.bnfAccNo') !=''">
+                                <div class="invalid-feedback">
+                                    {{getAdvErrorship('advRemSupDrwDtlsVo.bnfAccNo')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h6 class="mt-2">
+            <b>IV. BENEFICIARY BANK DETAILS</b> <span class="red"> *</span>
+        </h6>
+        <hr />
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.cifId') !=''" />
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.cifId')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Account No.</label>
+                    <div class="col-sm-7">
+                        <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="drweAccNo"
+                            placeholder="Account No" maxlength="34"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.drweAccNo') !=''" />
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.drweAccNo')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Bank Name:</label>
+                    <div class="col-sm-7">
+                        <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                            formControlName="drweBnkNm" placeholder="Bank Name"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.drweBnkNm') !=''" />
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.drweBnkNm')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr1"
+                            placeholder="ADDRESS LINE 1"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.addr1') !=''"></textarea>
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.addr1')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr2"
+                            placeholder="ADDRESS LINE 2"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.addr2') !=''"></textarea>
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.addr2')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Country:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.cntryId') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let con of country " value="{{con.countryId}}">
+                                {{con.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.cntryId')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemDrweBnkDtlsVo">
+                        <label class="col-sm-5 col-form-label">Swift Code:</label>
+                        <div class="col-sm-7">
+                            <input maxlength="11" type="text" class="form-control form-control-sm"
+                                formControlName="swiftCode" placeholder="Swift Code"
+                                [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.swiftCode') !=''" />
+                            <div class="invalid-feedback">
+                                {{getAdvErrorship('advRemDrweBnkDtlsVo.swiftCode')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row" formGroupName="advRemDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Intermediary bank SWIFT CODE (If any):</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" type="text" class="form-control form-control-sm"
+                            formControlName="interSwiftCode" placeholder="Intermediary bank SWIFT CODE (If any)" Numbers
+                            [class.is-invalid]="getAdvErrorship('advRemDrweBnkDtlsVo.interSwiftCode') !=''" />
+                        <!-- (click)="getBeneficiaryDetails()" -->
+                        <div class="invalid-feedback">
+                            {{getAdvErrorship('advRemDrweBnkDtlsVo.interSwiftCode')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+    <label for=""><b>Documents Required</b> </label>
+    <fieldset [disabled]="advShipmentDetails.disabled">
+        <table class="table table-bordered container-fluid" style="border-color: black" style="font-size: 14px;">
+            <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                <th class="th-lg">Document Type</th>
+                <th class="th-lg">Description</th>
+                <th class="th-lg">Document Code</th>
+                <th class="th-lg">No. of Originals</th>
+                <th class="th-lg">No. of Copies</th>
+                <th class="th-lg">Document Ref No.</th>
+                <th class="th-lg">Date</th>
+                <th class="th-lg">Attachment</th>
+                <th class="th-lg">Action</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let row of beneficiaryDetailList;let beneIndex=index;">
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                [(ngModel)]="row.docTp" [ngModelOptions]="{standalone: true}"
+                                (change)="docDescList(row,beneIndex)">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of getDocType " [value]="con">
+                                    {{con}}
+                                </option>
+                            </select>
+                            <div class="red ml-2" *ngIf="row.docTpReqq  && this.submittedAdvAppForm2 ">
+                                <p>Document Type is required</p>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                [(ngModel)]="row.docDesc" [ngModelOptions]="{standalone: true}"
+                                (change)="getDocCodeList(row,beneIndex)">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of masterDocType(beneIndex);let indexOfelement=i; "
+                                    [value]="con.docShortDesc">
+                                    {{con.docLongDesc}}
+                                </option>
+                            </select>
+                            <div class="red ml-2" *ngIf=" row.docDescReq  && this.submittedAdvAppForm2 ">
+                                <p>Document Description is required</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                [(ngModel)]="row.docCd" [ngModelOptions]="{standalone: true}">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of masterDocCd(beneIndex) " value="{{con.docCode}}">
+                                    {{con.docShortDesc}}
+                                </option>
+                            </select>
+                            <div class="red ml-2" *ngIf=" row.docCdReqq  && this.submittedAdvAppForm2 ">
+                                <p>Document Code is required</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                            placeholder="NO OF ORIGINAL" maxlength="1" [(ngModel)]="row.noOfOrgnls"
+                            [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" row.noOfOrgnlsReqq  && this.submittedAdvAppForm2 ">
+                            <p>No. of Originals is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                            placeholder="NO OF COPIES" maxlength="1" [(ngModel)]="row.noOfCopies"
+                            [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" row.noOfCopiesReqq  && this.submittedAdvAppForm2 ">
+                            <p>No. of Copies is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm" placeholder="DOCUMENTS REF NO"
+                            maxlength="35" [(ngModel)]="row.docRefNo" [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" row.docRefNoReqq  && this.submittedAdvAppForm2 ">
+                            <p>Document Ref is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" maxlength="35"
+                            name="docDt" placeholder="Date" [(ngModel)]="row.docDt"
+                            [ngModelOptions]="{standalone: true}">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="red ml-2" *ngIf="row.docDtReqq  && this.submittedAdvAppForm2 ">
+                            <p>To Date is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input"
+                                    (change)="setFileForDocument($event,beneIndex)" [(ngModel)]="row.atchmnt"
+                                    [ngModelOptions]="{standalone: true}">
+                                <label class="custom-file-label">
+                                    {{getFileText(beneIndex)}}
+                                </label>
+                                <div class="red ml-2" *ngIf="row.atchmntReqq  && this.submittedAdvAppForm2 ">
+                                    <p>To Attachment is required</p>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="md-1 ml-2" style="color:blue">
+                            <a href="#" (click)="viewDoc(row)"> {{getImageText(row,beneIndex)}}
+                            </a>
+                        </h6>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger m-1 mb-0 btn-sm" (click)="deleteConDtlRemitance(beneIndex)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                            (click)="onAddRowDetailsRemitance()">
+                            Add+
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <div class="red ml-2" *ngIf=" beneficiaryDetailList.length === 0  && submittedAdvAppForm2 ">
+        <p>DOCUMENTS ATTACHED table is required</p>
+    </div>
+</form>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

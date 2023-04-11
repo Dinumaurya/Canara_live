@@ -1,0 +1,560 @@
+<form [formGroup]="addOfficeform" aria-disabled="true">
+    <!--Add by sonali hide office use unwanted fields-->
+    <div *ngIf="hideOfcUseTabFeilds">
+        <div style="margin:10px">
+
+            <div class="row" formGroupName="formCmmnAccVo" (change)="ChangeRate($event)">
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" [checked]='!isRtCvrdwithTrdr'
+                            (change)="isRtCvrdwithTrdr =! isRtCvrdwithTrdr" formControlName="isRtCvrdwithTrdr">
+                        <label class="form-check-label"> Rate Covered IF ANY with our Trader, please mention the details
+                            below</label>
+
+                    </div>
+                    <div class="red ml-2">
+                        {{getAdvOfficeError('formCmmnAccVo.isRtCvrdwithTrdr')}}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!isRtCvrdwithTrdr">
+                <div class="col-md-12">
+                    <div style="text-align: center;">
+                        <fieldset [disabled]="addOfficeform.disabled">
+                            <table class="table table-bordered ">
+                                <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg">From FCY/LCY </th>
+                                    <th class="th-lg"> To FCY/LCY </th>
+                                    <th class="th-lg">Amount </th>
+                                    <th class="th-lg">Rate </th>
+                                    <th class="th-lg">RET-AD NO</th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let rtCvrDtlsVo of rtCvrDtlsVoListArray; let indexOfelement = index">
+                                        <td>
+
+                                            <div class="form-group">
+                                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                    [(ngModel)]="rtCvrDtlsVo.frmFcy"
+                                                    [ngModelOptions]="{standalone: true}">
+
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" rtCvrDtlsVo.frmFcyReq  && this.submittedlcForm6">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select class="form-control form-control-sm"
+                                                    [(ngModel)]="rtCvrDtlsVo.toFcy"
+                                                    [ngModelOptions]="{standalone: true}" data-role="select-dropdown">
+
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" rtCvrDtlsVo.rateReq  && this.submittedlcForm6">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly inputmode="numeric" type="text"
+                                                class="form-control form-control-sm" placeholder="AMOUNT" maxlength="22"
+                                                (keyup)="getConversationDetailTotal()" [(ngModel)]="rtCvrDtlsVo.amnt"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" rtCvrDtlsVo.amntReq  && this.submittedlcForm6">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly inputmode="numeric" type="text"
+                                                class="form-control form-control-sm" placeholder="RATE"
+                                                [(ngModel)]="rtCvrDtlsVo.rate" maxlength="22"
+                                                [ngModelOptions]="{standalone: true}" maxlength="8">
+                                            <div class="red ml-2"
+                                                *ngIf=" rtCvrDtlsVo.rateReq  && this.submittedlcForm6">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control form-control-sm"
+                                                placeholder="RET-AD NO" disabled [(ngModel)]="rtCvrDtlsVo.retAdno"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <!-- <div class="red ml-2" *ngIf=" rtCvrDtlsVo.retAdnoReq  && this.submittedlcForm6">
+                                                <p>This filed is required</p>
+                                            </div> -->
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="deleteConversionRateDetail(indexOfelement)"
+                                                *ngIf="!addOfficeform.disabled"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td> Total</td>
+                                        <td>
+                                            <input [(ngModel)]="conversationDetailTotal" type="number"
+                                                class="form-control form-control-sm" placeholder="TOTAL"
+                                                [ngModelOptions]="{standalone: true}" disabled="disabled">
+                                        </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="onAddRowConvrsionRate()" style="width: 70px;"
+                                                *ngIf="!addOfficeform.disabled">Add
+                                                +</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="red ml-2"
+            *ngIf="!isRtCvrdwithTrdr &&  rtCvrDtlsVoListArray && rtCvrDtlsVoListArray.length === 0  && submittedlcForm6 ">
+            <p>Rate Coverd table is required</p>
+        </div> -->
+        </div>
+
+    </div>
+    <!--end by sonali hide office use unwanted fields-->
+
+    <div class="card-body" formGroupName="officeUseVo">
+        <!--Add by sonali hide office use unwanted fields-->
+        <div *ngIf="hideOfcUseTabFeilds">
+            <h5><b>Settlement Instructions</b></h5>
+            <fieldset [disabled]="true">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-check-label" for="exampleCheck1">
+                            Debit all amount payable by the Applicant to the Applicant`s Account No <span
+                                class="red">*</span>
+                        </label>
+                    </div>
+                    <div class="form-check col-sm-5">
+                        <div class="form-group">
+                            <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="ACCOUNT NO"
+                                maxlength="13" formControlName="accNo"
+                                [class.is-invalid]="getAdvOfficeError('officeUseVo.accNo') !=''">
+                            <div class="invalid-feedback" style="font-size: 16px;">
+                                {{getAdvOfficeError('officeUseVo.accNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset [disabled]="true">
+                <div class="form-row" style="padding-bottom:-200px">
+                    <div class="col-sm-4">
+                        <div class="col form-group row required">
+                            <p><label class=""><b> Concession in Charges<span class="red"> *</span></b></label></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" (change)="onChangecnssn($event)">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="YES">
+                            <label class="form-check-label">
+                                YES
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="NO">
+                            <label class="form-check-label">NO</label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-5"></div> -->
+                </div>
+                <div class="">
+
+                    <fieldset [disabled]="officeformVal?.officeUseVo.cncssionChrg == 'NO'">
+
+                        <table class="table table-bordered">
+                            <thead style="background-color: rgb(194, 200, 212);">
+                                <tr>
+                                    <th class="th-lg"></th>
+                                    <th class="th-lg">% (Concession)</th>
+                                    <th class="th-lg">Fixed Amount</th>
+                                    <th class="th-lg"></th>
+                                    <th class="th-lg">% (Concession)</th>
+                                    <th class="th-lg">Fixed Amount</th>
+                                    <th class="th-lg">Sanction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>Commission </td>
+
+                                    <td>
+                                        <div class="form-group ">
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="PERCENTAGE" formControlName="cncssionPrcntg" maxlength="4">
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="form-group ">
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="AMOUNT" formControlName="cncssionFixdAmnt" maxlength="22">
+                                        </div>
+                                    </td>
+                                    <td>SWIFT charges </td>
+                                    <td>
+                                        <div class="form-group ">
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="PERCENTAGE" formControlName="swiftPrcntg" maxlength="4">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group ">
+                                            <input NumbersOnly type="text" class="form-control form-control-sm"
+                                                placeholder="AMOUNT" formControlName="swiftFixdAmnt" maxlength="22">
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="form-group ">
+                                            <div class="input-group-prepend"> </div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input"
+                                                    formControlName="atchmntSanctn">
+
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file</label>
+                                                <div class="invalid-feedback">
+                                                    {{getAdvOfficeError('officeUseVo.atchmntSanctn')}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+        <!--end by sonali hide office use unwanted fields-->
+
+        <label for=""> <b> Documents enclosed (Please tick all that is relevant)</b>
+        </label>
+        <div class="col">
+            <fieldset [disabled]="addOfficeform.disabled">
+                <div *ngFor="let outwardDoc of advanceMandatoryDocList;let i =index">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input"
+                                [disabled]="outwardDoc.attchCd == 'PROFORMA_INV_OF_SUPPL'"
+                                (ngModelChange)="checkedFileList($event, i, outwardDoc)"
+                                [(ngModel)]="outwardDoc.isChckd" [ngModelOptions]="{standalone: true}"
+                                [checked]="outwardDoc.isChckd">
+
+                            <div>
+                                <label class="form-check-label" for="exampleCheck1">
+                                    {{outwardDoc.attchNm}}
+                                    <span *ngIf="isThisFieldRequired(outwardDoc,i)" class="red">
+                                        *
+                                    </span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="input-group md-1 ml-3" [hidden]="outwardDoc.isChckd != true">
+                            <div [hidden]="getImageText(outwardDoc.attchCd) !=''">
+                                <div class="input-group-prepend"> </div>
+                                <div class="custom-file col-6">
+                                    <input type="file" class="custom-file-input"
+                                        (change)="setFileForDocument($event,i)" />
+                                    <label class="custom-file-label"
+                                        for="exampleCheck1">{{getFileText(outwardDoc.attchCd)}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="md-1 ml-2" class="red" *ngIf="isThisFieldRequired(outwardDoc,i)  && submittedlcForm6">
+                        This field is required
+                    </h6>
+                    <h6 class="md-1 ml-2" style="color:blue">
+                        <a href="#" (click)="viewDoc(outwardDoc)"> {{getImageText(outwardDoc.attchCd)}}
+                        </a>
+                    </h6>
+                </div>
+            </fieldset>
+        </div>
+        <br>
+        <!--Add by sonali hide office use unwanted fields-->
+        <div *ngIf="hideOfcUseTabFeilds">
+            <label for=""> <b> Declaration By Branch</b></label>
+            <fieldset [disabled]="true">
+                <div class="col">
+                    <fieldset [disabled]="addOfficeform.disabled">
+                        <div *ngFor="let declarationByBranch of declrationByBranchList;let i =index">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input"
+                                        [(ngModel)]="declarationByBranch.isChckd" [ngModelOptions]="{standalone: true}"
+                                        [checked]="declarationByBranch.isChckd">
+                                    <div>
+                                        <label class="form-check-label" for="exampleCheck1">
+                                            {{declarationByBranch.value}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <br>
+            <div class="red ml-2" style="text-align: right!important;">
+                {{getAdvOfficeError('officeUseVo.cncssionChrg')}}
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <p> <b> FCC Account statement Instruction maintained by Branch<span class="red"> *</span> </b></p>
+                </div>
+            </div>
+            <fieldset [disabled]="true">
+                <div class="row">
+
+                    <div class="col-md-2" (change)="onChangeFccAcc($event)">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="1" formControlName="isFccAccStlment">
+                            <label class="form-check-label">YES</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" value="0" formControlName="isFccAccStlment">
+                            <label class="form-check-label">NO,</label>
+                        </div>
+                    </div>
+
+                    <div class="red ml-2" style="text-align: right!important;">
+                        {{getAdvOfficeError('officeUseVo.isFccAccStlment')}}
+                    </div>
+
+                    <div class="col-sm-4">Please mention the Account No. </div>
+                    <div class="col-sm-5">
+
+                        <fieldset [disabled]="officeformVal?.officeUseVo.isFccAccStlment == '1'">
+
+                            <div class="form-group">
+                                <input type="text" NumbersOnly class="form-control form-control-sm"
+                                    placeholder="ACCOUNT NO" maxlength="13" formControlName="fccAccNo">
+                                <div class="invalid-feedback" style="font-size: 16px;">
+                                    {{getAdvOfficeError('officeUseVo.fccAccNo')}} </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-md-4"> <b> MIS Details<span class="red"> *</span></b> </div>
+            </div>
+            <br>
+            <fieldset [disabled]="true">
+                <div class="row">
+                    <div class="col ">RBI-PURPOSE CODE: <b> <span class="red">*</span></b> </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                formControlName="misValue">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+
+                                <option *ngFor="let purpose of purposecode" placeholder="CODE"
+                                    value="{{purpose.purposeId}}">
+                                    {{purpose.code}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback" style="font-size: 16px;">
+                                {{getAdvOfficeError('officeUseVo.misValue')}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col">BSR-CODE: </div>
+                    <div class="col">
+                        <div class="form-group" formGroupName="misDtlsList1">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <option value="">SELECT</option>
+
+                                <option *ngFor="let data of misBSR_CODEList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getAdvOfficeError('misDtlsList1.misValue')}}
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">SECTOR:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+
+                                <option *ngFor="let data of misSECTORList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+
+
+                        </div>
+                    </div>
+                    <div class="col">SSISUBSEC:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSSISUBSECList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getAdvOfficeError('misDtlsList3.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">BASEL-II:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misBase_2List" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getAdvOfficeError('misDtlsList4.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col">STATUSIB:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSTATUSIBList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getAdvOfficeError('misDtlsList5.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">SCHEMES:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSCHEMES" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getAdvOfficeError('misDtlsList6.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col">PRINPRI:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misPRI_NPRI" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">GAU-COVER:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misGUA_COVER" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">SPL-BENEF:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSPL_BENEF" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <!--end by sonali hide office use unwanted fields-->
+
+    </div>
+</form>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

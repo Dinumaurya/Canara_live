@@ -1,0 +1,160 @@
+<form [formGroup]="amendShipmentDetails">
+
+    <h6 class="mt-2"><b>IV. Amendment in SHIPMENT DETAILS</b> </h6>
+    <div class="card">
+        <div class="row form-group">
+            <div class="col-sm-2 col-form-label">
+                <label for="name">Performa Invoice No</label>
+            </div>
+            <div class="col-sm-3" formGroupName="shipDtlsVo">
+                <input type="text" appAlphabetOnly class="form-control form-control-sm" placeholder="Performa Invoice No"
+                    formControlName="proInvNo" maxlength="35"
+                    [class.is-invalid]="getEmdErrorship('shipDtlsVo.proInvNo') !=''">
+                <div class="invalid-feedback">
+                    {{getEmdErrorship('shipDtlsVo.proInvNo')}} </div>
+            </div>
+
+            <div class="col-sm-2 col-form-label">
+                <label for="name">Place of Receipt
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="shipDtlsVo">
+                    <input type="text" appAlphabetOnly class="form-control form-control-sm" placeholder="Place of Receipt"
+                        formControlName="plRcpt" maxlength="65"
+                        [class.is-invalid]="getEmdErrorship('shipDtlsVo.plRcpt') !=''">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getEmdErrorship('shipDtlsVo.plRcpt')}} </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group row required"></div>
+        <div class="row form-group">
+            <div class="col-sm-2 col-form-label">
+                <label for="name">Port of Loading/ Airport of Departure</label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="shipDtlsVo">
+                    <input type="text" appAlphabetOnly class="form-control form-control-sm" formControlName="pol"
+                        placeholder="Port of Loading/ Airport of Departure" maxlength="65"
+                        [class.is-invalid]="getEmdErrorship('shipDtlsVo.pol') !=''">
+                    <div class="invalid-feedback">
+                        {{getEmdErrorship('shipDtlsVo.pol')}} </div>
+                </div>
+            </div>
+            <div class="col-sm-2 col-form-label">
+                <label for="name">Port of Discharge/ Airport of Destination
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="shipDtlsVo">
+                    <input type="text" appAlphabetOnly class="form-control form-control-sm"
+                        placeholder="Port of Discharge/ Airport of Destination" formControlName="pod" maxlength="6"
+                        [class.is-invalid]="getEmdErrorship('shipDtlsVo.pod') !=''">
+
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getEmdErrorship('shipDtlsVo.pod')}} </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-2 col-form-label">
+                <label for="name">Place of Delivery</label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="shipDtlsVo">
+                    <input type="text" appAlphabetOnly class="form-control form-control-sm" formControlName="plDlvry"
+                        placeholder="plDlvry" maxlength="35">
+                    <div class="invalid-feedback">
+                        {{getEmdErrorship('shipDtlsVo.plDlvry')}} </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row" style="margin-left: 10px;">
+        <div class="col-sm-4"> </div>
+
+        <div class="col-sm-4" formGroupName="shipDtlsVo">
+            <div class="col" style="text-align: left;margin: 10px;">
+                <input type="checkbox" class="form-check-input" value="0" formControlName="transShpmntAllwd">
+                <label> Partial Shipment Allowed </label>
+            </div>
+            <div class="col" style="text-align: left;margin: 10px;">
+                <input type="checkbox" class="form-check-input" value="1" formControlName="prtlShpmntAllwd">
+                <label> Trans Shipment Allowed
+                </label>
+            </div>
+        </div>
+
+        <!-- <div class="col-sm-5"></div> -->
+    </div>
+    <h6 class="mt-2"><b>V. OTHER TERMS AND CONDITIONS TO BE AMMENDED</b> </h6>
+    <div class="card">
+        <div class="form-row">
+            <div class="col-12">
+                <label> <b>SENDER TO RECEIVER INFORMATION</b> <span class="red"> *</span></label>
+                <textarea name="message" class="form-control form-control-sm" rows="10" cols="30" wrap="off"
+                    formControlName="srInformation" placeholder="SENDER TO RECEIVER INFORMATION"
+                    [class.is-invalid]="getEmdErrorship('srInformation') !=''"
+                    style="resize: none;">SENDER TO RECEIVER INFORMATION</textarea>
+                <div class="invalid-feedback" style="text-align: right;">
+                    {{getEmdErrorship('srInformation')}} </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                <label> <b>DOCUMENTS REQUIRED BY CUSTOMER</b> <span class="red"> *</span></label>
+                <textarea name="message" class="form-control form-control-sm" rows="10" cols="30" wrap="off"
+                    formControlName="docReqByCust" placeholder="DOCUMENTS REQUIRED BY CUSTOMER"
+                    [class.is-invalid]="getEmdErrorship('docReqByCust') !=''"
+                    style="resize: none;">DOCUMENTS REQUIRED BY CUSTOMER</textarea>
+                <div class="invalid-feedback" style="text-align: right;">
+                    {{getEmdErrorship('docReqByCust')}} </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                <label> <b>ADDITIONAL CONDITIONS</b> <span class="red"> *</span></label>
+                <textarea name="message" class="form-control form-control-sm" rows="10" cols="30" wrap="off"
+                    formControlName="addCondition" placeholder="ADDITIONAL CONDITIONS"
+                    [class.is-invalid]="getEmdErrorship('addCondition') !=''"
+                    style="resize: none;">ADDITIONAL CONDITIONS</textarea>
+                <div class="invalid-feedback" style="text-align: right;">
+                    {{getEmdErrorship('addCondition')}} </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-2">
+            <label for="name">Place <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-sm" formControlName="otherPlace" placeholder="PLACE"
+                    maxlength="35" [class.is-invalid]="getEmdErrorship('otherPlace') !=''">
+                <div class="invalid-feedback">
+                    {{getEmdErrorship('otherPlace')}} </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <label for="name">Date <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+
+            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                formControlName="otherDate" placeholder="DATE" [class.is-invalid]="getEmdErrorship('otherDate') !=''"
+                [disabled]="amendShipmentDetails.disabled">
+
+            </ng-bootstrap-datetime-angular>
+
+            <div class="invalid-feedback">
+                {{getEmdErrorship('otherDate')}}
+            </div>
+        </div>
+    </div>
+</form>

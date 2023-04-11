@@ -1,0 +1,117 @@
+<sb-layout-dashboard [static]="true">
+    <sb-dashboard-head title="APPLICATION FORM FOR EXPORT BILLS" [hideBreadcrumbs]="true" class="text"></sb-dashboard-head>
+    <div class="form-group form-inline">
+        Search Transfer reference No.:
+        <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="searchTerm"
+            (ngModelChange)="searchQuery()" />
+
+        <div class="pull-right">
+
+            <select class="form-control  ml-2" data-role="select-dropdown" data-profile="minimal"
+            [(ngModel)]="formStatus" (ngModelChange)="formStatusChange()">
+                <option value="">Status</option>
+                <option value="APPROVED">Approved</option>
+                <option value="SENT_ FOR_APPROVAL">Sent for approval</option>
+                <option value="PENDING" selected="selected">Pending</option>
+                <option value="DRAFT">Draft</option>
+                <option value="REASSIGNED">Reassigned</option>
+                <option value="CLOSED">Closed</option>
+                <option value="OVERDUE">Overdue</option>
+                <option value="REJECTED">Rejected</option>
+                <option value="All">All</option>
+                <option value="INPROCESS">InProcess</option>
+                <option value="HOLD">Hold</option>
+
+            </select>
+            <button type="button" routerLink="/dashboard/bill" class="btn btn-light m-2"  *ngIf="canCreateNew">
+                <i class="fa fa-plus" aria-hidden="true"></i> New </button>
+
+            <!-- <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <fa-icon [icon]='["fas", "search"]'></fa-icon>
+                        </button>
+                    </div>
+                </div>
+            </form> -->
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Sr.NO</th>
+                <th scope="col" sbSortable="name" (sort)="onSort($event)"><span>Trans Ref.No. </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "name"' [direction]="sortedDirection"></sb-sort-icon>
+                </th>
+                <th scope="col" sbSortable="flag" (sort)="onSort($event)"><span>Customer Name </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "flag"' [direction]="sortedDirection"></sb-sort-icon>
+                </th>
+                <th scope="col" sbSortable="area" (sort)="onSort($event)"><span>Application Date </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "area"' [direction]="sortedDirection"></sb-sort-icon>
+                </th>
+                <th scope="col" sbSortable="population" (sort)="onSort($event)"><span>Amount </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "population"' [direction]="sortedDirection"></sb-sort-icon>
+                </th>
+                <!-- <th scope="col" sbSortable="pendingWith" (sort)="onSort($event)"><span>Pending With </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "pendingWith"' [direction]="sortedDirection"></sb-sort-icon>
+                </th> -->
+                <th scope="col" sbSortable="status" (sort)="onSort($event)"><span>Status </span>
+                    <sb-sort-icon *ngIf='sortedColumn === "status"' [direction]="sortedDirection"></sb-sort-icon>
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="listApi && listApi.list">
+            <tr *ngFor="let country of listApi.list;let i =index">
+                <td>
+                    {{(i+1) * currentPage}}
+                </td>
+                <td>
+                    {{country[5]}}
+                </td>
+                <td>
+                    {{country[18]}}
+                </td>
+                <td>
+                    {{country[4] | date:'dd - MMM - yyyy'}}
+                </td>
+                <td>
+                    {{country[6]}}
+                </td>
+                
+                <td>
+                    {{country[15]}}
+                </td>
+                <td>
+
+                    <button type="button" class="btn btn-light ml-2"
+                        routerLink="/dashboard/bill/view/{{country[0]}}/{{country[1]}}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+
+                    </button>
+                    
+                    <button *ngIf="country[15] == 'Pending' || country[15] == 'Draft' || country[15] == 'Reassigned'" type="button" class="btn btn-light ml-2"
+                        routerLink="/dashboard/bill/edit/{{country[0]}}/{{country[1]}}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+                    </button>
+                </td>
+            </tr>
+        </tbody> 
+    </table>
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="total$" [(page)]="currentPage" [maxSize]="maxSize" [pageSize]="pageSize"
+            (pageChange)="nextPage($event)">
+        </ngb-pagination>
+        <!-- <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="20">20 items per page</option>
+            <option [ngValue]="30">30 items per page</option>
+        </select> -->
+    </div>
+</sb-layout-dashboard>

@@ -1,0 +1,272 @@
+{
+   "outRmtncId": 1705,
+   "taskId": 4486,
+   "sysRefNo": "0006SEQU20321001",
+   "transRefNo": "0006FOTT20321001",
+   "sysRefDt": "16-Nov-2020 16:37",
+   "appRefDt": "16-Nov-2020 16:37",
+   "remittaceScheme": "LRS",
+   "outRmtncCustDtls": {
+      "formCustDtlsId": null,
+      "custId": "46555555555",
+      "accNo": "9876543298765",
+      "brnchNm": "dasdas",
+      "dpCode": "3213",
+      "custNm": "sdasdasdsa",
+      "address1": "add",
+      "address2": "add2",
+      "address3": "dd23",
+      "cntryId": 1,
+      "stateId": null,
+      "pinCode": null,
+      "telNo": "3211321322131",
+      "mobNo": "1321323213212",
+      "eMail": "mm@mm.com",
+      "altEmail": "MM@MM.COM",
+      "panNo": "AQMPH1455H",
+      "ieCode": ""
+   },
+   "frngExchng": "FCY_EQ_FIX_RS_AMNT",
+   "othrCurrncy": "",
+   "currency": 5,
+   "amount": "748.0",
+   "amntWords": "seven hundred forty eight ",
+   "outRmtncDtls": {
+      "outwrdRmtncDtlsId": null,
+      "purposeCd": 239,
+      "puposedesc": "qweqwe",
+      "srcOfFund": "dsfsd",
+      "purpose": "MNTNCE_CLS_RLTV",
+      "rltnShipOfBnf": "Father (Including step-father)",
+      "studentNm": null,
+      "studentId": null,
+      "cntryOfStdyAbrd": null,
+      "propState": null,
+      "propCntry": null,
+      "nmOfCmpny": null,
+      "isListedCmpny": null,
+      "uinNo": null,
+      "invsmntTpList": null,
+      "addtnlInfo": "ssad",
+      "addtnlInfo1": "asd",
+      "addtnlInfo2": "sadasd",
+      "addtnlInfo3": "sdfasdasd",
+      "autoLq": "YES"
+   },
+   "mdOfPymnt": "WIRE_TRNSFR_SWIFT",
+   "bnfDtls": {
+      "bnfDtlsId": null,
+      "name": "12278",
+      "addr1": "BKC",
+      "addr2": "8TH FLOORE BANDRA",
+      "cntryId": 1,
+      "bnfAccNo": "IBAN0005254625866",
+      "bnkNm": "BANK OF NEW YORK MELLION",
+      "swiftCode": "HDFCINBBXXX",
+      "interSwiftCode": "",
+      "isSwiftCodeNotAvl": 1,
+      "swiftBnkNm": "dfsdf",
+      "swiftBnkAddr1": "sdfdsf",
+      "swiftBnkAddr2": "",
+      "swiftBnkAbacd": "ABA_CODE",
+      "swiftBnkAbaCdDesc": "sdfsdfsdf"
+   },
+   "formCmmnAcc": {
+      "formCmmnAccId": null,
+      "formAccDtlsList": [
+         {
+            "accDtlsId": 4044,
+            "srNo": null,
+            "accNo": "1322222222222",
+            "accTp": "CASA",
+            "fcy": 13,
+            "amnt": "420.0"
+         },
+         {
+            "accDtlsId": 4045,
+            "srNo": null,
+            "accNo": "2311111111111",
+            "accTp": "CASA",
+            "fcy": 5,
+            "amnt": "24.0"
+         }
+      ],
+      "totAccAmnt": "444.0",
+      "isFrwdCntrct": 1,
+      "formFrwdCntrctDtlsList": [
+         {
+            "frwdCntrctDtlsId": 2603,
+            "frwdCntrctNo": "1233333333333333",
+            "srNo": null,
+            "fcy": "5",
+            "orgnlAmnt": "41.0",
+            "utlizAmnt": "41.0",
+            "amntUtilizd": "41.0",
+            "frgnBnkChrgs": "41.0"
+         },
+         {
+            "frwdCntrctDtlsId": 2604,
+            "frwdCntrctNo": "1232222222222222",
+            "srNo": null,
+            "fcy": "10",
+            "orgnlAmnt": "14.0",
+            "utlizAmnt": "14.0",
+            "amntUtilizd": "14.0",
+            "frgnBnkChrgs": "14.0"
+         }
+      ],
+      "totFrwdCntrct": "55.0",
+      "isRtCvrWithTrDr": 1,
+      "formRtCvrDtlsList": [
+         {
+            "rtCvrDtlsId": 3664,
+            "srNo": null,
+            "frmFcy": "13",
+            "toFcy": "13",
+            "amnt": "24.0",
+            "rate": "24.0",
+            "retAdno": ""
+         },
+         {
+            "rtCvrDtlsId": 3665,
+            "srNo": null,
+            "frmFcy": "5",
+            "toFcy": "5",
+            "amnt": "14.0",
+            "rate": "14.0",
+            "retAdno": ""
+         }
+      ],
+      "totRtCvrAmnt": "38.0"
+   },
+   "rmtncDtlsCrncyList": [
+      {
+         "rmtncCrncyDtlsId": 2311,
+         "srNo": null,
+         "rmtncDt": null,
+         "currency": "5",
+         "amnt": "14.0",
+         "address": "1sdasdsadsad"
+      },
+      {
+         "rmtncCrncyDtlsId": 2312,
+         "srNo": null,
+         "rmtncDt": null,
+         "currency": "5",
+         "amnt": "41.0",
+         "address": "dfasdsfsdafds"
+      }
+   ],
+   "totalRmtncAmnt": "55.0",
+   "dclrNm": "sdasda",
+   "finYr": "2020",
+   "usdFrm": "202020.0",
+   "usdTo": "2020.0",
+   "formDt": "16-Nov-2020 16:37",
+   "formPlace": "Mumbai",
+   "signature": null,
+   "officeUse": {
+      "officeUseId": null,
+      "accNo": "",
+      "conscnChrg": "",
+      "conscnPrcntg": null,
+      "conscnFixdAmnt": null,
+      "swiftPrcntg": null,
+      "swiftFixdAmnt": null,
+      "isFccAccSetlmnt": 0,
+      "fccAccNo": "",
+      "offcReqDocList": [],
+      "officeAttchList": [
+         {
+            "attchId": null,
+            "encAttchId": null,
+            "rowIndx": null,
+            "attchCd": "FOR_CPY_FEES",
+            "attchNm": null,
+            "attchValue": null,
+            "attchPath": null,
+            "isChckd": 1,
+            "atchmnt": null,
+            "scanAttchNm": null,
+            "docAttchNm": "20201116_211343120024245_FOR_CPY_FEES.txt"
+         },
+         {
+            "attchId": null,
+            "encAttchId": null,
+            "rowIndx": null,
+            "attchCd": "CPY_PASS_VISA",
+            "attchNm": null,
+            "attchValue": null,
+            "attchPath": null,
+            "isChckd": 1,
+            "atchmnt": null,
+            "scanAttchNm": null,
+            "docAttchNm": "20201116_211343119984466_CPY_PASS_VISA.txt"
+         },
+         {
+            "attchId": null,
+            "encAttchId": null,
+            "rowIndx": null,
+            "attchCd": "SIGN_CPY_APP",
+            "attchNm": null,
+            "attchValue": null,
+            "attchPath": null,
+            "isChckd": 1,
+            "atchmnt": null,
+            "scanAttchNm": null,
+            "docAttchNm": "20201116_211343119955715_SIGN_CPY_APP.txt"
+         }
+      ],
+      "officeDclrtnList": [],
+      "officeMisList": [
+         {
+            "misDtlsId": 40811,
+            "misCd": "RBI_PRBS_CD",
+            "misValue": "P0010",
+            "rowIndx": 1
+         }
+      ],
+      "formRtCvrDtlsOffList": [],
+      "dscrpncyObsrvdList": [],
+      "instMstList": [],
+      "totRtCvrOffAmnt": 0,
+      "sanctnAttNm": null,
+      "sanctnAttPath": null,
+      "nostroMaster": null,
+      "nosCharge": "",
+      "customer": 0,
+      "office": 0,
+      "csms": 0,
+      "cemail": 0,
+      "osms": 0,
+      "oemail": 0,
+      "atchmntSanctn": null
+   },
+   "prodCd": null,
+   "aprvRmrks": null,
+   "priority": null,
+   "wrkInPrgs": false,
+   "outWardStatus": null,
+   "outWardStatusId": 3,
+   "encTaskId": "10dKtBexJPNZxxvGUvqetw",
+   "historyVoList": [
+      {
+         "deptId": null,
+         "processTypeId": null,
+         "processStatusId": null,
+         "taskId": null,
+         "remarks": null,
+         "pendingDays": 1,
+         "statChngdBy": null,
+         "statChngdUser": "Checker Canara",
+         "processStatus": "Pending",
+         "statChngdDt": "16-Nov-2020 16:37",
+         "contNo": "+91-9999999999",
+         "usrId": "222222",
+         "auditDetails": null,
+         "processHistoryId": null
+      }
+   ],
+   "auditDetails": null,
+   "isEditable": false
+}

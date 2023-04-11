@@ -1,0 +1,454 @@
+<form [formGroup]="lcappUserDetails">
+  
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="SYSTEM REF.NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                            placeholder="TRANS REF NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('transRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                        disabled="disabled" formControlName="sysRefDt" name="sysRefDt" >
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="mt-2"><b> Applicant Details </b></h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Customer ID: </label>
+                            <div class="col-sm-7">
+                               
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="custId" placeholder="CUSTOMER ID"  
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.custId') !=''">
+                                 <!--   (focusout)="getChange($event)" -->
+                                   
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.custId')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Account No: </label>
+                            <div class="col-sm-7">
+
+                                <select class="form-control form-control-sm" formControlName="accNo"
+                                    [class.is-invalid]="getError('lcCustDtls.accNo') !=''"
+                                    data-role="select-dropdown"  minlength="12" maxlength="14">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                        {{con}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.accNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label" style="font-size: 14px;">Customer Name: <span class="red">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="custNm"
+                                    placeholder="CUSTOMER NAME" 
+                                    [class.is-invalid]="getError('lcCustDtls.custNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.custNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Branch: </label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="brnchNm"
+                                    placeholder="BRANCH" [class.is-invalid]="getError('lcCustDtls.brnchNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.brnchNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">DP Code: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="dpCode"
+                                    placeholder=" "> -->
+                                <input NumbersOnly inputmode="numeric" type="text"
+                                    class="form-control form-control-sm" formControlName="dpCode"
+                                    placeholder="DP CODE" maxlength="5"  
+                                    
+                                    [class.is-invalid]="getError('lcCustDtls.dpCode') !=''" >
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.dpCode')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row " formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Telephone: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="number" class="form-control form-control-sm" formControlName="telNo"
+                                     placeholder=" "> -->
+                                <input NumbersOnly type="text" maxlength="15" max="15"
+                                    class="form-control form-control-sm" formControlName="telNo"
+                                    placeholder="TELEPHONE"
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.telNo') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.telNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Mobile No: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="number" class="form-control form-control-sm"  formControlName="mobNo"
+                                  placeholder=" "> -->
+                                <input NumbersOnly type="text" maxlength="15" class="form-control form-control-sm"
+                                    formControlName="mobNo"  max="15" placeholder="MOBILE NO"
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.mobNo') !=''" >
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.mobNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Email: </label>
+                            <div class="col-sm-7">
+                                <input type="email"  class="form-control form-control-sm"
+                                disabled="disabled"
+                                formControlName="eMail"
+                                    placeholder="EMAIL"  maxlength="70" max="70" [class.is-invalid]="getError('lcCustDtls.eMail') !=''"
+                                    >
+                                <div class="invalid-feedback" >
+                                    {{getError('lcCustDtls.eMail')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">  
+                        <div class="form-group row" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                            <div class="col-sm-7">
+                                <input type="email" class="form-control form-control-sm" formControlName="altEmail"
+                                    placeholder="ALTERNATE EMAIL" 
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.altEmail') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.altEmail')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address1" maxlength="35"
+                                    placeholder="ADDRESS LINE 1" 
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.address1') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.address1')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address2" maxlength="35"
+                                    placeholder="ADDRESS LINE 2" 
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.address2') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.address2')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address3" maxlength="35"
+                                    placeholder="ADDRESS LINE 3" 
+                                    disabled="disabled"
+                                    [class.is-invalid]="getError('lcCustDtls.address3') !=''"></textarea>
+                                {{getError('lcCustDtls.address3')}}
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.address3')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">PAN No.: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="10" minlength="10"
+                                disabled="disabled"
+                                    class="form-control form-control-sm" formControlName="panNo" 
+                                    placeholder="PAN NO" [class.is-invalid]="getError('lcCustDtls.panNo') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.panNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcCustDtls">
+                            <label class="col-sm-5 col-form-label">IE Code: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="10" minlength="10"
+                                    class="form-control form-control-sm" formControlName="ieCode" 
+                                    disabled="disabled"
+                                    placeholder="IE Code" [class.is-invalid]="getError('lcCustDtls.ieCode') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcCustDtls.ieCode')}} </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col"></div>
+                </div>
+            <!-- </div> -->
+        </div>
+        <h6 class="mt-2"><b> LC to be transmitted through</b> <span class="red"> *</span></h6>
+        <hr />
+       
+        <div class="form-row" (change)="onCheckbboxSelect($event)" style="padding-bottom:15px">
+            <div class="col-sm-3"></div>
+           
+            <div class="col-sm-3">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="lcTransThrgh" value="SAME_BNK">
+                    <label class="form-check-label">
+                        Same as Advising Bank
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="lcTransThrgh"
+                        value="OTHR_BNK" >
+                    <label class="form-check-label">
+                        Other Bank (Second Advising Bank)
+                    </label>
+                </div>
+            </div>
+            <div class="red ml-2">
+                {{getError('lcTransThrgh')}}
+            </div>
+        
+    </div>
+        <div class="card">
+            <!-- <div class="card-body"> -->
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">CIF ID: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                    placeholder=" "> -->
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="cifId" placeholder="CIF ID"     disabled="disabled"
+                                    [class.is-invalid]="getError('lcTransBnk.cifId') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.cifId')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">Bank Name: </label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="bnkNm"
+                                    placeholder="BANK NAME" 
+                                    [class.is-invalid]="getError('lcTransBnk.bnkNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.bnkNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr" maxlength="35"
+                                    placeholder="ADDRESS LINE 1"
+                                    [class.is-invalid]="getError('lcTransBnk.fullAddr') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.fullAddr')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr1" maxlength="35"
+                                    placeholder="ADDRESS LINE 2" 
+                                    [class.is-invalid]="getError('lcTransBnk.fullAddr1') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.fullAddr1')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr2" maxlength="35"
+                                    placeholder="ADDRESS LINE 3" 
+                                    [class.is-invalid]="getError('lcTransBnk.fullAddr2') !=''"></textarea>
+                              
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.fullAddr2')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">Country: </label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="cntryId"
+                                    [class.is-invalid]="getError('lcTransBnk.cntryId') !=''" 
+                                    data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                 <!--    <option *ngFor="let con of country " value="{{con.countryId}}">
+                                        {{con.name}}</option> -->
+
+                                        <option value="1">India</option>
+                                       
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.cntryId')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="lcTransBnk">
+                            <label class="col-sm-5 col-form-label">IFSC Code: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="11"
+                                    class="form-control form-control-sm" formControlName="swiftCode"
+                                    placeholder="IFSC Code" 
+                                    [class.is-invalid]="getError('lcTransBnk.swiftCode') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('lcTransBnk.swiftCode')}} </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            <!-- </div> -->
+        </div>
+        <h6 class="mt-2"><b> LC Amount Details</b> </h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Currency: </label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="currency" 
+                                    [class.is-invalid]="getError('currency') !=''" data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                   <!--  <option *ngFor="let currency of currency" value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option> -->
+                                    <option value="2">INR</option>
+                                   
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('currency')}} </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Amount: </label>
+                            <div class="col-sm-7">
+                                <input NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="amount" placeholder="AMOUNT"
+                                    [class.is-invalid]="getError('amount') !=''" maxlength="22" 
+                                    (keyup)="inputChange($event)">
+                                <div class="invalid-feedback">
+                                    {{getError('amount')}} </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled="disabled" class="form-control form-control-sm" formControlName="amntWords" placeholder="AMOUNT IN WORDS"
+                                    > </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,498 @@
+<form [formGroup]="billShipmentForm" *ngIf="applicatFormValue.billPayment != 'FOR_PAYMENT'">
+    <div *ngIf="childShipmentMessage === 'BIL_PURCHS_COLCTN'">
+        <div class="row">
+            <div class="col-md-12">
+
+                <fieldset [disabled]="billShipmentForm.disabled">
+                    <div style="text-align: center;">
+                        <table class="table table-bordered ">
+                            <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                <th class="th-lg">Export Bill Ref No. </th>
+                                <th class="th-lg"> Date </th>
+                                <th class="th-lg">Bill Amount</th>
+                                <th class="th-lg"> Margin </th>
+                                <th class="th-lg">Loan Amount</th>
+                                <th class="th-lg">Action</th>
+                            </tr>
+                            <tbody>
+                                <tr *ngFor="let row of conversionList;let indexOfelement=index;">
+                                    <td>
+                                        <input inputmode="numeric" NumbersOnly maxlength="16" minlength="16"
+                                            class="form-control form-control-sm" placeholder="Export Bill Ref No"
+                                            [(ngModel)]="row.expBRefNum" [ngModelOptions]="{standalone: true}">
+                                        <div class="red ml-2"
+                                            *ngIf=" row.expBRefNumReqq  && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col">
+
+                                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                                [(ngModel)]="row.expBDt" [ngModelOptions]="{standalone: true}">
+                                                <!-- options -->
+                                                <option value="">SELECT</option>
+                                                <option *ngFor="let currency of currency "
+                                                    value="{{currency.currencyMstId}}">
+                                                    {{currency.code}}
+                                                </option>
+                                            </select>
+                                            <div class="red ml-2"
+                                                *ngIf=" row.expBDtReqq  && this.submittedBillShipment">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" inputmode="numeric"
+                                            class="form-control form-control-sm" placeholder="Bill Amount"
+                                            [(ngModel)]="row.billAmount" [ngModelOptions]="{standalone: true}"
+                                            maxlength="22">
+                                        <div class="red ml-2" *ngIf=" row.billAmountReqq && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" inputmode="numeric"
+                                            class="form-control form-control-sm" placeholder="Margin"
+                                            [(ngModel)]="row.margin" [ngModelOptions]="{standalone: true}"
+                                            maxlength="22">
+                                        <div class="red ml-2" *ngIf=" row.marginReqq && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="Loan Amount" (keyup)="getConversationDetailForm1Total()"
+                                            [(ngModel)]="row.loanAmount" [ngModelOptions]="{standalone: true}">
+                                        <div class="red ml-2"
+                                            *ngIf=" row.loanAmountReqq  && this.submittedBillShipment">
+                                            <p>This filed is required</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                            (click)="deleteConversionDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                                class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> Total</td>
+                                    <td>
+                                        <input type="number" class="form-control form-control-sm" placeholder="TOTAL"
+                                            disabled="disabled" value="{{conversationDetailForm1Total}}">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                            (click)="onAddRowConvrsion()" style="width: 70px;" *ngIf="!isEditable">
+                                            Add +
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+    <div class="card" *ngIf="childShipmentMessage != 'SUB_SEQ_DSCNT'"
+        style="background-color: rgb(245, 244, 240);padding: 10px;">
+        <h6 class="mt-2" style="margin-left: 10px;"><b>III. SHIPMENT DETAIL</b></h6>
+        <hr>
+        <div class="form-row">
+            <div class="col-sm-3 col-form-label">
+                <label for="name" style="padding-left: 15px;">H. S. Code
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="importBillsShipDtlsVo">
+                    <input type="text" NumbersOnly inputmode="numeric" class="form-control form-control-sm"
+                        placeholder="H.S. Code " formControlName="hsCode" maxlength="8"
+                        [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.hsCode') !=''"
+                        (change)="loadPurposeDtls();">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getErrorBillShipment('importBillsShipDtlsVo.hsCode')}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group" formGroupName="importBillsShipDtlsVo">
+                    <input type="text" class="form-control form-control-sm" placeholder="H.S Description"
+                        formControlName="hsDesc" disabled="disabled"
+                        [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.hsDesc') !=''">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getErrorBillShipment('importBillsShipDtlsVo.hsDesc')}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <a class="col-md-auto" (click)="hsCodeDoc('hs-cd')"> View H. S. Code </a>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Goods Description: </label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="descGdsRmrks"
+                            placeholder="Goods Description"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.descGdsRmrks') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.descGdsRmrks')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Performa Invoice No </label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="proInvNo"
+                            placeholder="Goods Description" maxlength="35"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.proInvNo') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.proInvNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <hr />
+        <div class="form-row" *ngIf="applicatFormValue.bills !='DRCT_IMPRT_BILL'">
+
+            <div class="row" (change)="changeSight($event)">
+                <div class="col">
+                    <p> Tenor:<span class="red">*</span> </p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="draftTenor" value="SIGHT">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        Sight </label>
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" formControlName="draftTenor" value="USANCE"
+                            for="radio2">
+                        <label class="form-check-label">Usance</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="red ml-2">
+            {{getErrorBillShipment('draftTenor')}}
+        </div>
+        <fieldset [disabled]="AppUserVal?.draftTenor == 'SIGHT'" *ngIf="applicatFormValue.bills !='DRCT_IMPRT_BILL'">
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-row">
+                        <div class="col-sm-4 row" style="padding-right: 40px;padding-left: 20px;">
+                            <div class="form-group">
+                                <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="DAYS"
+                                    maxlength="3" formControlName="draftDays">
+                            </div>
+                            <div class="col">
+                                <label for="">Days<span class="red">*</span></label>
+                            </div>
+                        </div>
+                        <div class="form-row row-form">
+                            <div class="row mb-3" style="font-size: 14px;">
+                                <div class="col-sm-4" style="padding-right: 40px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="FROM">
+                                        <label class="form-check-label">From</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" formControlName="draftBy"
+                                            value="AFTER">
+                                        <label class="form-check-label">After</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 form-row">
+                            <div class="form-group">
+                                <input type="text" NumbersOnly class="form-control form-control-sm" maxlength="35"
+                                    placeholder="DRAFT CUSTOMER NAME" formControlName="draftCustomerNm">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-row">
+            <label for="">Document Date / Base Date </label>
+            <div class="col-sm-4">
+
+                <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                    formControlName="docDt" placeholder="Document Date / Base Date "
+                    [class.is-invalid]="getErrorBillShipment('docDt') !=''" [disabled]=" billShipmentForm.disabled">
+
+                </ng-bootstrap-datetime-angular>
+
+                <div class="invalid-feedback">
+                    {{getErrorBillShipment('docDt')}}
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+
+        </div>
+        <br>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Receipt</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" appAlphabetOnly formControlName="plRcpt"
+                            placeholder="Place of Receipt" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.plRcpt') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.plRcpt')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Port of Loading/ Airport of Departure</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="pol"
+                            placeholder="Port of Loading/ Airport of Departure" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.pol') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.pol')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Port of Discharge/ Airport of Destination</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" formControlName="pod"
+                            placeholder="Port of Discharge/ Airport of Destination" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.pod') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.pod')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Place of Delivery</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" appAlphabetOnly formControlName="plDlvry"
+                            placeholder="Place of Delivery" maxlength="65"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.plDlvry') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.plDlvry')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6"></div>
+
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-5 col-form-label">Vessel /Carrier Name</label>
+                    <div class="col-sm-5">
+                        <input class="form-control form-control-sm" sbCharNumber formControlName="carrierNm"
+                            placeholder="Vessel /Carrier Name" max="35"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.carrierNm') !=''">
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.carrierNm')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <div class="col-sm-3">
+                        <label class=" col-form-label" style="font-size: 14!important;">INCOTERMS 2010: </label>
+
+                    </div>
+                    <div class="col-sm-5">
+                        <select class="form-control form-control-sm" formControlName="inCoTerms"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.inCoTerms') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let data of incotermsList" value="{{data.code}}">
+                                {{data.value}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" style="text-align: right;">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.inCoTerms')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-2 col-form-label">
+                <label for="name">Goods Shipment Date
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <div class="col-sm-12">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="goodsShpmntDt" placeholder="Goods shipment detail"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.goodsShpmntDt') !=''"
+                            [disabled]=" billShipmentForm.disabled">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.goodsShpmntDt')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-form-label">
+                <label for="name">Latest Shipment Date
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group row required" formGroupName="importBillsShipDtlsVo">
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            formControlName="ltstShpMntDt" placeholder="Latest shipment detail"
+                            [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.ltstShpMntDt') !=''"
+                            [disabled]=" billShipmentForm.disabled">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getErrorBillShipment('importBillsShipDtlsVo.ltstShpMntDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-2"> </div>
+            <div class="col mb-2">
+                <div class="red" *ngIf="getShipmentError()">
+                    Goods Shipment date must be less that latest shipment date
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-2 col-form-label">Shipment Marks</label>
+                    <div class="col-sm-5">
+                        <fieldset [disabled]="applicatFormValue.bills == 'DRCT_IMPRT_BILL'">
+                            <input class="form-control form-control-sm" formControlName="shpmntMrks"
+                                placeholder="Shipment Marks" maxlength="35"
+                                [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.shpmntMrks') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorBillShipment('importBillsShipDtlsVo.shpmntMrks')}} </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-2 col-form-label">Shipment Info</label>
+                    <div class="col-sm-5">
+                        <fieldset [disabled]="applicatFormValue.bills == 'DRCT_IMPRT_BILL'">
+                            <input class="form-control form-control-sm" formControlName="shpmntInfo"
+                                placeholder="Shipment Info" maxlength="35"
+                                [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.shpmntInfo') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorBillShipment('importBillsShipDtlsVo.shpmntInfo')}} </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsShipDtlsVo">
+                    <label class="col-sm-2 col-form-label">Shipment Details</label>
+                    <div class="col-sm-5">
+                        <fieldset [disabled]="applicatFormValue.bills == 'DRCT_IMPRT_BILL'">
+                            <input class="form-control form-control-sm" formControlName="shpmntDtls"
+                                placeholder="Shipment Details" maxlength="35"
+                                [class.is-invalid]="getErrorBillShipment('importBillsShipDtlsVo.shpmntDtls') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorBillShipment('importBillsShipDtlsVo.shpmntDtls')}} </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-left: 10px;">
+            <fieldset class="form-row" [disabled]="applicatFormValue.bills == 'DRCT_IMPRT_BILL'">
+                <div class="col-sm-4" style="text-align: left;margin: 10px;" formGroupName="importBillsShipDtlsVo">
+                    <input type="checkbox" class="form-check-input" value="TRNS_SHP_ALLWD"
+                        formControlName="transShpmntAllwd">
+                    <label> Partial Shipment Allowed </label>
+                </div>
+                <div class="col-sm-4" style="text-align: left;margin: 10px;" formGroupName="importBillsShipDtlsVo">
+                    <input type="checkbox" class="form-check-input" value="PRTL_SHP_ALLWD"
+                        formControlName="prtlShpmntAllwd">
+                    <label> Trans Shipment Allowed
+                    </label>
+                </div>
+            </fieldset>
+            <!-- <div class="col-sm-5"></div> -->
+        </div>
+    </div>
+</form>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -1,0 +1,484 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Inward Remmitance" [hideBreadcrumbs]="true"></sb-dashboard-head>
+    <div class="form-row mt-2 text-center">
+        <div class="col text-centers">
+            <div class="input-group mb-3" style="margin: 0 auto;width:350px">
+                <div class="input-group-prepend"> </div>
+                <!-- <div class="custom-file">
+                    <input id="inputGroupFile01" type="file" class="custom-file-input" (change)="fileChange($event)">
+                    
+                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="form-row">
+        <div class="col text-center"> <span class="m-2"> -- OR -- </span> </div>
+    </div> -->
+    <div id="stepper2" class="bs-stepper" #stepper2>
+        <div class="row">
+            <div class="col">
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#test-l-1">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">1</span>
+                            <span class="bs-stepper-label">Applicant Detail</span>
+                        </button>
+                    </div>
+                    <div class="step" data-target="#test-l-2">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">2</span>
+                            <span class="bs-stepper-label">Applicant Detail</span>
+                        </button>
+                    </div>
+
+
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-7" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                        <button class="step-trigger">
+                            <span class="bs-stepper-circle">7</span>
+                            <span class="bs-stepper-label">Remarks History</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bs-stepper-content">
+            <div id="test-l-1" class="content text-center">
+                <div class="card">
+                    <!-- <sb-cpfc-first  #cpftApplicant (billCpfcEvent)="form4Submitted($event)"
+                    [currency]="currency" ></sb-cpfc-first> -->
+                    <form [formGroup]="cpcftForm" (ngSubmit)="onSubmitAppCpfc()">
+
+                        <div class="form-row" style="margin:10px">
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                <div class="form-group row required">
+                                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control form-control-sm"
+                                            formControlName="sysRefNo" placeholder="SYSTEM REF.NO" disabled>
+                                        <div class="invalid-feedback">
+                                            {{getErrorInvertBill('sysRefNo')}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                <div class="form-group row required">
+                                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control form-control-sm"
+                                            formControlName="transRefNo" placeholder="TRANS REF NO" disabled>
+                                        <div class="invalid-feedback">
+                                            {{getErrorInvertBill('transRefNo')}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                <div class="form-group row required">
+                                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                                    <div class="col-sm-7">
+                                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                            formControlName="sysRefDt" name="sysRefDt" placeholder="System Ref Date"
+                                            disabled>
+                                        </ng-bootstrap-datetime-angular>
+                                        <div class="invalid-feedback">
+                                            {{getErrorInvertBill('sysRefDt')}} </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Name of beneficiary/Account
+                                            holder</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="nmOfBen"
+                                                placeholder="Name of beneficiary/Account holder"
+                                                [class.is-invalid]="getErrorInvertBill('nmOfBen') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('nmOfBen')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">(Canara /e-syndicate Customer)</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="custNm" placeholder="(Canara /e-syndicate Customer)"
+                                                [class.is-invalid]="getErrorInvertBill('custNm') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('custNm')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Enter - sender/Remitter Name(Outside
+                                            India)</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="rmtrNM" placeholder="Enter - sender/Remitter Name"
+                                                [class.is-invalid]="getErrorInvertBill('rmtrNM') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('rmtrNM')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Enter - Expected Remmitancde</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="expRemm" placeholder="Enter-sender/Remitter Name"
+                                                [class.is-invalid]="getErrorInvertBill('expRemm') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('expRemm')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">CUR</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-control form-control-sm" formControlName="currency"
+                                                [class.is-invalid]="getErrorInvertBill('currency') !=''"
+                                                data-role="select-dropdown">
+                                                <option value="">SELECT</option>
+                                                <option *ngFor="let currency of currency "
+                                                    value="{{currency.currencyMstId}}">
+                                                    {{currency.code}}
+                                                </option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('currency')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Amount</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" NumbersOnly class="form-control form-control-sm"
+                                                formControlName="amount" (keyup)="inputChange($event)"
+                                                placeholder="Amount"
+                                                [class.is-invalid]="getErrorInvertBill('amount') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBill('amount')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0"
+                                (click)="onSubmitAppCpfcForm()">Continue</button>
+                            <button type="button" class="btn btn-success m-2 mb-0" (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <!-- <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-2" class="content text-center">
+                <div class="card">
+                    <!-- <sb-cpfc-first  #cpftApplicant (billCpfcEvent)="form4Submitted($event)"
+                    [currency]="currency" ></sb-cpfc-first> -->
+                    <form [formGroup]="cpcftFormSecond" (ngSubmit)="onSubmitAppCpfcForm()">
+                        <div class="card-body">
+
+                            <div class="form-row">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">(Approximate if date is not
+                                            known)</label>
+                                        <div class="col-sm-7">
+                                            <!-- <input type="text" class="form-control form-control-sm" formControlName="rmntncDt"
+                                                placeholder="(Approximate if date is not known)"
+                                                [class.is-invalid]="getErrorInvertBillform2('rmntncDt') !=''"> -->
+                                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                                                placeholder="(Approximate if date is not known)"
+                                                formControlName="rmntncDt" name="rmntncDt"
+                                                [disabled]="cpcftFormSecond.disabled">
+                                            </ng-bootstrap-datetime-angular>
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('rmntncDt')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Enter Name and country of the
+                                            bank</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="bnkCntry"
+                                                placeholder="Enter Name and country of the bank"
+                                                [class.is-invalid]="getErrorInvertBillform2('bnkCntry') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('bnkCntry')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Enter swift code/Reffrence number</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" NumbersOnly maxlength="5"
+                                                class="form-control form-control-sm" formControlName="swiftCode"
+                                                placeholder="Enter swift code/Reffrence number"
+                                                [class.is-invalid]="getErrorInvertBillform2('swiftCode') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('swiftCode')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Convert to indian rupees and credit to my
+                                            account
+                                            Number</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" NumbersOnly class="form-control form-control-sm"
+                                                formControlName="crditAccNo" maxlength="12"
+                                                placeholder="Convert to indian rupees and credit to my account Number">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('crditAccNo')}} </div>
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('crditAccNo')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Do not convert - Credit to
+                                            EEFC</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="eefcAccNo" maxlength="11"
+                                                placeholder="Do not convert - Credit to EEFC">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('eefcAccNo')}} </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">EEFC Account no</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" NumbersOnly class="form-control form-control-sm"
+                                                formControlName="eefcAccNo" maxlength="11" placeholder="EEFC Account no"
+                                                [class.is-invalid]="getErrorInvertBillform2('eefcAccNo') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('eefcAccNo')}} </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="form-row">
+
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <!-- <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Enter Account Number</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                                                placeholder="Enter Account Number" [class.is-invalid]="getErrorInvertBillform2('sysRefNo') !=''">
+                                            <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('sysRefNo')}} </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Any Other instructions</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="instruction" placeholder="Any Other instructions"
+                                                [class.is-invalid]="getErrorInvertBillform2('instruction') !=''">
+                                            <!-- <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('sysRefNo')}} </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                                    <div class="form-group row required">
+                                        <label class="col-sm-5 col-form-label">Please mention if any forward
+                                            contract is avilable for this
+                                            credit or details of rate obtained is any</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                formControlName="crditDtls"
+                                                placeholder="Please mention if any forward contract  is avilable for this credit or details of rate obtained is any">
+                                            <!-- <div class="invalid-feedback">
+                                                {{ getErrorInvertBillform2('sysRefNo')}} </div>  -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="col-sm-4" for="">Press to uplod delivery notification received from swift
+                                initimating Receipt of the above credit</label>
+                            <!-- <div class="custom-file col-sm-4" style="text-align: center;">
+                            <input id="inputGroupFile01" type="file" class="custom-file-input"
+                            (change)="setFileForDocument($event,beneIndex)" value="attachment">{{imagename}}
+
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div> -->
+                            <div class="input-group-prepend"> </div>
+                            <div class="custom-file col-4">
+                                <input type="file" class="custom-file-input" name="inward_file"
+                                   formControlNAme="swftDelNote" (change)="setFileForDocument($event)" />{{imagename}}
+                                <label class="custom-file-label" for="exampleCheck1">Choose file</label>
+                            </div>
+                            <div class="col-sm-4"></div>
+                        </div>
+                    </form>
+                    <div class="form-row" style="padding-bottom: 20px;">
+                        <div class="col text-center">
+
+                            <button type="button" class="btn btn-success m-2 mb-0" *ngIf="isDraft" (click)="saveDraft()">Draft</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-primary m-2 mb-0" *ngIf="!isSaved"
+                                (click)="onSubmitFormm6()">Save</button>
+                            <button type="submit" class="btn btn-success m-2 mb-0" (click)="onSubmitFormm6()"
+                                *ngIf="canUpdate">
+                                Update
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="test-l-7" class="content text-center" [hidden]="(remarkDetails && remarkDetails.length == 0)">
+                <div class="card">
+
+                    <div class="card-body">
+                        <table class="table table-bordered container" style="border-color: black">
+                            <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                                <th class="th-lg">Sr.No. </th>
+                                <th class="th-lg">Remarks</th>
+                                <th class="th-lg">Status </th>
+                                <th class="th-lg">Date </th>
+                                <th class="th-lg">User</th>
+
+                            </tr>
+                            <tbody *ngIf="remarkDetails && remarkDetails.length > 0">
+                                <tr *ngFor="let row of remarkDetails;let indexOfelement=index;">
+                                    <td>{{indexOfelement + 1}} </td>
+                                    <td>{{row.remarks}} </td>
+                                    <td>{{row.processStatus}} </td>
+                                    <td>{{row.statChngdDt}} </td>
+                                    <td>{{row.statChngdUser}} </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-primary m-2 mb-0" (click)="toStep(2)">Previous</button>
+                            <button type="button" class="btn btn-danger m-2 mb-0"
+                                (click)="redirectHome()">Cancel</button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openApproveModal(approveModal)" *ngIf="canAppRej">
+                                Approve
+                            </button>
+                            <button type="button" class="btn btn-success m-2 mb-0"
+                                (click)="openRejectModal(rejectModal)" *ngIf="canAppRej">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</sb-layout-dashboard>
+<ngx-spinner></ngx-spinner>
+
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
+<ng-template #approveModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Approve request?</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(approveModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="approveremarks" rows="3"></textarea>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="approveForm()">
+            Approve
+        </button>
+    </div>
+</ng-template>
+<ng-template #rejectModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reject Application</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d(rejectModal)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <textarea class="form-control" [(ngModel)]="rejectremarks" rows="3"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success m-2 mb-0" aria-label="Close" (click)="rejectForm()">
+            Reject
+        </button>
+    </div>
+</ng-template>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

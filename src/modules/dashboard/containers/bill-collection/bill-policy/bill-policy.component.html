@@ -1,0 +1,109 @@
+<form [formGroup]="billPolicyDetails">
+
+    <div class="card" style="background-color: rgb(238, 232, 225);">
+
+        <p class=" m-3" style="size: 15px;"> <b>DECLARTION </b> </p>
+        <p class=" m-3" style="size: 15px;"> <b>(In case of export documents are submitted after 21 days from the date
+                of shipment)</b></p>
+
+        <p class=" m-3" style="size: 15px;text-align: left;"> <b>We could not submit the subject export documents to
+                your bank within 21
+                days /the prescribed period of from the date of shipment, for the following reasons.</b></p>
+
+        <div class="col-sm-6" *ngIf="applicantValue.bills == 'ADV_PYMNT_RCVD'">
+            <textarea class="form-control" formControlName="dclTxt" maxlength="68" placeholder="Declartion text"
+                [class.is-invalid]="getBillPolicyError('dclTxt') !=''">
+            </textarea>
+            <div class="invalid-feedback">
+                {{getBillPolicyError('dclTxt')}}
+            </div>
+            <div class="red" *ngIf="isDeclarationReq()">
+               Enter Declaration
+            </div>
+            
+        </div>
+        <br>
+        <div style="background-color: rgb(238, 232, 225);">
+            <p class=" m-3" style="size: 15px;text-align: left;"> <b>FEMA DECLARATION: </b> </p>
+            <p class=" m-3" style="text-align: left;">(Under Section 10 (5), Chapter III of the Foreign Exchange
+                Management Act, 1999)</p>
+
+            <P class="m-3" style="text-align: left;">I/We declare that transaction , the details of which are
+                specifically mentioned in the schedule hereunder, doesnot involve, and is not designed for the purpose
+                of any contravention or evasion of the provisions of the ForeignExchange Management Act, 1999, or any
+                rule, regulation, notification, direction or order made there under.</P>
+            <P class="m-3" style="text-align: left;">I/We further agree to give you all such information/particulars as
+                may be required by you and calledfor by you to determine whether such transaction contravenesany of the
+                provisions of the Foreign Exchange Management Actor any other rule, regulation, notification of order
+                thereunder. I/We hereby declare that all the information /particulars given by us are true and correct
+                to the best of my/our knowledge and information.</P>
+            <P class="m-3" style="text-align: left;">*I/We also understand and agree that if I/we refuse to comply with
+                any such requirement or make onlyunsatisfactory compliance therewith, the bank is always at liberty to
+                refuse in writing to undertake the transaction and shall if it has reason to believe that any
+                contravention / evasion is contemplated by me/us report the matter to Reserve Bank of India.</P>
+            <P class="m-3" style="text-align: left;">*I/We further declare that the undersigned has /have the authority
+                to file this declaration and undertaking on behalf of the firm/company.</P>
+
+
+            <p class=" m-3" style="size: 15px;text-align: left;"> <b>OTHER DECLARATION:</b> </p>
+
+            <P class="m-3" style="text-align: left;">I/We hereby agree that Canara Bank in undertaking the collection of
+                this item accts only as the collection agent for me/us and therefore assumes no responsibility beyond
+                the exercise of due care and that Canara Bank will not be liable for the default or negligence of
+                itscorrespondent bank or agent not for any losses, damages or delays however caused in transit. I/We
+                further agree that the Canara Bank or its correspondent or agent may send item directly to any bank,
+                including the drawee if a Bank.</P>
+            <P class="m-3" style="text-align: left;">I/We also undertake and agree to pay to theCanara Bank and hereby
+                authorise the Canara Bank to reimburse itself for all commission and collection charges and all expenses
+                incurred in the handling of this item such chargesand expenses are not paid by the drawees.
+
+            </P>
+            <P class="m-3" style="text-align: left;">We hereby confirm that we have not availed any Packing Credit from
+                other bank for the enclosed documents.We agree ad bound to comply rules and regulations of all the
+                applicable ICC publications , FEMA , FEDAI , RBI Ministry of Finance and any other laws or rules
+                applicable for this transaction.</P>
+            <P class="m-3" style="text-align: left;">We authorize you to convert the captioned inward remittance without
+                referring to us, if the amount is credited in our EEFC/RC/DDA account and remain unutilized on or before
+                the last day of the succeeding calendar month at the best possible rate.</P>
+            <P class="m-3" style="text-align: left;">I/We also agree that the exchange rate will be applicable at the
+                time of deal booking and may vary from the rate prevailing when the request is Submitted. I/We also
+                understand that the rate communicated to us (if any) is an indicative rate and the actual may be
+                different from the same.</P>
+            <P class="m-3" style="text-align: left;">In case of merchant trade transaction I/We undertake to complete
+                the entire export and import leg within a maximum period of 270 days and also undertake that outlay of
+                funds will not exceed 4 months and without incurring any financial loss. We also undertake that both the
+                legs of the merchant trade transaction will be routed through Canara Bank only.</P>
+
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-2">
+            <label for="name">Place <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <input type="text"appAlphabetOnly  class="form-control form-control-sm" formControlName="formPlace" placeholder="PLACE"
+                    maxlength="35" [class.is-invalid]="getBillPolicyError('formPlace') !=''">
+                <div class="invalid-feedback">
+                    {{getBillPolicyError('formPlace')}} </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <label for="name">Date <span class="red">*</span>
+            </label>
+        </div>
+        <div class="col-4">
+
+            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                formControlName="formDt" placeholder="DATE" [class.is-invalid]="getBillPolicyError('formDt') !=''"
+                [disabled]="billPolicyDetails.disabled">
+
+            </ng-bootstrap-datetime-angular>
+
+            <div class="invalid-feedback">
+                {{getBillPolicyError('formDt')}}
+            </div>
+        </div>
+    </div>
+</form>

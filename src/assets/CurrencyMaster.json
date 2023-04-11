@@ -1,0 +1,94 @@
+
+[
+  {
+    "currencyMstId": 1,
+    "code": "USD",
+    "rate": 65.05,
+    "defaultCury": "0",
+    "name": "US DOLLAR"
+  },
+  {
+    "currencyMstId": 2,
+    "code": "INR",
+    "rate": 1,
+    "defaultCury": "0",
+    "name": "Indian Rupees"
+  },
+  {
+    "currencyMstId": 3,
+    "code": "EUR",
+    "rate": 1.225,
+    "defaultCury": "0",
+    "name": "EURO"
+  },
+  {
+    "currencyMstId": 4,
+    "code": "GBP",
+    "rate": 1.405,
+    "defaultCury": "0",
+    "name": "POUND STERLING"
+  },
+  {
+    "currencyMstId": 5,
+    "code": "AUD",
+    "rate": 0.769,
+    "defaultCury": "0",
+    "name": "AUSTRALIAN DOLLAR "
+  },
+  {
+    "currencyMstId": 6,
+    "code": "CAD",
+    "rate": 1.276,
+    "defaultCury": "0",
+    "name": "CANADIAN DOLLAR"
+  },
+  {
+    "currencyMstId": 7,
+    "code": "HKD",
+    "rate": 7.84,
+    "defaultCury": "0",
+    "name": "HONGKONG DOLLAR"
+  },
+  {
+    "currencyMstId": 8,
+    "code": "SGD",
+    "rate": 1.314,
+    "defaultCury": "0",
+    "name": "SINGAPORE DOLLAR"
+  },
+  {
+    "currencyMstId": 9,
+    "code": "JPY",
+    "rate": 107.135,
+    "defaultCury": "0",
+    "name": "JAPANESE YEN "
+  },
+  {
+    "currencyMstId": 10,
+    "code": "CHF",
+    "rate": 0.9615,
+    "defaultCury": "0",
+    "name": "SWISS FRANC"
+  },
+  {
+    "currencyMstId": 11,
+    "code": "DKK",
+    "rate": 6.07,
+    "defaultCury": "0",
+    "name": "DANISH KRONE"
+  },
+  {
+    "currencyMstId": 12,
+    "code": "SEK",
+    "rate": 8.39,
+    "defaultCury": "0",
+    "name": "SWEDISH KRONA"
+  },
+  {
+    "currencyMstId": 13,
+    "code": "AED",
+    "rate": 3.67,
+    "defaultCury": "0",
+    "name": "UAE"
+  }
+]

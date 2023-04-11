@@ -1,0 +1,347 @@
+<form [formGroup]="advApplicantForm">
+
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="SYSTEM REF.NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getAdvanceError('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                            placeholder="TRANS REF NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getAdvanceError('transRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            placeholder="SYSTEM REF DATE" formControlName="sysRefDt" name="sysRefDt"
+                            disabled="disabled">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getAdvanceError('sysRefDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="mt-2"><b>I. Details of the Applicant (Importer) </b></h6>
+        <hr />
+        <div class="form-row" style="padding-bottom:15px">
+
+
+            <div class="col-sm-3 offset-3">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="partFullPayment" value="part_payment">
+                    <label class="form-check-label">
+                        Part Payment
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="partFullPayment" value="full_payment">
+                    <label class="form-check-label">
+                        Full Payment
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="red offset-3" style="text-align: right!important;">
+                {{getAdvanceError('partFullPayment')}}
+            </div>
+        </div>
+        <div class="card">
+            <!-- <div class="card-body"> -->
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Customer ID: </label>
+                        <div class="col-sm-7">
+                            <input disabled="disabled" maxlength="11" NumbersOnly type="text"
+                                class="form-control form-control-sm" formControlName="custId" placeholder="CUSTOMER ID"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.custId') !=''"
+                                 >
+                            <!-- (focusout)="getChange($event)" -->
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.custId')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Account No: </label>
+                        <div class="col-sm-7">
+
+                            <select class="form-control form-control-sm" formControlName="accNo"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.accNo') !=''"
+                                data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                    {{con}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.accNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label" style="font-size: 14px;">Customer Name: <span
+                                class="red">*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="custNm" placeholder="CUSTOMER NAME"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.custNm') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.custNm')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Branch: </label>
+                        <div class="col-sm-7">
+                            <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="brnchNm" placeholder="BRANCH"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.brnchNm') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.brnchNm')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">DP Code: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="text" class="form-control form-control-sm" formControlName="dpCode"
+                                    placeholder=" "> -->
+                            <input  NumbersOnly inputmode="numeric" type="text"
+                                class="form-control form-control-sm" formControlName="dpCode" placeholder="DP CODE"
+                                maxlength="5" [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.dpCode') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.dpCode')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row " formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Telephone: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="number" class="form-control form-control-sm" formControlName="telNo"
+                                     placeholder=" "> -->
+                            <input disabled="disabled" NumbersOnly type="text" maxlength="13" max="13"
+                                class="form-control form-control-sm" formControlName="telNo" placeholder="TELEPHONE"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.telNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.telNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Mobile No: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="number" class="form-control form-control-sm"  formControlName="mobNo"
+                                  placeholder=" "> -->
+                            <input disabled="disabled" NumbersOnly type="text" maxlength="13"
+                                class="form-control form-control-sm" formControlName="mobNo" max="13"
+                                placeholder="MOBILE NO"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.mobNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.mobNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Email: </label>
+                        <div class="col-sm-7">
+                            <input disabled="disabled" type="email" class="form-control form-control-sm"
+                                formControlName="eMail" placeholder="EMAIL" maxlength="70" max="70"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.eMail') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.eMail')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                        <div class="col-sm-7">
+                            <input disabled="disabled" type="email" class="form-control form-control-sm"
+                                formControlName="altEmail" placeholder="ALTERNATE EMAIL"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.altEmail') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.altEmail')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                        <div class="col-sm-7">
+                            <textarea disabled="disabled" class="form-control" formControlName="address1" maxlength="35"
+                                placeholder="ADDRESS LINE 1"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.address1') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.address1')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                        <div class="col-sm-7">
+                            <textarea disabled="disabled" class="form-control" formControlName="address2" maxlength="35"
+                                placeholder="ADDRESS LINE 2"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.address2') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.address2')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                        <div class="col-sm-7">
+                            <textarea disabled="disabled" class="form-control" formControlName="address3" maxlength="35"
+                                placeholder="ADDRESS LINE 3"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.address3') !=''"></textarea>
+                            {{getAdvanceError('advRemCustDtlsVo.address3')}}
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.address3')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="cntryId"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country " value="{{con.countryId}}">
+                                    {{con.name}}</option>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.cntryId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">PAN No.: </label>
+                        <div class="col-sm-7">
+                            <input disabled="disabled" inputmode="numeric" maxlength="10" minlength="10"
+                                class="form-control form-control-sm" formControlName="panNo" placeholder="PAN NO"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.panNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.panNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="advRemCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">IE Code: </label>
+                        <div class="col-sm-7">
+                            <input inputmode="numeric" maxlength="10" minlength="10"
+                                class="form-control form-control-sm" formControlName="ieCode" placeholder="IE Code"
+                                [class.is-invalid]="getAdvanceError('advRemCustDtlsVo.ieCode') !=''">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('advRemCustDtlsVo.ieCode')}} </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+
+
+        <h6 class="mt-2"><b> PAYMENT DETAILS (Bill)</b> </h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Currency: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="currency"
+                                [class.is-invalid]="getAdvanceError('currency') !=''" data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                    {{currency.code}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('currency')}} </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Amount: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="amount"
+                                placeholder="AMOUNT" [class.is-invalid]="getAdvanceError('amount') !=''" maxlength="22"
+                                (keyup)="inputChange($event)">
+                            <div class="invalid-feedback">
+                                {{getAdvanceError('amount')}} </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                        </label>
+                        <div class="col-sm-9">
+                            <input disabled="disabled" type="text" class="form-control form-control-sm"
+                                formControlName="amntWords" placeholder="AMOUNT IN WORDS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+
+    </div>
+
+</form>

@@ -1,0 +1,140 @@
+<div class="card-body">
+    <form [formGroup]="lcChargeDetails">
+       <div class="row">
+          <div class="row" formGroupName="lCChrgDtlsVo">
+             <div class="col" style="padding-right: 35px;">
+                All Bank Charges outside INDIA are to the account of
+                <span class="red">*</span>
+             </div>
+             <div class="form-check ">
+                <input class="form-check-input" type="radio" formControlName="accOf" value="APPLICANT">
+                <label class="form-check-label" for="radio1" style="padding-right: 20px;">
+                   Applicant </label>
+             </div>
+             <div class="form-check ">
+                <input class="form-check-input" type="radio" formControlName="accOf" value="BENEFICIARY">
+                <label class="form-check-label" for="radio1"> Beneficiary </label>
+             </div>
+          </div>&nbsp;
+          <div class="red ml-2" style="text-align: right;font-size: 14px;">
+             &nbsp; {{getlcErrorCon('lCChrgDtlsVo.accOf')}}
+          </div>
+          <br>
+          <br>
+          <div class="row">
+             <div class="col">
+                <label for="">
+                   <p>Period of Presentation:<span class="red">*</span></p>
+                </label>
+             </div>
+             <div class="col" formGroupName="lCChrgDtlsVo">
+                <input NumbersOnly type="text" maxlength="3" class="form-control form-control-sm"
+                   formControlName="prdPresentation" placeholder="Period of Presentation"
+                   [class.is-invalid]="getlcErrorCon('lCChrgDtlsVo.prdPresentation') !=''">
+                <div class="invalid-feedback">
+                   {{getlcErrorCon('lCChrgDtlsVo.prdPresentation')}}
+                </div>
+                <!-- [class.is-invalid]="getlcErrorCon('lCChrgDtlsVo.prdPresentation') !=''" -->
+             </div>
+             <div class="col">
+                <label for="">days from/ after shipment date</label>
+             </div>
+          </div>
+       </div>
+       <br>
+       <div class="form-row" formGroupName="lCChrgDtlsVo">
+          <div class="row" (change)="onCheckbboxSelect($event)">
+             <div class="col">
+                <p> Confirmation:<span class="red">*</span> </p>
+                <!-- <span class="red" >*</span> -->
+             </div>
+             <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="WITH">
+                <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                   With </label>
+             </div>
+             <div class="form-check">
+                <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="WITHOUT">
+                <label class="form-check-label" for="radio2" style="padding-right: 10px;"> Without </label>
+             </div>
+             <div class="form-check ">
+                <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="MAY_ADD">
+                <label class="form-check-label" for="radio2" style="padding-right: 30px;"> May add </label>
+             </div>
+ 
+          </div>
+ 
+       </div>
+       <div formGroupName="lCChrgDtlsVo">
+          <fieldset [disabled]="chargeValue?.chrgCnfrm == 'WITHOUT'">
+ 
+             <div class="row col">
+                <p style="padding-right: 5px;"> Confirmation Charges (if any) for account of: </p>
+                <span class="red" style="padding-right: 10px;">*</span>
+                <div class="form-check">
+                   <input class="form-check-input" type="radio" formControlName="cnfrmChrsAccOf" value="APPLICANT">
+                   <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                      Applicant </label>
+                </div>
+                <div class="form-check">
+                   <input class="form-check-input" type="radio" formControlName="cnfrmChrsAccOf" value="BENEFICIARY">
+                   <label class="form-check-label" for="radio2" style="padding-right: 10px;"> Beneficiary
+                   </label>
+                </div>
+             </div>
+          </fieldset>
+          <div class="red ml-2" *ngIf="getWithout('cnfrmChrsAccOf')">
+             This field is required
+          </div>
+       </div>
+ 
+       <p>Note :- Discrepancy fees will be for the account of beneficiary.
+       </p>
+       <div class="form-row" formGroupName="lCChrgDtlsVo">
+          <div class="col-sm-7">
+             <label for="form-check-label">INSTRUCTIONS TO THE PAYING/ACCEPTING/NEGOTIATING BANK</label>
+             <div class="form-group required">
+                <textarea class="form-control form-control-sm" rows="3" formControlName="pymntInstruc" maxlength="780"
+                   placeholder="INSTRUCTIONS TO THE PAYING/ACCEPTING/NEGOTIATING BANK"></textarea>
+                <!-- <div class="invalid-feedback">
+                    {{getlcErrorCon('lCChrgDtlsVo.pymntInstruc')}}
+                 </div> -->
+             </div>
+          </div>
+          <div class="col-sm-5">
+             <label for="form-check-label">SENDER TO RECEIVER INFORMATION</label>
+             <div class="form-group required">
+                <textarea class="form-control form-control-sm" rows="3" formControlName="sndrRcvrInfo" maxlength="210"
+                   placeholder="SENDER TO RECEIVER INFORMATION"></textarea>
+                <!-- <div class="invalid-feedback">
+                    {{getlcErrorCon('lCChrgDtlsVo.sndrRcvrInfo')}}
+                 </div> -->
+             </div>
+          </div>
+       </div>
+       <div class="form-row" formGroupName="lCChrgDtlsVo">
+          <div class="col-sm-7">
+             <label for="form-check-label">DOCUMENTS REQUIRED BY CUSTOMER <span class="red">*</span></label>
+             <div class="form-group required">
+                <textarea class="form-control form-control-sm" rows="3" formControlName="docReq"
+                   placeholder="DOCUMENTS REQUIRED BY CUSTOMER" maxlength="6500"
+                   [class.is-invalid]="getlcErrorCon('lCChrgDtlsVo.docReq') !=''"></textarea>
+                <div class="invalid-feedback">
+                   {{getlcErrorCon('lCChrgDtlsVo.docReq')}}
+                </div>
+             </div>
+          </div>
+          <div class="col-sm-5">
+             <label for="form-check-label">ADDITIONAL CONDITIONS <span class="red">*</span></label>
+             <div class="form-group required">
+                <textarea class="form-control form-control-sm" rows="3" formControlName="addCondition" maxlength="6500"
+                   placeholder="ADDITIONAL CONDITIONS"></textarea>
+                <!-- <div class="invalid-feedback">
+                    {{getlcErrorCon('lCChrgDtlsVo.addCondition')}}
+                 </div> -->
+             </div>
+          </div>
+       </div>
+ 
+    </form>
+ </div>

@@ -1,0 +1,575 @@
+
+[
+  {
+    "stateId": 1,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Maharashtra"
+  },
+  {
+    "stateId": 2,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Delhi"
+  },
+  {
+    "stateId": 4,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Tamil Nadu"
+  },
+  {
+    "stateId": 19,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Punjab"
+  },
+  {
+    "stateId": 20,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Rajasthan"
+  },
+  {
+    "stateId": 21,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "NCT of Delhi"
+  },
+  {
+    "stateId": 22,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Chandigarh"
+  },
+  {
+    "stateId": 23,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Himachal Pradesh"
+  },
+  {
+    "stateId": 24,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Haryana"
+  },
+  {
+    "stateId": 25,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Jammu and Kashmir"
+  },
+  {
+    "stateId": 150,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Maha"
+  },
+  {
+    "stateId": 5,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Chhattisgarh"
+  },
+  {
+    "stateId": 6,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Madhya Pradesh"
+  },
+  {
+    "stateId": 7,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Uttar Pradesh"
+  },
+  {
+    "stateId": 8,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Uttarakhand"
+  },
+  {
+    "stateId": 27,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Nagaland"
+  },
+  {
+    "stateId": 28,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Meghalaya"
+  },
+  {
+    "stateId": 29,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Tripura"
+  },
+  {
+    "stateId": 13,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Odisha"
+  },
+  {
+    "stateId": 14,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "West Bengal"
+  },
+  {
+    "stateId": 16,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Sikkim"
+  },
+  {
+    "stateId": 17,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Bihar"
+  },
+  {
+    "stateId": 18,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Jharkhand"
+  },
+  {
+    "stateId": 15,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Andaman and Nicobar Islands"
+  },
+  {
+    "stateId": 26,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Assam"
+  },
+  {
+    "stateId": 30,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Mizoram"
+  },
+  {
+    "stateId": 31,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Manipur"
+  },
+  {
+    "stateId": 32,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Arunachal Pradesh"
+  },
+  {
+    "stateId": 33,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Karnataka"
+  },
+  {
+    "stateId": 34,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Kerala"
+  },
+  {
+    "stateId": 35,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Puducherry"
+  },
+  {
+    "stateId": 36,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Andhra Pradesh"
+  },
+  {
+    "stateId": 37,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Telangana"
+  },
+  {
+    "stateId": 3,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "chennai"
+  },
+  {
+    "stateId": 9,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Gujarat"
+  },
+  {
+    "stateId": 10,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Goa"
+  },
+  {
+    "stateId": 11,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Dadra and Nagar Haveli"
+  },
+  {
+    "stateId": 12,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "Daman and Diu"
+  },
+  {
+    "stateId": 149,
+    "country": {
+      "countryId": 152,
+      "name": "Croatia",
+      "code": "+38",
+      "alfaCode": "HR",
+      "altCode": "HR",
+      "restrict": "N",
+      "fatf": "Y"
+    },
+    "name": "34234234"
+  },
+  {
+    "stateId": 169,
+    "country": {
+      "countryId": 1,
+      "name": "India",
+      "code": "+91",
+      "alfaCode": "IN",
+      "altCode": "103",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "maharashra"
+  },
+  {
+    "stateId": 215,
+    "country": {
+      "countryId": 292,
+      "name": "Ajman",
+      "code": "#98",
+      "alfaCode": "ajm",
+      "altCode": "a12",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "ghf"
+  },
+  {
+    "stateId": 216,
+    "country": {
+      "countryId": 293,
+      "name": "UAE",
+      "code": "#98",
+      "alfaCode": "uae",
+      "altCode": "u12",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "klm"
+  },
+  {
+    "stateId": 217,
+    "country": {
+      "countryId": 294,
+      "name": "qq",
+      "code": "#98",
+      "alfaCode": "qq",
+      "altCode": "q12",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "qq"
+  },
+  {
+    "stateId": 218,
+    "country": {
+      "countryId": 295,
+      "name": "rr",
+      "code": "#98",
+      "alfaCode": "rr",
+      "altCode": "r12",
+      "restrict": "Y",
+      "fatf": "N"
+    },
+    "name": "rr"
+  }
+]

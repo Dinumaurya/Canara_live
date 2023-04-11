@@ -1,0 +1,2003 @@
+
+[
+  {
+    "purposeId": 49,
+    "code": "12132",
+    "description": "353535",
+    "purposeGroup": {
+      "grpId": 21,
+      "grpNum": "00",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 41,
+    "code": "P0003",
+    "description": "Repatriation of Indian investment abroad in equity capital (shares)",
+    "purposeGroup": {
+      "grpId": 21,
+      "grpNum": "00",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 239,
+    "code": "090te",
+    "description": "qweqwe",
+    "purposeGroup": {
+      "grpId": 45,
+      "grpNum": "466",
+      "grpName": "wertert"
+    }
+  },
+  {
+    "purposeId": 45,
+    "code": "2",
+    "description": "2",
+    "purposeGroup": {
+      "grpId": 21,
+      "grpNum": "00",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 46,
+    "code": "test",
+    "description": "test",
+    "purposeGroup": {
+      "grpId": 23,
+      "grpNum": "00",
+      "grpName": "515"
+    }
+  },
+  {
+    "purposeId": 51,
+    "code": "P0001",
+    "description": "Repatriation of Indian investment abroad in equity capital (shares)",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 52,
+    "code": "P0002",
+    "description": "Repatriation of Indian investment abroad in debt securities.",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 53,
+    "code": "P0003",
+    "description": "Repatriation of Indian investment abroad in branches",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 54,
+    "code": "P0004",
+    "description": "Repatriation of Indian investment abroad in subsidiaries and associates",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 55,
+    "code": "P0005",
+    "description": "Repatriation of Indian investment abroad in real estate",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 56,
+    "code": "P0006",
+    "description": "Foreign direct investment in India in equity",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 57,
+    "code": "P0007",
+    "description": "Foreign direct investment in India in debt securities",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 58,
+    "code": "P0008",
+    "description": "Foreign direct investment in India in real estate",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 59,
+    "code": "P0009",
+    "description": "Foreign portfolio investment in India in equity shares",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 60,
+    "code": "P0010",
+    "description": "Foreign portfolio investment in India in debt securities including debt funds",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 61,
+    "code": "P0011",
+    "description": "Repayment of loans extended to Non- Residents",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 1,
+    "code": "P0001",
+    "description": "Repatriation of Indian investment abroad in equity capital ",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 62,
+    "code": "P0012",
+    "description": "Loans from Non-Residents to India",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 63,
+    "code": "P0014",
+    "description": "Receipts o/a Non-Resident deposits (FCNRB/NRERA etc.) ADs should report these even if funds are not \"swapped\" into Rupees.",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 64,
+    "code": "P0015",
+    "description": "Loans and overdrafts taken by ADs on their own account. (Any amount of loan credited to the NOSTRO account which may not be swapped into Rupees should also be reported)",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 65,
+    "code": "P0016",
+    "description": "Purchase of a foreign currency against another Currency.",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 66,
+    "code": "P0017",
+    "description": "Sale of intangible assets like patents, copyrights, trade marks etc. by Indian companies",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 67,
+    "code": "P0018",
+    "description": "Other capital receipts not included elsewhere",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 68,
+    "code": "P0101",
+    "description": "Value of export bills negotiated / purchased/discounted etc. (covered under GR/PP/SOFTEX/EC copy of shipping bills etc.)",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 69,
+    "code": "P0102",
+    "description": "Realisation of export bills (in respect of goods) sent on collection (full invoice value)",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 70,
+    "code": "P0103",
+    "description": "Advance receipts against export contracts (export of goods only)",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 71,
+    "code": "P0104",
+    "description": "Receipts against export of goods not covered by the GR/PP/SOFTEX/EC copy of shipping bill etc.",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 72,
+    "code": "P0105",
+    "description": "Export bills (in respect of goods) sent on collection.",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 73,
+    "code": "P0106",
+    "description": "Conversion of overdue export bills from NPD to collection mode",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 74,
+    "code": "P0107",
+    "description": "Realisation of NPD export bills (full value of bill to be reported)",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 75,
+    "code": "P0201",
+    "description": "Receipts of surplus freight/passenger fare by Indian shipping companies operating abroad",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 76,
+    "code": "P0202",
+    "description": "Purchases, on account of operating expenses of Foreign shipping companies operating in India",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 77,
+    "code": "P0205",
+    "description": "Purchases on account of operational leasing (with crew) – Shipping companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 78,
+    "code": "P0207",
+    "description": "Receipts of surplus freight/passenger fare by Indian Airlines companies operating abroad.",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 79,
+    "code": "P0208",
+    "description": "Receipt on account of operating expenses of Foreign Airlines companies operating in India",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 80,
+    "code": "P0211",
+    "description": "Purchases on account of operational leasing (with crew) -Airlines companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 81,
+    "code": "P0213",
+    "description": "Receipts on account of other transportation services (stevedoring, demurrage, port handling charges etc).",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 83,
+    "code": "P0308",
+    "description": "FC surrendered by returning Indian tourists.",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 84,
+    "code": "P0401",
+    "description": "Postal services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 85,
+    "code": "P0402",
+    "description": "Courier services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 86,
+    "code": "P0403",
+    "description": "Telecommunication services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 87,
+    "code": "P0404",
+    "description": "Satellite services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 88,
+    "code": "P0501",
+    "description": "Receipts for cost of construction of services projects in India",
+    "purposeGroup": {
+      "grpId": 33,
+      "grpNum": "5",
+      "grpName": "Construction Service"
+    }
+  },
+  {
+    "purposeId": 89,
+    "code": "P0601",
+    "description": "Receipts of life insurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 90,
+    "code": "P0602",
+    "description": "Receipts of freight insurance - relating to import and export of goods",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 91,
+    "code": "P0603",
+    "description": "Receipts on account of other general insurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 92,
+    "code": "P0604",
+    "description": "Receipts of Reinsurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 93,
+    "code": "P0605",
+    "description": "Receipts on account of Auxiliary services ( commission on Insurance)",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 94,
+    "code": "P0606",
+    "description": "Receipts on account of settlement of claims",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 95,
+    "code": "P0701",
+    "description": "Financial inter-mediation except investment banking - Bank charges, collection charges, LC charges, cancellation of forward contracts, commission on financial leasing etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 96,
+    "code": "P0702",
+    "description": "Investment banking – brokerage, underwriting commission etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 97,
+    "code": "P0703",
+    "description": "Auxiliary services - charges on operation and regulatory fees, custodial services, depository services etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 98,
+    "code": "P0801",
+    "description": "Hardware consultancy",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 99,
+    "code": "P0802",
+    "description": "Software implementation/consultancy  (other than those covered in SOFTEX form)",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 100,
+    "code": "P0803",
+    "description": "Data base, data processing charges",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 101,
+    "code": "P0804",
+    "description": "Repair and maintenance of computer and software",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 102,
+    "code": "P0805",
+    "description": "Mews agency services",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 103,
+    "code": "P0806",
+    "description": "Other information services- Subscription to newspapers, periodicals, etc.",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 104,
+    "code": "P0901",
+    "description": "Franchises services – patents.copy rights, trade marks, industrial processes, franchises etc.",
+    "purposeGroup": {
+      "grpId": 37,
+      "grpNum": "9",
+      "grpName": "Royalties and License Fees"
+    }
+  },
+  {
+    "purposeId": 105,
+    "code": "P0902",
+    "description": "Receipts for use, through licensing arrangements, of produced originals or prototypes (such as manuscripts and films)                .",
+    "purposeGroup": {
+      "grpId": 37,
+      "grpNum": "9",
+      "grpName": "Royalties and License Fees"
+    }
+  },
+  {
+    "purposeId": 106,
+    "code": "P1001",
+    "description": "Merchanting Services – net receipts (from sale and purchase of goods without crossing the border).",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 107,
+    "code": "P1002",
+    "description": "Trade related services - Commission on exports/imports.",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 108,
+    "code": "P1003",
+    "description": "Operational leasing services (other than financial leasing and without operating crew) including charter hire",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 109,
+    "code": "P1004",
+    "description": "Legal services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 110,
+    "code": "P1005",
+    "description": "Accounting, auditing, book keeping and tax consulting services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 111,
+    "code": "P1006",
+    "description": "Business and management consultancy and public relations services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 112,
+    "code": "P1007",
+    "description": "Advertising, trade fair, market research and public opinion polling services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 113,
+    "code": "P1008",
+    "description": "Research and Development services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 114,
+    "code": "P1009",
+    "description": "Architectural, engineering and other technical services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 115,
+    "code": "P1010",
+    "description": "Agricultural, mining and on -site processing services - protection against insects and disease, increasing of harvest yields, forestry services, mining services like analysis of ores etc.",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 116,
+    "code": "P1011",
+    "description": "Inward remittance for maintenance of offices in India",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 117,
+    "code": "P1012",
+    "description": "Distribution services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 118,
+    "code": "P1013",
+    "description": "Environmental services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 119,
+    "code": "P1019",
+    "description": "Other services not included elsewhere",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 120,
+    "code": "P1101",
+    "description": "Audio-visual and related services -services and associated fees related to production of motion pictures, rentals, fees received by actors, directors, producers and fees for distribution rights.",
+    "purposeGroup": {
+      "grpId": 39,
+      "grpNum": "11",
+      "grpName": "Personal, Cultural and Recreational services."
+    }
+  },
+  {
+    "purposeId": 121,
+    "code": "P1102",
+    "description": "Personal, cultural services such as those related to museums, libraries, archives and sporting activities and fees for correspondence courses of Indian Universities/Institutes",
+    "purposeGroup": {
+      "grpId": 39,
+      "grpNum": "11",
+      "grpName": "Personal, Cultural and Recreational services."
+    }
+  },
+  {
+    "purposeId": 122,
+    "code": "P1201",
+    "description": "Maintenance of foreign embassies in India",
+    "purposeGroup": {
+      "grpId": 40,
+      "grpNum": "12",
+      "grpName": "Government, not included elsewhere (G.n.i.e.)"
+    }
+  },
+  {
+    "purposeId": 123,
+    "code": "P1203",
+    "description": "Maintenance of international institutions such as offices of IMF mission, World Bank, UNICEF etc. in India.",
+    "purposeGroup": {
+      "grpId": 40,
+      "grpNum": "12",
+      "grpName": "Government, not included elsewhere (G.n.i.e.)"
+    }
+  },
+  {
+    "purposeId": 124,
+    "code": "P1301",
+    "description": "Inward remittance from Indian nonresidents towards family maintenance and savings",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 125,
+    "code": "P1302",
+    "description": "Personal gifts and donations",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 126,
+    "code": "P1303",
+    "description": "Donations to religious and charitable institutions in India",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 127,
+    "code": "P1304",
+    "description": "Grants and donations to governments and charitable institutions established by the governments",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 128,
+    "code": "P1306",
+    "description": "Receipts / Refund of taxes",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 129,
+    "code": "P1401",
+    "description": "Compensation of employees",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 130,
+    "code": "P1403",
+    "description": "Inward remittance towards interest on loans extended to non-residents (ST/MT/LT loans)",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 131,
+    "code": "P1404",
+    "description": "Inward remittance of interest on debt securities - debentures / bonds /FRNsetc,",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 132,
+    "code": "P1405",
+    "description": "Inward remittance towards interest receipts of ADs on their own account (on investments.)",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 133,
+    "code": "P1406",
+    "description": "Repatriation of profits to India",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 43,
+    "code": "P0001",
+    "description": "Repatriation of Indian investment abroad\nin debt securities.",
+    "purposeGroup": {
+      "grpId": 21,
+      "grpNum": "00",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 44,
+    "code": "1",
+    "description": "1",
+    "purposeGroup": {
+      "grpId": 21,
+      "grpNum": "00",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 47,
+    "code": "1",
+    "description": "1",
+    "purposeGroup": {
+      "grpId": 24,
+      "grpNum": "00",
+      "grpName": "test"
+    }
+  },
+  {
+    "purposeId": 48,
+    "code": "1",
+    "description": "11",
+    "purposeGroup": {
+      "grpId": 23,
+      "grpNum": "00",
+      "grpName": "515"
+    }
+  },
+  {
+    "purposeId": 134,
+    "code": "P1407",
+    "description": "Receipt of dividends by Indians",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 135,
+    "code": "P1501",
+    "description": "Refunds / rebates on account of imports",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 136,
+    "code": "P1502",
+    "description": "Reversal of wrong entries, refunds of amount remitted for non-imports",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 137,
+    "code": "P1503",
+    "description": "Remittances (receipts) by residents under international bidding process.",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 138,
+    "code": "P1590",
+    "description": "Receipts below $10,000 (say Rs 5,00,000)",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 139,
+    "code": "S0001",
+    "description": "Indian investment abroad -in equity capital (shares)",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 140,
+    "code": "S0002",
+    "description": "Indian investment abroad -in debt securities",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 141,
+    "code": "S0003",
+    "description": "Indian investment abroad -in branches",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 142,
+    "code": "S0004",
+    "description": "Indian investment abroad -in subsidiaries and associates",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 143,
+    "code": "S0005",
+    "description": "Indian investment abroad -in real estate",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 144,
+    "code": "S0006",
+    "description": "Repatriation of Foreign Direct Investment in India- in equity shares",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 145,
+    "code": "S0007",
+    "description": "Repatriation of Foreign Direct Investment in India- in debt securities",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 146,
+    "code": "S0008",
+    "description": "Repatriation of Foreign Direct Investment in India- in real estate",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 147,
+    "code": "S0009",
+    "description": "Repatriation of Foreign Portfolio Investment in India- in equity shares",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 148,
+    "code": "S0010",
+    "description": "Repatriation of Foreign Portfolio Investment in India- in debt securities",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 149,
+    "code": "S0011",
+    "description": "Loans extended to Non-Residents",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 150,
+    "code": "S0012",
+    "description": "Repayment of loans received  from Non- Residents {Long and medium term loans)",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 151,
+    "code": "S0013",
+    "description": "Repayment of short term loans received from Non-Residents",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 152,
+    "code": "S0014",
+    "description": "Repatriation of Non-Resident Deposits (FCNRB/N.RERA etc)",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 153,
+    "code": "S0015",
+    "description": "Repayment of loans and overdrafts taken by ADs on their own account.",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 154,
+    "code": "S0016",
+    "description": "Sale of a foreign  currency against another foreign currency",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 155,
+    "code": "S0017",
+    "description": "Purchase  of intangible  assets  like patents, copyrights, trade marks etc.",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 156,
+    "code": "S0018",
+    "description": "Other capital  payments not included Elsewhere",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  },
+  {
+    "purposeId": 157,
+    "code": "S0101",
+    "description": "Advance payment against imports",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 158,
+    "code": "S0102",
+    "description": "Payment towards imports - settlement of invoice",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 159,
+    "code": "S0103",
+    "description": "Imports by diplomatic missions",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 160,
+    "code": "S0104",
+    "description": "Intermediary trade",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 161,
+    "code": "S0190",
+    "description": "Imports below Rs. 500.000- (For use by ECD offices",
+    "purposeGroup": {
+      "grpId": 29,
+      "grpNum": "1",
+      "grpName": "Exports (of Goods)"
+    }
+  },
+  {
+    "purposeId": 162,
+    "code": "S0201",
+    "description": "Payments for surplus freight/passenger fare by foreign shipping companies operating in India.",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 163,
+    "code": "S0202",
+    "description": "Payment for operating  expenses  of Indian shipping companies operating abroad.",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 164,
+    "code": "S0203",
+    "description": "Freight on imports - Shipping companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 165,
+    "code": "S0204",
+    "description": "Freight on exports - Shipping companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 166,
+    "code": "S0205",
+    "description": "Operational leasing (with  crew) -Shipping companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 167,
+    "code": "S0206",
+    "description": "Booking   of passages abroad -Shipping companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 168,
+    "code": "S0207",
+    "description": "Payments for surplus freight/passenger fare by foreign Airlines companies operating in India,",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 169,
+    "code": "S0208",
+    "description": "Operating expenses of Indian Airlines companies operating abroad",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 170,
+    "code": "S0209",
+    "description": "Freight on imports - Airlines companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 171,
+    "code": "S0210",
+    "description": "Freight on exports - Airlines companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 172,
+    "code": "S0211",
+    "description": "Operational leasing (with  crew) - Airlines companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 173,
+    "code": "S0212",
+    "description": "Booking of passages abroad - Airlines companies",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 174,
+    "code": "S0213",
+    "description": "Payments on account of stevedoring, demur-rage, port handling charges etc.",
+    "purposeGroup": {
+      "grpId": 30,
+      "grpNum": "2",
+      "grpName": "Transportation"
+    }
+  },
+  {
+    "purposeId": 175,
+    "code": "S0301",
+    "description": "Remittance towards Business travel.",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 176,
+    "code": "S0302",
+    "description": "Travel under basic travel quota (BTQ)",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 177,
+    "code": "S0303",
+    "description": "Travel for pilgrimage",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 178,
+    "code": "S0304",
+    "description": "Travel for medical treatment",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 179,
+    "code": "S0305",
+    "description": "Travel for education (including fees, Hostel expenses etc.)",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 180,
+    "code": "S0306",
+    "description": "Other travel (international credit cards)",
+    "purposeGroup": {
+      "grpId": 31,
+      "grpNum": "3",
+      "grpName": "Travel"
+    }
+  },
+  {
+    "purposeId": 181,
+    "code": "S0401",
+    "description": "Postal services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 182,
+    "code": "S0402",
+    "description": "Courier services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 183,
+    "code": "S0403",
+    "description": "Telecommunication services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 184,
+    "code": "S0404",
+    "description": "Satellite services",
+    "purposeGroup": {
+      "grpId": 32,
+      "grpNum": "4",
+      "grpName": "Communication Service"
+    }
+  },
+  {
+    "purposeId": 185,
+    "code": "S0501",
+    "description": "Construction of projects abroad by Indian companies including import of goods at project site",
+    "purposeGroup": {
+      "grpId": 33,
+      "grpNum": "5",
+      "grpName": "Construction Service"
+    }
+  },
+  {
+    "purposeId": 186,
+    "code": "S0502",
+    "description": "Payments for cost of construction etc. of projects executed by foreign companies in India.",
+    "purposeGroup": {
+      "grpId": 33,
+      "grpNum": "5",
+      "grpName": "Construction Service"
+    }
+  },
+  {
+    "purposeId": 187,
+    "code": "S0601",
+    "description": "Payments for Life insurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 188,
+    "code": "S0602",
+    "description": "Freight insurance - relating to import and export of goods",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 189,
+    "code": "S0603",
+    "description": "Other general insurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 190,
+    "code": "S0604",
+    "description": "Reinsurance premium",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 191,
+    "code": "S0605",
+    "description": "Auxiliary services (commission on insurance)",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 192,
+    "code": "S0606",
+    "description": "Settlement of claims",
+    "purposeGroup": {
+      "grpId": 34,
+      "grpNum": "6",
+      "grpName": "Insurance Service"
+    }
+  },
+  {
+    "purposeId": 193,
+    "code": "S0701",
+    "description": "Financial inter-mediation except investment banking - Bank charges, collection charges, LC charges, cancellation of forward contracts, commission on financial leasing etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 194,
+    "code": "S0702",
+    "description": "Investment banking - brokerage, underwriting commission etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 195,
+    "code": "S0703",
+    "description": "Auxiliary services - charges on operation and regulatory fees, custodial services, depository services etc.",
+    "purposeGroup": {
+      "grpId": 35,
+      "grpNum": "7",
+      "grpName": "Financial Services"
+    }
+  },
+  {
+    "purposeId": 196,
+    "code": "S0801",
+    "description": "Hardware consultancy",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 197,
+    "code": "S0802",
+    "description": "Software implementation/consultancy",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 198,
+    "code": "S0803",
+    "description": "Data base, data processing charges",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 199,
+    "code": "S0804",
+    "description": "Repair and maintenance of computer and software",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 200,
+    "code": "S0805",
+    "description": "slews agency services",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 201,
+    "code": "S0806",
+    "description": "Other information  services-Subscription to newspapers, periodicals",
+    "purposeGroup": {
+      "grpId": 36,
+      "grpNum": "8",
+      "grpName": "Computer and Information Services"
+    }
+  },
+  {
+    "purposeId": 202,
+    "code": "S0901",
+    "description": "Franchises services – patents, copyrights, trademarks, industrial processes, franchises etc.",
+    "purposeGroup": {
+      "grpId": 37,
+      "grpNum": "9",
+      "grpName": "Royalties and License Fees"
+    }
+  },
+  {
+    "purposeId": 203,
+    "code": "S0902",
+    "description": "Payment for use, through licensing arrangements, of produced originals or prototypes (such as manuscripts and films)",
+    "purposeGroup": {
+      "grpId": 37,
+      "grpNum": "9",
+      "grpName": "Royalties and License Fees"
+    }
+  },
+  {
+    "purposeId": 204,
+    "code": "S1001",
+    "description": "Merchanting services - net payments (from Sale and  purchase of goods without crossing the border).",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 205,
+    "code": "S1002",
+    "description": "Trade related services - commission on exports / imports",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 206,
+    "code": "S1003",
+    "description": "Operational leasing services (other than financial leasing) without operating crew, including charter hire",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 207,
+    "code": "S1004",
+    "description": "Legal services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 208,
+    "code": "S1005",
+    "description": "Accounting, auditing, book keeping and tax consulting services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 209,
+    "code": "S1006",
+    "description": "Business and management consultancy and public relations Services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 210,
+    "code": "S1007",
+    "description": "Advertising, trade fair, market  research and public opinion polling Service",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 211,
+    "code": "S1008",
+    "description": "Research and Development services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 212,
+    "code": "S1009",
+    "description": "Architectural, engineering and other technical services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 213,
+    "code": "S1010",
+    "description": "Agricultural, mining and on-site processing services - protection against insects and disease, increasing of harvest yields, forestry services, mining services like analysis of ores etc.",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 214,
+    "code": "S1011",
+    "description": "Payments for maintenance of offices Abroad",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 215,
+    "code": "S1012",
+    "description": "Distribution services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 216,
+    "code": "S1013",
+    "description": "Environmental services",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 217,
+    "code": "S1019",
+    "description": "Other services not included elsewhere",
+    "purposeGroup": {
+      "grpId": 38,
+      "grpNum": "10",
+      "grpName": "Other Business Services"
+    }
+  },
+  {
+    "purposeId": 218,
+    "code": "S1101",
+    "description": "Audio-visual and related services -services and associated fees related to production of motion pictures, rentals, fees received by actors, directors, producers and fees for distribution rights.",
+    "purposeGroup": {
+      "grpId": 39,
+      "grpNum": "11",
+      "grpName": "Personal, Cultural and Recreational services."
+    }
+  },
+  {
+    "purposeId": 219,
+    "code": "S1102",
+    "description": "Personal, cultural services such as those related to  museums, libraries, archives and sporting abroad.",
+    "purposeGroup": {
+      "grpId": 39,
+      "grpNum": "11",
+      "grpName": "Personal, Cultural and Recreational services."
+    }
+  },
+  {
+    "purposeId": 220,
+    "code": "S1201",
+    "description": "Maintenance of Indian embassies abroad",
+    "purposeGroup": {
+      "grpId": 40,
+      "grpNum": "12",
+      "grpName": "Government, not included elsewhere (G.n.i.e.)"
+    }
+  },
+  {
+    "purposeId": 221,
+    "code": "S1202",
+    "description": "Remittances by foreign embassies in India",
+    "purposeGroup": {
+      "grpId": 40,
+      "grpNum": "12",
+      "grpName": "Government, not included elsewhere (G.n.i.e.)"
+    }
+  },
+  {
+    "purposeId": 222,
+    "code": "S1301",
+    "description": "Remittance by non-residents towards family maintenance and savings",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 223,
+    "code": "S1302",
+    "description": "Remittance towards personal gifts and donations",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 224,
+    "code": "S1303",
+    "description": "Remittance towards donations to religious and charitable institutions abroad",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 225,
+    "code": "S1304",
+    "description": "Remittance towards grants and donations to other governments and charitable institutions established by the governments.",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 226,
+    "code": "S1305",
+    "description": "Contributions/donations by the Government to international institutions",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 228,
+    "code": "S1401",
+    "description": "Compensation of employees",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 229,
+    "code": "S1402",
+    "description": "Remittance towards interest on Non-Resident deposits (FCNRB/NRERA/ NRNRD/NRSR etc.)",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 227,
+    "code": "S1306",
+    "description": "Remittance towards payment / refund of taxes.",
+    "purposeGroup": {
+      "grpId": 41,
+      "grpNum": "13",
+      "grpName": "Transfers"
+    }
+  },
+  {
+    "purposeId": 230,
+    "code": "S1403",
+    "description": "Remittance towards interest on loans from  Non- Residents (ST/MT/LT loans)",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 231,
+    "code": "S1404",
+    "description": "Remittance of  interest on debt securities - debentures / bonds / FRNs etc.",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 232,
+    "code": "S1405",
+    "description": "Remittance towards interest payment by ADs on their own account (to VOSTRO a/c holders or the OD on NOSTRO a/c.)",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 233,
+    "code": "S1406",
+    "description": "Repatriation of profits",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 234,
+    "code": "S1407",
+    "description": "Payment/ repatriation of dividends",
+    "purposeGroup": {
+      "grpId": 42,
+      "grpNum": "14",
+      "grpName": "Income"
+    }
+  },
+  {
+    "purposeId": 235,
+    "code": "S1501",
+    "description": "Refunds / rebates / reduction in invoice value on account of exports",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 236,
+    "code": "S1502",
+    "description": "Reversal of wrong entries, refunds of amount remitted for non-exports",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 237,
+    "code": "S1503",
+    "description": "Payments by residents for international bidding",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 238,
+    "code": "S1504",
+    "description": "Crystallize/Cancel export bills",
+    "purposeGroup": {
+      "grpId": 43,
+      "grpNum": "15",
+      "grpName": "Others"
+    }
+  },
+  {
+    "purposeId": 82,
+    "code": "p-tes",
+    "description": "P TEST checking",
+    "purposeGroup": {
+      "grpId": 23,
+      "grpNum": "00",
+      "grpName": "515"
+    }
+  },
+  {
+    "purposeId": 279,
+    "code": "32121",
+    "description": "asdsadsad",
+    "purposeGroup": {
+      "grpId": 23,
+      "grpNum": "00",
+      "grpName": "515"
+    }
+  },
+  {
+    "purposeId": 259,
+    "code": "2323",
+    "description": "edrfer",
+    "purposeGroup": {
+      "grpId": 28,
+      "grpNum": "0",
+      "grpName": "Capital Account"
+    }
+  }
+]

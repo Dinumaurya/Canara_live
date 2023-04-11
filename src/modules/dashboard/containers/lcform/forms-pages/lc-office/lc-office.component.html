@@ -1,0 +1,66 @@
+<form [formGroup]="officeform" aria-disabled="true">
+
+    <div class="card-body" formGroupName="officeUseVo">
+
+        <label for=""> <b> Mandatory Documents to be submitted by Branch</b>
+        </label>
+        <div class="col">
+            <fieldset [disabled]="officeform.disabled">
+                <div *ngFor="let outwardDoc of outwardMandatoryDocList;let i =index">
+                    <div class="row">
+
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input"
+                                (ngModelChange)="checkedFileList($event, i,outwardDoc)" [(ngModel)]="outwardDoc.isChckd"
+                                [ngModelOptions]="{standalone: true}" [checked]="outwardDoc.isChckd">
+
+                            <div>
+                                <label class="form-check-label" for="exampleCheck1">
+                                    {{outwardDoc.attchNm}} <span *ngIf="isThisFieldRequired(outwardDoc,i)"
+                                    class="red">
+                                        *
+                                    </span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="input-group md-1 ml-3" [hidden]="outwardDoc.isChckd != true">
+                            <div [hidden]="getImageText(outwardDoc.attchCd) !=''">
+                                <div class="input-group-prepend"> </div>
+                                <div class="custom-file col-6">
+                                    <input type="file" class="custom-file-input"
+                                        (change)="setFileForDocument($event,i)" />
+                                    <label class="custom-file-label"
+                                        for="exampleCheck1">{{getFileText(outwardDoc.attchCd)}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="md-1 ml-2" class="red"
+                        *ngIf="isThisFieldRequired(outwardDoc,i)  && submittedlcForm6">
+                        This field is required
+                    </h6>
+                    <h6 class="md-1 ml-2" style="color:blue">
+                        <a href="#" (click)="viewDoc(outwardDoc)"> {{getImageText(outwardDoc.attchCd)}}
+                        </a>
+                    </h6>
+                </div>
+            </fieldset>
+        </div>
+
+    </div>
+</form>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

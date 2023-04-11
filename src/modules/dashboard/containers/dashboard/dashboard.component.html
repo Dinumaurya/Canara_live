@@ -1,0 +1,101 @@
+<sb-layout-dashboard>
+    <div class="card mt-2">
+        <div class="card-header pt-1 pb-1" style="margin-left: 0;margin-right: 0;padding-left: 0;padding-right: 0;">
+            <div class="container-fluid h1breadcrum"
+                style="margin-left: 0;margin-right: 0;padding-left: 0;padding-right: 0;font-size:14px">
+                <div class="row">
+                    <div class="col">
+                        <a class="col-md-auto  p-1" (click)="viewDoc('sop-corp')"> SOP for Corporates </a>
+                        <a class="col-md-auto  p-1" (click)="viewDoc('sop-retail')"> SOP for Retail </a>
+                        <a class="col-md-auto  p-1" (click)="viewDoc('prpse-cd')"> Purpose Code </a>
+                        <a class="col-md-auto  p-1" (click)="viewDoc('hs-cd')"> H. S. Code </a>
+                        <a class="col-md-auto  p-1" (click)="viewDoc('a2-form')"> A2 FORM </a>
+                    </div>
+                    <div class="col-md-auto">Email:
+                        <a href="mailto:forex@canarabank.com"> forex@canarabank.com</a>
+                    </div>
+                    <div class="col col-lg-2">Call:
+                        <a href="tel:1800 22 5151">+1800 22 5151</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-2">
+        <div class="card-header pt-1 pb-0" style="margin-left: 0;margin-right: 0;padding-left: 0;padding-right: 0;">
+            <div class="container-fluid h1breadcrum"
+                style="margin-left: 0;margin-right: 0;padding-left: 0;padding-right: 0;">
+                <div class="row">
+                    <div class="col-6" *ngIf="!isCorporate">
+                        <span>
+                            <span class="pl-2">How to do a transaction?</span> <a class="col-md-auto mb-1"
+                                href="https://canarabank.com/media/20012022/FX4U%20-%20FOTT.mp4" target="_blank"
+                                style="cursor: pointer;">
+                                Click here to watch video.
+                            </a>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <span *ngIf="isCorporate">
+                            <span class="pl-2">How to do a transaction?</span> <a class="col-md-auto  mb-1"
+                                [ngbPopover]="popContent"   style="cursor: pointer;">
+                                Click here to watch Videos.
+                            </a>
+                        </span>
+                        <ng-template #popContent >
+                            <ul class="list-group m-0 p-0" *ngIf="isCorporate">
+
+
+                                <li class="list-group-item bgcolor1 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/FX4U%20BENEFICIARY%20MAINTENANCE.mp4"
+                                        target="_blank" style="cursor: pointer;">
+                                        Beneficiary Maintenance
+                                    </a>
+                                </li>
+                                <li class="list-group-item bgcolor2 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/MBAP.mp4" target="_blank"
+                                        style="cursor: pointer;">
+                                        Import Advance Remittance
+                                    </a>
+                                </li>
+                                <li class="list-group-item bgcolor3 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/FX4U%20-%20IMPORTS.mp4"
+                                        target="_blank" style="cursor: pointer;">
+                                        Imports
+                                    </a>
+                                </li>
+                                <li class="list-group-item bgcolor4 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/FX4U%20-%20FOTT%20CORPORATE.mp4 "
+                                        target="_blank" style="cursor: pointer;">
+                                        NON Import Outward Remittance
+                                    </a>
+                                </li>
+                                <li class="list-group-item bgcolor5 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/FX4U%20-%20EXPORTS.mp4"
+                                        target="_blank" style="cursor: pointer;">
+                                        Exports
+                                    </a>
+                                </li>
+                                <li class="list-group-item bgcolor6 pt-1 pb-1">
+                                    <a href="https://canarabank.com/media/20012022/FX4U%20-%20FOREIGN%20LC.mp4"
+                                        target="_blank" style="cursor: pointer;">
+                                        Foreign LC
+                                    </a>
+                                </li>
+                            </ul>
+                        </ng-template>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+  
+      <ngx-spinner size="medium" [type]="typeSelected"></ngx-spinner>
+    <sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head>
+
+    <sb-dashboard-charts></sb-dashboard-charts>
+</sb-layout-dashboard>

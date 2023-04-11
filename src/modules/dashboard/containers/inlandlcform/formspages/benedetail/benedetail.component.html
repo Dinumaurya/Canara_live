@@ -1,0 +1,870 @@
+<form [formGroup]="lcaccountDetails">
+	<div class="card">
+
+		<h6 class="mt-2"> <b> Details of Beneficiary</b> <span class="red"> *</span></h6>
+		<hr />
+
+		<div class="form-row">
+
+			<div class="col">
+				<div class="form-group row required" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">CIF ID:</label>
+					<div class="col-sm-7">
+						<!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                placeholder=" "> -->
+						<input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+							formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+							(click)="getBeneficiaryDetails()"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.cifId') !=''">
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.cifId')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">Name:</label>
+					<!-- <div class="col-sm-7">
+						<input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+							formControlName="name" placeholder="NAME"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.name') !=''">
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.name')}}</div>
+					</div> -->
+					<div class="col-sm-7">
+						<select class="form-control form-control-sm" formControlName="beneNam"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.beneNam') !=''"
+							(change)="beneficiarySelected()">
+							<!-- options -->
+							<option value="">SELECT</option>
+							<option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneId}}">
+								{{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+						</select>
+					</div>
+
+					<div class="invalid-feedback">
+						{{getErrorForm2('lCBnfDtlsVo.name')}}</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">Address Line 1:</label>
+					<div class="col-sm-7">
+						<textarea class="form-control" maxlength="35" formControlName="addr1"
+							placeholder="ADDRESS LINE 1" disabled="disabled"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.addr1') !=''"></textarea>
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.addr1')}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col">
+				<div class="form-group row required" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">Beneficiary Name:</label>
+					<div class="col-sm-7">
+						<input disabled="disabled" type="text" maxlength="35" class="form-control form-control-sm"
+							formControlName="name" placeholder="NAME"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.name') !=''">
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.name')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">Address Line 2:</label>
+					<div class="col-sm-7">
+						<textarea class="form-control" maxlength="35" formControlName="addr2"
+							placeholder="ADDRESS LINE 2" disabled="disabled"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.addr2') !=''"></textarea>
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.addr2')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="lCBnfDtlsVo">
+					<label class="col-sm-5 col-form-label">Country:</label>
+					<div class="col-sm-7">
+						<select class="form-control form-control-sm" placeholder="Select" formControlName="cntryNm"
+							[class.is-invalid]="getErrorForm2('lCBnfDtlsVo.cntryNm') !=''" data-role="select-dropdown">
+							<option value="">SELECT</option>
+							<!-- <option *ngFor="let con of country " [value]="con.countryId">
+								{{con.name}}
+							</option> -->
+							<option value="1">India</option>
+						</select>
+						<div class="invalid-feedback">{{getErrorForm2('lCBnfDtlsVo.cntryNm')}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="card">
+		<!-- {{getsamebankValue | json}} -->
+		<h6 class="mt-2"><b> LC Advising Bank Details</b> <span class="red"> *</span></h6>
+		<hr />
+		<!-- *ngIf="AppUserVal.frngExchng == 'FIX_AMNT_FCY'" -->
+		<div class="form-row">
+			<div class="col">
+				<div class="form-group row required" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5 col-form-label">CIF ID:</label>
+					<div class="col-sm-7">
+						<input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+							formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+							[class.is-invalid]="getErrorForm2('othrTransBnkVo.cifId') !=''">
+						<div class="invalid-feedback">{{getErrorForm2('othrTransBnkVo.cifId')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5 col-form-label">Bank Name:</label>
+					<div class="col-sm-7">
+						<input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+							formControlName="bnkNm" placeholder="BANK NAME"
+							[class.is-invalid]="getErrorForm2('othrTransBnkVo.bnkNm') !=''">
+						<div class="invalid-feedback">{{getErrorForm2('othrTransBnkVo.bnkNm')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5 col-form-label">Address Line 1:</label>
+					<div class="col-sm-7">
+						<textarea class="form-control" maxlength="35" formControlName="fullAddr1"
+							placeholder="ADDRESS LINE 1"
+							[class.is-invalid]="getErrorForm2('othrTransBnkVo.fullAddr1') !=''"></textarea>
+						<div class="invalid-feedback">{{getErrorForm2('othrTransBnkVo.fullAddr1')}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col">
+				<div class="form-group row" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5 col-form-label">Address Line 2:</label>
+					<div class="col-sm-7">
+						<textarea class="form-control" maxlength="35" formControlName="fullAddr2"
+							placeholder="ADDRESS LINE 2"
+							[class.is-invalid]="getErrorForm2('othrTransBnkVo.fullAddr2') !=''"></textarea>
+						<div class="invalid-feedback">{{getErrorForm2('othrTransBnkVo.fullAddr2')}}</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="form-group row required" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5 col-form-label">Country:</label>
+					<div class="col-sm-7">
+						<select class="form-control form-control-sm" formControlName="cntryId"
+							[class.is-invalid]="getErrorForm2('othrTransBnkVo.cntryId') !=''"
+							data-role="select-dropdown">
+							<option value="">SELECT</option>
+							<!-- <option *ngFor="let con of country " [value]="con.countryId">
+								{{con.name}}
+							</option> -->
+							<option value="1">India</option>
+						</select>
+						<div class="invalid-feedback">{{getErrorForm2('othrTransBnkVo.cntryId')}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="form-group row required" formGroupName="othrTransBnkVo">
+					<label class="col-sm-5  col-form-label">IFSC Code:</label>
+					<div class="col-sm-7 ">
+						<input maxlength="11" formControlName="swiftCode" class="form-control form-control-sm"
+							placeholder="IFSC Code" disabled="disabled">
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+		<div class="form-row">
+
+			<div class="col"></div>
+		</div>
+
+	</div>
+	<br>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+
+				<div class="form-row">
+					<div class="col">
+						<div class="form-group row required">
+							<label class="col col-form-label">Tollerance</label>
+							<div class="col">
+								<input inputmode="numeric" NumbersOnly maxlength="4"
+									class="form-control form-control-sm" formControlName="tollerance"
+									placeholder="Tollerance" [class.is-invalid]="getErrorForm2('tollerance') !=''">
+								<div class="invalid-feedback">{{getErrorForm2('tollerance')}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="col"></div>
+					<div class="col"></div>
+				</div>
+				<div class="row mb-3" style="font-size: 14px;" (change)="onChecked($event)">
+					<div class="col-2">Available With:</div>
+					<div class="col-2">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" formControlName="tolAvlWith" value="ANY_BNK">
+							<label class="form-check-label">Any Bank
+							</label>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" formControlName="tolAvlWith"
+								value="SPECIFIC_BNK">
+							<label class="form-check-label"> Specific Bank </label>
+						</div>
+					</div>
+
+				</div>
+				<div class="red ml-2" style="text-align: right;font-size: 14px;">
+					{{getErrorForm2('tolAvlWith')}}
+				</div>
+				<!-- <div class="red ml-2" *ngIf="lcaccountDetails.value.tolAvlWith ==''">
+					{{mandatory3Tab}}
+				</div> -->
+				<fieldset [disabled]="accountValue.tolAvlWith == 'ANY_BNK'">
+
+					<div class="form-row mb-3">
+
+						<div class="col-2">
+							<label class="col-form-label">Bank Name:</label>
+
+						</div>
+						<div class="col-2">
+							<div class="form-check">
+								<input class="form-check-input form-control form-control-sm" type="text"
+									formControlName="bnkNm" placeholder="Bank Name" value="bank name" maxlength="35">
+							</div>
+						</div>
+						<div class="col-2">
+							<label class="col-form-label">IFSC Code:</label>
+						</div>
+						<div class="col-2">
+							<div class="form-check">
+								<input class="form-check-input form-control form-control-sm" type="text"
+									formControlName="swiftCode" placeholder="IFSC Code" value="SWIFTCODE"
+									maxlength="11">
+
+							</div>
+						</div>
+					</div>
+
+				</fieldset>
+
+
+
+
+				<div class="row mb-3" style="font-size: 14px;" >
+					<div class="col-2">Available By:</div>
+					<div class="col-2">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" (change)="onCheckbboxSelect($event)" formControlName="tolAvlBy" value="NEGOTIATION">
+							<label class="form-check-label">Negotiation
+							</label>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" (change)="onCheckbboxSelect($event)" formControlName="tolAvlBy" value="PAYMENT">
+							<label class="form-check-label"> Payment </label>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" (change)="onCheckbboxSelect($event)" formControlName="tolAvlBy" value="ACCEPTANCE">
+							<label class="form-check-label"> Acceptance </label>
+						</div>
+					</div>
+					<div class="col-2">
+
+						<div class="form-check">
+							<input class="form-check-input" type="radio" (change)="onCheckbboxSelect($event)" formControlName="tolAvlBy"
+								value="DEFFERED_PYMNT">
+							<label class="form-check-label"> Deferred Payment </label>
+						</div>
+					</div>
+					<div class="col-2">
+
+						<div class="form-check">
+							<input class="form-check-input" type="radio" (change)="onCheckbboxSelect($event)" formControlName="tolAvlBy" value="MIX_PYMNT">
+							<label class="form-check-label"> Mixed Payment </label>
+						</div>
+					</div>
+
+				</div>
+				<div class="red ml-2" style="text-align: right;font-size: 14px;">
+					{{getErrorForm2('tolAvlBy')}}
+				</div>
+
+
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+					<div class="row" *ngIf="accountValue?.tolAvlBy == 'DEFFERED_PYMNT'">
+						<div class="col-3">
+							<label class="form-check-label" for="name">Deferred Payment <span
+									class="red">*</span></label>
+						</div>
+						<div class="col-6">
+							<div class="form-group row required">
+								<textarea class="form-control" rows="4" wrap="off" formControlName="defPymntRmrks"
+									placeholder="Deferred Payment"></textarea>
+								<!-- [class.is-invalid]="getrelationDEFFERED('defPymntRmrks')" -->
+								<!-- <div class="invalid-feedback"
+									*ngIf="getrelationDEFFERED('defPymntRmrks')">
+									This field is required
+								</div> -->
+							</div>
+						</div>
+						<div class="col-3"></div>
+					</div>
+
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+					<div class="row" *ngIf="accountValue?.tolAvlBy == 'MIX_PYMNT'">
+						<div class="col-3">
+							<label for="name">Mixed Payment <span class="red">*</span></label>
+						</div>
+						<div class="col-6">
+							<div class="form-group row required">
+								<textarea class="form-control" formControlName="mixPymntRmrks"
+									placeholder="Mixed Payment" rows="4" wrap="off"
+									[class.is-invalid]="getrelationMixedPay('mixPymntRmrks')"></textarea>
+								<div class="invalid-feedback" *ngIf="getrelationMixedPay('mixPymntRmrks')">
+									This field is required
+								</div>
+							</div>
+						</div>
+						<div class="col-3"></div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<!-- <div class="invalid-feedback">
+            {{getErrorForm2('outRmtncDtlsVo.purpose')}}
+         </div> -->
+	</div>
+	{{getrelationMixedPay('mixPymntRmrks')}}
+
+	<!-- <div class="form-row">
+		<div class="col">
+			<div class="form-group row required">
+				<label class="col col-form-label">Available By:</label>
+				<div class="col">
+					<div class="form-check form-check-inline col">
+						<input class="form-check-input" type="radio" formControlName="tolAvlBy1" value="NEGOTIATION">
+						<label class="form-check-label">Negotiation</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-check form-check-inline col">
+						<input class="form-check-input" type="radio" formControlName="tolAvlBy2" value="PAYMENT">
+						<label class="form-check-label">Payment</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-check form-check-inline col">
+						<input class="form-check-input" type="radio" formControlName="tolAvlBy3" value="ACCEPTANCE">
+						<label class="form-check-label">Acceptance</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-check form-check-inline col">
+						<input class="form-check-input" type="radio" formControlName="tolAvlBy4" value="DEFFERED_PYMNT">
+						<label class="form-check-label">Deferred Payment</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-check form-check-inline col">
+						<input class="form-check-input" type="radio" formControlName="tolAvlBy5" value="MIX_PYMNT">
+						<label class="form-check-label">Mixed Payment</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="card">
+
+		<h6 class="mt-2"><b> Draft at </b><span class="red">*</span></h6>
+		<hr />
+		<div class="form-row">
+			<div class="col" >
+				<div class="form-group row required">
+					<label class="col col-form-label">Tenor:</label>
+					<div class="col">
+						<div class="form-check form-check-inline ">
+							<input class="form-check-input" type="radio" (change)="changeSight($event)" formControlName="draftTenor" value="SIGHT"
+								for="radio1">
+							<label class="form-check-label">Sight</label>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-check form-check-inline ">
+							<input class="form-check-input" type="radio" (change)="changeSight($event)" formControlName="draftTenor" value="USANCE"
+								for="radio2">
+							<label class="form-check-label">Usance</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="red ml-2">
+				{{getErrorForm2('draftTenor')}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="form-group row required">
+					<label class="col col-form-label">Type of Security attached (if any):</label>
+					<div class="col">
+						<div class="form-check form-check-inline col">
+							<input class="form-check-input" type="radio" formControlName="tpSecurity"
+								value="CASH_MARGIN" for="radio2">
+							<label class="form-check-label">100% CASH margin</label>
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-check form-check-inline col">
+							<input class="form-check-input" type="radio" formControlName="tpSecurity" value="OTHER"
+								for="radio1">
+							<label class="form-check-label">Other Security</label>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="red ml-2">
+				{{getErrorForm2('tpSecurity')}}
+			</div>
+		</div>
+		<div class="">
+			<fieldset [disabled]="lcaccountDetails.disabled">
+				<table class="table table-bordered">
+					<tr style="text-align: center;text-align: center; font-size: 14px;">
+						<th class="th-lg">S.No.</th>
+						<th class="th-lg">Margin(%)</th>
+						<th class="th-lg">Deposit No.</th>
+						<th class="th-lg">Action</th>
+					</tr>
+					<tr *ngFor="let accountDetail of accountDetailTable;let indexOfelement=index;">
+						<td>
+							<input type="text" class="form-control form-control-sm" NumbersOnly placeholder="S.No."
+								[(ngModel)]="accountDetail.sNo" [ngModelOptions]="{standalone: true}" maxlength="13"
+								disabled>
+							<div class="red ml-2" *ngIf=" accountDetail.sNoReq == true  && submittedlcForm2 ">
+								<p>This filed is required</p>
+							</div>
+						</td>
+						<td>
+							<input type="text" class="form-control form-control-sm" NumbersOnly placeholder="Margin(%)"
+								[(ngModel)]="accountDetail.margin" [ngModelOptions]="{standalone: true}" maxlength="7">
+							<div class="red ml-2" *ngIf=" accountDetail.marginReq == true  && submittedlcForm2 ">
+								<p>This filed is required</p>
+							</div>
+						</td>
+						<td>
+							<input type="text" class="form-control form-control-sm" NumbersOnly placeholder="Deposit NO"
+								[(ngModel)]="accountDetail.deposit" [ngModelOptions]="{standalone: true}" maxlength="22"
+								value="{{accountDetailTabl1Total}}" (keyup)="accountDetailTabl1TotalCal()">
+							<div class="red ml-2" *ngIf=" accountDetail.depositReq == true  && submittedlcForm2 ">
+								<p>This filed is required</p>
+							</div>
+						</td>
+						<td>
+							<button class="btn btn-danger m-1 mb-0  btn-sm" type="button"
+								[hidden]="lcaccountDetails.disabled" (click)="deleteAccountDetail(indexOfelement)"><i
+									class="fa fa-trash"></i></button>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+
+						<td>
+							<button type="button" class="btn btn-primary m-1 mb-0 float-right btn-sm"
+								(click)="onAddRowClick()" [hidden]="lcaccountDetails.disabled">Add
+								+</button>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			<!-- <div class="form-row">
+					<div class="red ml-2" *ngIf=" accountDetailsList.length === 0  && submittedlcForm2 ">
+						Conversion Details table is required
+					</div>
+				</div> -->
+			<!-- <div class="invalid-feedback">
+                    {{getErrorForm2('table')}} </div> -->
+		</div>
+		<fieldset [disabled]="AppUserVal?.draftTenor == 'SIGHT'">
+			<div class="row">
+				<div class="col">
+					<div class="form-row">
+						<div class="col-sm-4 row" style="padding-right: 40px;padding-left: 20px;">
+							<div class="form-group">
+								<input type="text" NumbersOnly class="form-control form-control-sm" placeholder="DAYS"
+									maxlength="3" formControlName="draftDays"
+									[class.is-invalid]="getSIGHT('draftDays')">
+								<div class="red ml-2" *ngIf="getSIGHT('draftDays')">
+									This field is required
+								</div>
+							</div>
+							<div class="col">
+								<label for="">Days<span class="red">*</span></label>
+							</div>
+						</div>
+						<div class="form-row row-form">
+							<div class="row mb-3" style="font-size: 14px;">
+								<div class="col-sm-4" style="padding-right: 40px;">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" formControlName="draftBy"
+											value="FROM">
+										<label class="form-check-label">From</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" formControlName="draftBy"
+											value="AFTER">
+										<label class="form-check-label">After</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 form-row">
+							<div class="form-group">
+								<input type="text" NumbersOnly class="form-control form-control-sm" maxlength="35"
+									placeholder="DRAFT CUSTOMER NAME" formControlName="draftCustomerNm">
+								<!-- [class.is-invalid]="getDAYS('draftCustomerNm')" -->
+								<!-- <div class="invalid-feedback"
+									*ngIf="getDAYS('draftCustomerNm')">
+									This field is required
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+		{{getSIGHT('draftDays')}}
+
+		<!-- <div class="row" *ngIf="AppUserVal?.draftTenor == 'USANCE'">
+				<div class="col">
+					<div class="form-row">
+						<div class="col-sm-4 row" style="padding-right: 40px;padding-left: 20px;">
+							<div class="form-group">
+								<input type="text" NumbersOnly class="form-control form-control-sm" placeholder="DAYS"
+									formControlName="draftDays" maxlength="3"
+									[class.is-invalid]="getErrorForm2('draftDays') !=''" enable>
+								<div class="invalid-feedback">{{getErrorForm2('draftDays')}}</div>
+							</div>
+						</div>
+						<div class="form-row row-form">
+							<div class="row mb-3" style="font-size: 14px;">
+								<div class="col-sm-4" style="padding-right: 40px;">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" formControlName="draftBy"
+											maxlength="35" value="PUR_IMMVBL_PRPRTY" enable>
+										<label class="form-check-label">From</label>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" formControlName="draftBy"
+											value="INVSMNT_ABRD" enable>
+										<label class="form-check-label">After</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-3 form-row">
+							<div class="form-group">
+								<input type="text" NumbersOnly class="form-control form-control-sm"
+									placeholder="DRAFT CUSTOMER NAME" formControlName="draftCustomerNm"
+									[class.is-invalid]="getErrorForm2('draftCustomerNm') !=''" enable>
+								<div class="invalid-feedback">{{getErrorForm2('draftCustomerNm')}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+
+		<!-- table  -->
+		<div class="">
+
+			<div class="row">
+				<div class="col-12">
+					<div class="card mt-2">
+
+						<div class="col">
+							<div class="form-group row required">
+								<label class="col col-form-label">Partial Shipment:</label>
+								<div class="col">
+									<div class="form-check form-check-inline col">
+										<input class="form-check-input" type="radio" formControlName="partialShipment"
+											value="PERMITTED" for="radio1">
+										<label class="form-check-label">Permitted</label>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-check form-check-inline col">
+										<input class="form-check-input" for="radio2" type="radio"
+											formControlName="partialShipment" value="NOT_PERMITTED">
+										<label class="form-check-label">Not Permitted</label>
+									</div>
+								</div>
+								<div class="red ml-2">
+									{{getErrorForm2('partialShipment')}}
+								</div>
+							</div>
+							<div class="form-group row required">
+								<label class="col col-form-label">Trans-Shipment:</label>
+								<div class="col">
+									<div class="form-check form-check-inline col">
+										<input class="form-check-input" type="radio" formControlName="transShipment"
+											value="PERMITTED" for="radio1">
+										<label class="form-check-label">Permitted</label>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-check form-check-inline col">
+										<input class="form-check-input" for="radio2" type="radio"
+											formControlName="transShipment" value="NOT_PERMITTED">
+										<label class="form-check-label">Not Permitted</label>
+									</div>
+								</div>
+								<div class="red ml-2">
+									{{getErrorForm2('transShipment')}}
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group row required">
+								<div class="col-2">
+									<label class="col-form-label" style="font-size: 14px;">Expiry Date:
+
+									</label>
+								</div>
+								<!-- <div class="col form-group required"> -->
+								<div class="col-sm-12 col-md-12 col-lg-6 col-xl-3">
+									<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+										formControlName="expiryDate" placeholder="Expiry Date"
+										[class.is-invalid]="getErrorForm2('expiryDate') !=''">
+									</ng-bootstrap-datetime-angular>
+									<div class="invalid-feedback">{{getErrorForm2('expiryDate')}}</div>
+								</div>
+
+								<div class="col-2">
+									<label class="col-form-label" style="font-size: 14px;">Place of Expiry:
+
+									</label>
+								</div>
+								<div class="col-sm-12 col-md-12 col-lg-6 col-xl-3">
+
+									<input type="text" appAlphabetOnly class="form-control form-control-sm"
+										formControlName="placeExpiry"  maxlength="35" placeholder="Place of expiry"
+										[class.is-invalid]="getErrorForm2('placeExpiry') !=''">
+									<div class="invalid-feedback">{{getErrorForm2('placeExpiry')}}</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<br>
+			<label for=""><b>Documents Required (to be incorporated in L/C terms)</b> </label>
+			<fieldset [disabled]="lcaccountDetails.disabled">
+				<table class="table table-bordered container" style="border-color: black" style="font-size: 14px;">
+					<tr style="text-align: center;background-color: rgb(181, 181, 247);">
+						<th class="th-lg">Document Type</th>
+						<th class="th-lg">Description</th>
+						<th class="th-lg">Document Code</th>
+						<th class="th-lg">No. of Originals</th>
+						<th class="th-lg">No. of Copies</th>
+						<th class="th-lg">Document Ref No.</th>
+						<th class="th-lg">Date</th>
+						<th class="th-lg">Attachment</th>
+						<th class="th-lg">Action</th>
+					</tr>
+					<tbody>
+						<tr *ngFor="let row of beneficiaryDetailList;let beneIndex=index;">
+							<td>
+								<div class="form-group">
+									<select class="form-control form-control-sm" data-role="select-dropdown"
+										[(ngModel)]="row.docTp" [ngModelOptions]="{standalone: true}"
+										(change)="docDescList(row,beneIndex)">
+										<option value="">SELECT</option>
+										<option *ngFor="let con of getDocType " value="{{con}}">
+											{{con}}
+										</option>
+
+									</select>
+									<div class="red ml-2" *ngIf="row.docTpReqq  && this.submittedlcForm2 ">
+										<p>Document Type is required</p>
+									</div>
+
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control form-control-sm" data-role="select-dropdown"
+										[(ngModel)]="row.docDesc" [ngModelOptions]="{standalone: true}"
+										(change)="getDocCodeList(row,beneIndex)">
+										<option value="">SELECT</option>
+										<option *ngFor="let con of masterDocType(beneIndex);let indexOfelement=i; "
+											[value]="con.docShortDesc">
+											{{con.docLongDesc}}</option>
+									</select>
+									<div class="red ml-2" *ngIf=" row.docDescReq  && this.submittedlcForm2 ">
+										<p>Document Description is required</p>
+									</div>
+								</div>
+							</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control form-control-sm" data-role="select-dropdown"
+										[(ngModel)]="row.docCd" [ngModelOptions]="{standalone: true}">
+										<option value="">SELECT</option>
+										<option *ngFor="let con of masterDocCd(beneIndex) " value="{{con.docCode}}">
+											{{con.docShortDesc}}</option>
+									</select>
+									<div class="red ml-2" *ngIf=" row.docCdReqq  && this.submittedlcForm2">
+										<p>Document Code is required</p>
+									</div>
+								</div>
+							</td>
+							<td>
+								<input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+									placeholder="NO OF ORIGINAL" maxlength="1" [(ngModel)]="row.noOfOrgnls"
+									[ngModelOptions]="{standalone: true}">
+								<div class="red ml-2" *ngIf=" row.noOfOrgnlsReqq  && this.submittedlcForm2 ">
+									<p>No. of Originals is required</p>
+								</div>
+							</td>
+							<td>
+								<input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+									placeholder="NO OF COPIES" maxlength="1" [(ngModel)]="row.noOfCopies"
+									[ngModelOptions]="{standalone: true}">
+								<div class="red ml-2" *ngIf=" row.noOfCopiesReqq  && this.submittedlcForm2 ">
+									<p>No. of Copies is required</p>
+								</div>
+							</td>
+							<td>
+								<input type="text" class="form-control form-control-sm" placeholder="DOCUMENTS REF NO"
+									maxlength="35" [(ngModel)]="row.docRefNo" [ngModelOptions]="{standalone: true}">
+								<div class="red ml-2" *ngIf=" row.docRefNoReqq  && this.submittedlcForm2 ">
+									<p>Document Ref is required</p>
+								</div>
+							</td>
+							<td>
+								<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" maxlength="35"
+									name="docDt" placeholder="Date" [(ngModel)]="row.docDt"
+									[ngModelOptions]="{standalone: true}">
+								</ng-bootstrap-datetime-angular>
+								<div class="red ml-2" *ngIf="row.docDtReqq  && this.submittedlcForm2 ">
+									<p>To Date is required</p>
+								</div>
+							</td>
+							<!-- <td>
+								<div class="form-group">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" value="row.atchmnt"
+											(change)="setFileForDocument($event,beneIndex)">{{imagename}}
+										<label class="custom-file-label"
+											for="inputGroupFile01">{{getFileText(beneIndex)}}
+										</label>
+										<div class="red ml-2" *ngIf="row.atchmntReqq  && this.submittedlcForm2 ">
+											<p>To Attachment is required</p>
+										</div>
+									</div>
+								</div>
+								<h6 class="md-1 ml-2" style="color:rgb(29, 29, 34)">
+									<a href="#" (click)="viewDoc(row)"> {{getImageText(row)}}
+									</a>
+								</h6>
+							</td> -->
+							<td>
+								<div class="form-group">
+									<div class="custom-file">
+										<input type="file" class="custom-file-input" [(ngModel)]="row.atchmnt"
+											(change)="setFileForDocument($event,beneIndex)"
+											[ngModelOptions]="{standalone: true}">
+										<label class="custom-file-label" for="inputGroupFile01">
+											{{getFileText(beneIndex)}}
+										</label>
+
+									</div>
+									<div class="red ml-2" *ngIf="row.atchmntReqq  &&  this.submittedlcForm2">
+										<p>To Attachment is required</p>
+									</div>
+								</div>
+								<h6 class="md-1 ml-2" style="color:blue">
+									<a href="#" (click)="viewDoc(row)">
+										{{getImageText(row.docTp,beneIndex)}}
+									</a>
+								</h6>
+							</td>
+							<td>
+								<button class="btn btn-danger m-1 mb-0 btn-sm"
+									(click)="deleteConDtlRemitance(beneIndex)"><i class="fa fa-trash"></i>
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+									(click)="onAddRowDetailsRemitance()">Add+</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</fieldset>
+			<div class="red ml-2" *ngIf=" beneficiaryDetailList.length === 0  && submittedlcForm2 ">
+				<p>DOCUMENTS ATTACHED table is required</p>
+			</div>
+
+
+		</div>
+
+	</div>
+
+</form>
+
+
+<ng-template #contentbodyred let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">{{modal_title}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<p class="red">{{modal_body_2}}</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

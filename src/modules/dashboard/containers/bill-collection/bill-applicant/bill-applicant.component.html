@@ -1,0 +1,511 @@
+<form [formGroup]="billApplicantDetail">
+
+    <div class="form-row" style="margin:10px">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+            <div class="form-group row required">
+                <label class="col-sm-5 col-form-label">System Ref No: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                        placeholder="SYSTEM REF.NO" disabled>
+                    <div class="invalid-feedback">
+                        {{formError('sysRefNo')}} </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+            <div class="form-group row required">
+                <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                        placeholder="TRANS REF NO" disabled>
+                    <div class="invalid-feedback">
+                        {{formError('transRefNo')}} </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+            <div class="form-group row required">
+                <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                <div class="col-sm-7">
+                    <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" formControlName="sysRefDt"
+                        name="sysRefDt">
+                    </ng-bootstrap-datetime-angular>
+                    <div class="invalid-feedback">
+                        {{formError('sysRefDt')}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="form-row" style="padding-bottom:15px" (click)="takeAction($event)">
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="bills" value="EXPRT_COLCTN_BIL" (change)="resetOtherDetails()">
+                    <label class="form-check-label" >
+                        Export Collection Bill
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="bills" value="DIRCT_EXPRT_BIL"
+                        (change)="partialChange()">
+                    <label class="form-check-label">
+                        Direct Export Bills Collection
+
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="bills" value="BIL_PURCHS_COLCTN" (change)="resetOtherDetails()">
+                    <label class="form-check-label">
+                        Rupee Advance
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="bills" value="SUB_SEQ_DSCNT" (change)="resetOtherDetails()">
+                    <label class="form-check-label">
+                        Subsequent Discounting
+
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-check form-check-inline col-sm-12">
+                    <input class="form-check-input" type="radio" formControlName="bills" value="DIRCT_EXPRT_DSCNT" (change)="resetOtherDetails()">
+                    <label class="form-check-label">
+                        Export Bill Negotiation/Purchase/Discount
+                    </label>
+                </div>
+            </div>
+         
+                <div class="col-sm-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="bills" value="ADV_PYMNT_RCVD">
+                        <label class="form-check-label">
+                            Export Bill Full Advance (EBFA)
+                        </label>
+                    </div>
+                </div>
+               <!--  <div class="col-sm-2">
+                    <fieldset [disabled]="appUserVal.bills == 'EXPRT_COLCTN_BIL'">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="billpurchs" value="PARTIAL">
+                            <label class="form-check-label">
+                                Partial
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-sm-2">
+                    <fieldset [disabled]="appUserVal.bills == 'EXPRT_COLCTN_BIL'">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="billpurchs" value="FULL">
+                            <label class="form-check-label">Full</label>
+                        </div>
+                    </fieldset>
+                </div>
+              
+                <div class="col-sm-6">
+                    <div class="red ml-2" *ngIf="isbillpurchsrequired()">
+                       Please select either Partial or Full 
+                    </div>
+                </div> -->
+                <div class="red ml-2">
+                    {{formError('letterOfCredit')}}
+                </div>
+            </div>
+            <div class="red ml-2" style="text-align: right!important;">
+                {{formError('bills')}}
+            </div>
+
+       
+    </div>
+
+    <div class="form-row" style="margin-left: 10px;" *ngIf="this.hideBrdSecond">
+        <!-- *ngIf="appUserVal.bills == 'DIRCT_EXPRT_DSCNT'" -->
+        <div class="col-sm-4">
+            <div class="col form-group row required">
+                <p><label class=""><b>BRD<span class="red"> *</span></b></label></p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="brd" value="BRD">
+                <label class="form-check-label">
+                    BRD
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="brd" value="NON_BRD">
+                <label class="form-check-label">Non BRD</label>
+            </div>
+        </div>
+        <div class="red ml-2" *ngIf="isbrdrequired()">
+            BRD is required
+        </div>
+    </div>
+    <div class="col form-row mt-2" [hidden]="this.hideValue">
+        <div class="col-sm-5">
+            <div class="col form-group row required">
+                <p><label class=""><b> Under Letter of Credit<span class="red"> *</span></b></label></p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" (change)="onChange($event)" type="radio"
+                    formControlName="letterOfCredit" value="YES">
+                <label class="form-check-label">
+                    YES
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" (change)="onChange($event)" type="radio"
+                    formControlName="letterOfCredit" value="NO">
+                <label class="form-check-label">NO</label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="red ml-2" *ngIf="isletterOfCreditrequired()">
+                Letter of credit required
+            </div>
+        </div>
+    </div>
+
+    <div class="col form-row" aria-disabled="true" [hidden]="this.hideValue">
+        <div class="col-sm-5">
+            <div class="col form-group row required">
+                <p><label class=""><b>Whether LC received by Canara Bank <span class="red"> *</span></b></label></p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <fieldset [disabled]="appUserVal.letterOfCredit == 'NO'">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="whrLcIsRcvByCN" value="YES">
+                    <label class="form-check-label">
+                        YES
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" formControlName="whrLcIsRcvByCN" value="NO">
+                    <label class="form-check-label">NO</label>
+                </div>
+            </fieldset>
+        </div>
+        <div class="red ml-2">
+            {{formError('whrLcIsRcvByCN')}}
+        </div>
+    </div>
+    <div class="card">
+
+        <div class="form-row" [hidden]="this.hideValue">
+
+            <div class="col-md-12  ml-2">
+                <h6 class="mt-2">
+                    If Under Letter of Credit, Please provide following details
+                </h6>
+            </div>
+            <div class="col  ml-2">
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label">LC Number</label>
+                    <div class="col-sm-7">
+                        <fieldset [disabled]="appUserVal.letterOfCredit == 'NO'">
+                            <input maxlength="11" [disabled]="appUserVal.letterOfCredit == 'NO'" NumbersOnly type="text"
+                                class="form-control form-control-sm" formControlName="lcNum" placeholder="LC Number"
+                                [class.is-invalid]="formError('lcNum') !=''">
+                        </fieldset>
+                        <div class="invalid-feedback">
+                            {{formError('lcNum')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label">LC Date </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" formControlName="lcDate"
+                            placeholder="LC Date" [disabled]="appUserVal.letterOfCredit == 'NO'"
+                            [class.is-invalid]="formError('lcDate') !=''">
+                        </ng-bootstrap-datetime-angular>
+
+                        <div class="invalid-feedback">
+                            {{formError('lcDate')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+        <h6 class="mt-2"><b>I. DETAILS OF THE DRAWER (EXPORTER) </b></h6>
+        <hr />
+        <div class="card">
+
+            <!-- <div class="card-body"> -->
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Customer ID: </label>
+                        <div class="col-sm-7">
+
+                            <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="custId" placeholder="CUSTOMER ID" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.custId') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.custId')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Account No: </label>
+                        <div class="col-sm-7">
+
+                            <select class="form-control form-control-sm" formControlName="accNo"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.accNo') !=''"
+                                data-role="select-dropdown" minlength="12" maxlength="14">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                    {{con}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.accNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label" style="font-size: 14px;">Customer Name: <span
+                                class="red">*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="custNm" placeholder="CUSTOMER NAME"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.custNm') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.custNm')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Branch: </label>
+                        <div class="col-sm-7">
+                            <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="brnchNm" placeholder="BRANCH"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.brnchNm') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.brnchNm')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">DP Code: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly disabled="disabled" inputmode="numeric" type="text" class="form-control form-control-sm"
+                                formControlName="dpCode" disabled="disabled" placeholder="DP CODE" maxlength="5"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.dpCode') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.dpCode')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row " formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Telephone: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly type="text" maxlength="13" max="13" class="form-control form-control-sm"
+                                formControlName="telNo" disabled="disabled" placeholder="TELEPHONE"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.telNo') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.telNo')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Mobile No: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="mobNo"
+                                max="15" placeholder="MOBILE NO" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.mobNo') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.mobNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Email: </label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control form-control-sm" formControlName="eMail"
+                                placeholder="EMAIL" maxlength="70" max="70" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.eMail') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.eMail')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control form-control-sm" formControlName="altEmail"
+                                placeholder="ALTERNATE EMAIL" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.altEmail') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.altEmail')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address1" maxlength="35"
+                                placeholder="ADDRESS LINE 1" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.address1') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.address1')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address2" maxlength="35"
+                                placeholder="ADDRESS LINE 2" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.address2') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.address2')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address3" maxlength="35"
+                                placeholder="ADDRESS LINE 3" disabled="disabled"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.address3') !=''"></textarea>
+                            {{formError('exportBillsCustDtlsVo.address3')}}
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.address3')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="cntryId"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country " value="{{con.countryId}}">
+                                    {{con.name}}</option>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.cntryId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">PAN No.: </label>
+                        <div class="col-sm-7">
+                            <input inputmode="numeric" maxlength="10" minlength="10"
+                                class="form-control form-control-sm" disabled="disabled" formControlName="panNo"
+                                placeholder="PAN NO" [class.is-invalid]="formError('exportBillsCustDtlsVo.panNo') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.panNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">IE Code: </label>
+                        <div class="col-sm-7">
+                            <input inputmode="numeric" maxlength="10" disabled="disabled" minlength="10"
+                                class="form-control form-control-sm" formControlName="ieCode" placeholder="IE Code"
+                                [class.is-invalid]="formError('exportBillsCustDtlsVo.ieCode') !=''">
+                            <div class="invalid-feedback">
+                                {{formError('exportBillsCustDtlsVo.ieCode')}} </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- </div> -->
+            <h6 class="mt-2"><b>II. BILL DETAILS (Bill)</b> </h6>
+            <hr />
+            <div class="card">
+                <!-- <div class="card-body"> -->
+
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Currency: </label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="currency"
+                                    [class.is-invalid]="formError('currency') !=''" data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{formError('currency')}} </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Amount: </label>
+                            <div class="col-sm-7">
+                                <input NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="amount" placeholder="AMOUNT"
+                                    [class.is-invalid]="formError('amount') !=''" maxlength="22"
+                                    (keyup)="inputChange($event)">
+                                <div class="invalid-feedback">
+                                    {{formError('amount')}} </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled="disabled" class="form-control form-control-sm"
+                                    formControlName="amntWords" placeholder="AMOUNT IN WORDS">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

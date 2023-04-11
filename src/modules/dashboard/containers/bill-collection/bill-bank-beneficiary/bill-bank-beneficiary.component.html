@@ -1,0 +1,592 @@
+<form [formGroup]="billBankBenefiacry">
+
+    <div class="card">
+        <h6 class="mt-2"> <b> V. DETAILS OF SHIPPING BILL</b> <span class="red"> *</span></h6>
+        <h6 class="mt-2 row" style="margin: 10px;">Whether Shipping Bill submitted </h6>
+
+        <div class="form-row" style="font-size: 14px;">
+
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" (change)="changeshipBill($event)"
+                        formControlName="isBillEntry" value="YES">
+                    <label class="form-check-label">Yes
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" (change)="changeshipBill($event)"
+                        formControlName="isBillEntry" value="NO">
+                    <label class="form-check-label"> NO </label>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div *ngIf="AppUserVal.isBillEntry == 'NO' ">
+                    <!-- <div class="col-sm-6"> -->
+                    <input maxlength="200" type="text" class="form-control form-control-sm"
+                        formControlName="billRemarks" placeholder="REMARKS"
+                        [class.is-invalid]="getErrorBillBankBene('billRemarks') !=''">
+                    <div class="invalid-feedback">
+                        {{getErrorBillBankBene('billRemarks')}} </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="red mt-2">
+                {{getErrorBillBankBene('isBillEntry')}}
+            </div>
+        </div>
+        <div *ngIf="AppUserVal.isBillEntry == 'YES' ">
+
+            <table class="table table-bordered">
+                <tr style="text-align: center;text-align: center; font-size: 14px;">
+                    <th class="th-lg">S.No</th>
+                    <th class="th-lg"> Shipping Bill No. </th>
+                    <th class="th-lg">Shipping Bill Date</th>
+                    <th class="th-lg" style="text-align: center;"> Port Code </th>
+                    <th class="th-lg" style="text-align: center;"> GR Amount </th>
+                    <th class="th-lg" style="text-align: center;"> Invoice No </th>
+                    <th class="th-lg" style="text-align: center;"> Invoice Date </th>
+                    <th class="th-lg" style="text-align: center;"> EXCH RATE </th>
+                    <th class="th-lg"> Action </th>
+                </tr>
+
+                <tr *ngFor="let accountDetail of billOfEntryVoList;let indexOfelement=index;">
+                    <td>
+                        <input type="text" class="form-control form-control-sm" NumbersOnly placeholder="S.No."
+                            [(ngModel)]="accountDetail.sNo" [ngModelOptions]="{standalone: true}" disabled="disabled">
+                        <div class="red ml-2" *ngIf=" accountDetail.sNoReq == true  && isSubmitted ">
+                            <p>This filed is required</p>
+                        </div>
+
+                    </td>
+                    <td>
+                        <input type="text" class="form-control form-control-sm" 
+                            placeholder="Shipping Bill No." (keypress)="keyPressAlphaNumeric($event)" [(ngModel)]="accountDetail.shipBillNum"
+                            [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" accountDetail.shipBillNumReq == true  && isSubmitted ">
+                            <p>This filed is required</p>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                                [(ngModel)]="accountDetail.shipBillDate" [ngModelOptions]="{standalone: true}"
+                                placeholder="DATE">
+
+                            </ng-bootstrap-datetime-angular>
+                            <div class="red ml-2" *ngIf=" accountDetail.shipBillDateReq  && isSubmitted ">
+                                <p>This filed is required</p>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" placeholder="Port Code"
+                                [(ngModel)]="accountDetail.portCode" [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" accountDetail.portCodeReq  && isSubmitted ">
+                                <p>This filed is required</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="accountDetail.grAmount" NumbersOnly type="text"
+                            class="form-control form-control-sm" placeholder="GR Amount"
+                            [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" accountDetail.grAmountReq  && isSubmitted ">
+                            <p>This filed is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <input [(ngModel)]="accountDetail.invoiceNo" type="text" class="form-control form-control-sm"
+                            placeholder="Invoice No" [ngModelOptions]="{standalone: true}">
+                        <div class="red ml-2" *ngIf=" accountDetail.invoiceNoReq  && isSubmitted ">
+                            <p>This filed is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                                [(ngModel)]="accountDetail.invoiceDate" [ngModelOptions]="{standalone: true}"
+                                placeholder="Invoice Date">
+
+                            </ng-bootstrap-datetime-angular>
+                            <div class="red ml-2" *ngIf=" accountDetail.invoiceDateReq  && isSubmitted ">
+                                <p>This filed is required</p>
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        <input [(ngModel)]="accountDetail.exchRate" NumbersOnly type="text"
+                            class="form-control form-control-sm" placeholder="EXCH RATE"
+                            [ngModelOptions]="{standalone: true}" maxlength="22">
+                        <div class="red ml-2" *ngIf=" accountDetail.exchRateReq  && isSubmitted ">
+                            <p>This filed is required</p>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger m-1 mb-0  btn-sm" type="button"
+                            (click)="deleteAccountDetailThird(indexOfelement)" *ngIf="!isEditable"><i
+                                class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-primary m-1 mb-0  btn-sm" (click)="onAddRowClickThird()"
+                            style="width: 70px;" *ngIf="!isEditable">Add
+                            +</button>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="form-row">
+                <div class="red ml-2" *ngIf="billOfEntryVoList.length === 0  && isSubmitted ">
+                    <p>Shipping bill table is required</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h6 class="mt-2"> <b>VI. BUYER`S (DRAWEE) DETAILS</b> <span class="red"> *</span></h6>
+        <hr />
+        <fieldset [disabled]="billbankValue.dscrpncyDtlsVo.isDiscrpntLC == '1'">
+
+
+            <div class="form-row">
+
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label">CIF ID:</label>
+                        <div class="col-sm-7">
+                            <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                                (click)="getBeneficiaryDetails()"
+                                [class.is-invalid]="getErrorBillBankBene('exportBillsSupDrwDtlsVo.cifId') !=''">
+                            <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsSupDrwDtlsVo.cifId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label"> Name:</label>
+
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="name"
+                                [class.is-invalid]="getErrorBillBankBene('exportBillsSupDrwDtlsVo.name') !=''"
+                                (change)="beneficiarySelected()">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let beneficiary of beneficiaryList" [value]="beneficiary.beneNam">
+                                    {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getErrorBillBankBene('exportBillsSupDrwDtlsVo.name')}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr1"
+                                placeholder="ADDRESS LINE 1" disabled="disabled"
+                                [class.is-invalid]="getErrorBillBankBene('exportBillsSupDrwDtlsVo.addr1') !=''"></textarea>
+                            <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsSupDrwDtlsVo.addr1')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="col">
+                    <div class="form-group row" formGroupName="exportBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr2"
+                                placeholder="ADDRESS LINE 2" disabled="disabled"
+                                [class.is-invalid]="getErrorBillBankBene('exportBillsSupDrwDtlsVo.addr2') !=''"></textarea>
+                            <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsSupDrwDtlsVo.addr2')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="exportBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country:</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                                [class.is-invalid]="getErrorBillBankBene('exportBillsSupDrwDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country " value="{{con.countryId}}">
+                                    {{con.name}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsSupDrwDtlsVo.cntryId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+
+            </div>
+        </fieldset>
+
+        <div class="form-row" formGroupName="dscrpncyDtlsVo" (change)="onChecked($event)">
+            <div class="col-12 col-form-label">
+                <div class="form-check m-2">
+                    <input type="checkbox" class="form-check-input" formControlName="isDiscrpntLC" value="1">
+                    <label class="form-check-label">If above table is Discrepant as per details in LC</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row" [hidden]="!billBeneficiaryDetailsVal.dscrpncyDtlsVo.isDiscrpntLC">
+            <div class="card ">
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">CIF ID:</label>
+                            <div class="col-sm-7"> 
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                                    [class.is-invalid]="getErrorBillBankBene('dscrpncyDtlsVo.cifId') !=''">
+                                <div class="invalid-feedback">{{getErrorBillBankBene('dscrpncyDtlsVo.cifId')}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label"> Name:</label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                    formControlName="name" placeholder=" Name"
+                                    [class.is-invalid]="getErrorBillBankBene('dscrpncyDtlsVo.name') !=''">
+                                <div class="invalid-feedback">{{getErrorBillBankBene('dscrpncyDtlsVo.name')}}</div>
+                            </div>
+                            <div class="invalid-feedback">
+                                {{getErrorBillBankBene('exportBillsSupDrwDtlsVo.name')}}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" maxlength="35" formControlName="addr1"
+                                    placeholder="ADDRESS LINE 1"
+                                    [class.is-invalid]="getErrorBillBankBene('dscrpncyDtlsVo.addr1') !=''"></textarea>
+                                <div class="invalid-feedback">{{getErrorBillBankBene('dscrpncyDtlsVo.addr1')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" maxlength="35" formControlName="addr2"
+                                    placeholder="ADDRESS LINE 2"
+                                    [class.is-invalid]="getErrorBillBankBene('dscrpncyDtlsVo.addr2') !=''"></textarea>
+                                <div class="invalid-feedback">{{getErrorBillBankBene('dscrpncyDtlsVo.addr2')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Country:</label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" placeholder="Select"
+                                    formControlName="cntryId"
+                                    [class.is-invalid]="getErrorBillBankBene('dscrpncyDtlsVo.cntryId') !=''"
+                                    data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of country " value="{{con.countryId}}">
+                                        {{con.name}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">{{getErrorBillBankBene('dscrpncyDtlsVo.cntryId')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+
+                </div>
+            </div>
+        </div>
+        <h6 class="mt-2"> <b>VII. COLLECTING (DRAWEE) BANK DETAILS</b> <span class="red"> *</span></h6>
+        <hr />
+
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7"> 
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.cifId') !=''">
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.cifId')}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Bank Name:</label>
+                    <div class="col-sm-7">
+                        <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                            formControlName="drweBnkNm" placeholder="Bank Name" disabled="disabled"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.drweBnkNm') !=''">
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.drweBnkNm')}}
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        {{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.drweBnkNm')}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr1"
+                            placeholder="ADDRESS LINE 1" disabled="disabled"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.addr1') !=''"></textarea>
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.addr1')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr2"
+                            placeholder="ADDRESS LINE 2" disabled="disabled"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.addr2') !=''"></textarea>
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.addr2')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Country:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.cntryId') !=''"
+                            disabled="disabled" data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let con of country " value="{{con.countryId}}">
+                                {{con.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.cntryId')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="exportBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Swift Code</label>
+                    <div class="col-sm-7">
+                        <input type="text" maxlength="11" class="form-control form-control-sm"
+                            formControlName="swiftCode" placeholder="Swift Code" disabled="disabled"
+                            [class.is-invalid]="getErrorBillBankBene('exportBillsDrweBnkDtlsVo.swiftCode') !=''">
+                        <div class="invalid-feedback">{{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.swiftCode')}}
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        {{getErrorBillBankBene('exportBillsDrweBnkDtlsVo.swiftCode')}}</div>
+                </div>
+            </div>
+        </div>
+       <!--  <label for="" *ngIf="AppUserVal.applicantValue.bills ==='ADV_PYMNT_RCVD'" ><b>VIII. DOCUMENTS ATTACHED (No. Of Documents)</b> </label>
+        <fieldset *ngIf="applicantValue.bills ==='ADV_PYMNT_RCVD'"  [disabled]="billBankBenefiacry.disabled"> -->
+        <label for=""  ><b>VIII. DOCUMENTS ATTACHED (No. Of Documents)</b> </label>
+        <fieldset  [disabled]="billBankBenefiacry.disabled">
+            <table class="table table-bordered container-fluid" style="border-color: black" style="font-size: 14px;">
+                <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                    <th class="th-lg">Document Type</th>
+                    <th class="th-lg">Description</th>
+                    <th class="th-lg">Document Code</th>
+                    <th class="th-lg">No. of Originals</th>
+                    <th class="th-lg">No. of Copies</th>
+                    <th class="th-lg">Document Ref No.</th>
+                    <th class="th-lg">Date</th>
+                    <th class="th-lg">Attachment</th>
+                    <th class="th-lg">Action</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let row of beneficiaryDetailList;let beneIndex=index;">
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docTp" [ngModelOptions]="{standalone: true}"
+                                    (change)="docDescList(row,beneIndex)">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of getDocType " value="{{con}}">
+                                        {{con}}
+                                    </option>
+
+                                </select>
+                                <div class="red ml-2" *ngIf="row.docTpReqq  && this.isSubmitted ">
+                                    <p>Document Type is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docDesc" [ngModelOptions]="{standalone: true}"
+                                    (change)="getDocCodeList(row,beneIndex)">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of masterDocType(beneIndex);let indexOfelement=i; "
+                                        [value]="con.docShortDesc">
+                                        {{con.docLongDesc}}</option>
+                                </select>
+                                <div class="red ml-2" *ngIf=" row.docDescReq  && this.isSubmitted ">
+                                    <p>Document Description is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docCd" [ngModelOptions]="{standalone: true}">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of masterDocCd(beneIndex) " [value]="con.docCode">
+                                        {{con.docShortDesc}}</option>
+                                </select>
+                                <div class="red ml-2" *ngIf=" row.docCdReqq  && this.isSubmitted ">
+                                    <p>Document Code is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                                placeholder="NO OF ORIGINAL" maxlength="1" [(ngModel)]="row.noOfOrgnls"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.noOfOrgnlsReqq  && this.isSubmitted ">
+                                <p>No. of Originals is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                                placeholder="NO OF COPIES" maxlength="1" [(ngModel)]="row.noOfCopies"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.noOfCopiesReqq  && this.isSubmitted ">
+                                <p>No. of Copies is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" class="form-control form-control-sm"
+                                placeholder="DOCUMENTS REF NO" maxlength="35" [(ngModel)]="row.docRefNo"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.docRefNoReqq  && this.isSubmitted ">
+                                <p>Document Ref is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" maxlength="35"
+                                name="docDt" placeholder="Date" [(ngModel)]="row.docDt"
+                                [ngModelOptions]="{standalone: true}">
+                            </ng-bootstrap-datetime-angular>
+
+
+                            <div class="red ml-2" *ngIf="row.docDtReqq  && this.isSubmitted ">
+                                <p>To Date is required</p>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" [(ngModel)]="row.atchmnt"
+                                        (change)="setFileForDocument($event,beneIndex)"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <label class="custom-file-label" for="inputGroupFile01">
+                                        {{getFileText(beneIndex)}}
+                                    </label>
+
+                                </div>
+                                <div class="red ml-2" *ngIf="row.atchmntReqq  &&  this.isSubmitted">
+                                    <p>To Attachment is required</p>
+                                </div>
+                            </div>
+                            <h6 class="md-1 ml-2" style="color:blue">
+                                <a href="#" (click)="viewDoc(row)">
+                                    {{getImageText(row.docTp,beneIndex)}}
+                                </a>
+                            </h6>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger m-1 mb-0 btn-sm" (click)="deleteConDtlRemitance(beneIndex)"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                (click)="onAddRowDetailsRemitance()">Add+</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <div class="red ml-2" *ngIf=" beneficiaryDetailList.length === 0  && isSubmitted ">
+            <p>DOCUMENTS ATTACHED table is required</p>
+        </div>
+    </div>
+</form>
+
+
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

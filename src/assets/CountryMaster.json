@@ -1,0 +1,165 @@
+
+[
+  {
+    "countryId": 1,
+    "name": "India",
+    "code": "+91",
+    "alfaCode": "IN",
+    "altCode": "103",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 5,
+    "name": "PAKISTAN",
+    "code": "+92",
+    "alfaCode": "PAK",
+    "altCode": "103",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 2,
+    "name": "Canada",
+    "code": " ",
+    "alfaCode": "CA",
+    "altCode": "36",
+    "restrict": null,
+    "fatf": "N"
+  },
+  {
+    "countryId": 3,
+    "name": "United States",
+    "code": "+01",
+    "alfaCode": "US",
+    "altCode": "224",
+    "restrict": null,
+    "fatf": "N"
+  },
+  {
+    "countryId": 4,
+    "name": "United Kingdom",
+    "code": " ",
+    "alfaCode": "GB",
+    "altCode": "222",
+    "restrict": null,
+    "fatf": "N"
+  },
+  {
+    "countryId": 152,
+    "name": "Croatia",
+    "code": "+38",
+    "alfaCode": "HR",
+    "altCode": "HR",
+    "restrict": "N",
+    "fatf": "Y"
+  },
+  {
+    "countryId": 185,
+    "name": "uriana",
+    "code": "+91",
+    "alfaCode": "sd",
+    "altCode": "354",
+    "restrict": "N",
+    "fatf": "Y"
+  },
+  {
+    "countryId": 204,
+    "name": "iin",
+    "code": "+91",
+    "alfaCode": "IN",
+    "altCode": "001",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 284,
+    "name": "Orri",
+    "code": "#95",
+    "alfaCode": "ors",
+    "altCode": "O123",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 285,
+    "name": "Orrisa",
+    "code": "#94",
+    "alfaCode": "ori",
+    "altCode": "O12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 287,
+    "name": "Kerala",
+    "code": "#96",
+    "alfaCode": "ker",
+    "altCode": "k12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 288,
+    "name": "Dubai",
+    "code": "#98",
+    "alfaCode": "dub",
+    "altCode": "d12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 290,
+    "name": "Sharjah",
+    "code": "#98",
+    "alfaCode": "shar",
+    "altCode": "s12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 292,
+    "name": "Ajman",
+    "code": "#98",
+    "alfaCode": "ajm",
+    "altCode": "a12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 293,
+    "name": "UAE",
+    "code": "#98",
+    "alfaCode": "uae",
+    "altCode": "u12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 294,
+    "name": "qq",
+    "code": "#98",
+    "alfaCode": "qq",
+    "altCode": "q12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 295,
+    "name": "rr",
+    "code": "#98",
+    "alfaCode": "rr",
+    "altCode": "r12",
+    "restrict": "Y",
+    "fatf": "N"
+  },
+  {
+    "countryId": 184,
+    "name": "sdfsd",
+    "code": "+23",
+    "alfaCode": "ds",
+    "altCode": "324",
+    "restrict": "Y",
+    "fatf": "Y"
+  }
+]

@@ -1,0 +1,406 @@
+<form [formGroup]="exportApplicantForm">
+
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="SYSTEM REF.NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getErrorAppForm('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                            placeholder="TRANS REF NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getErrorAppForm('transRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                            placeholder="SYSTEM REF DATE" formControlName="sysRefDt" name="sysRefDt"
+                            disabled="disabled">
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getErrorAppForm('sysRefDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h6 class="mt-2"><b>To:<br>
+                    THE BRANCH MANAGER, CANARA BANK </b></h6><br>
+            <div class="form-row">
+
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcDtlsVo">
+                        <label class="col-sm-5 col-form-label">Branch</label>
+                        <div class="col-sm-7">
+
+                            <input maxlength="11" type="text" class="form-control form-control-sm"
+                                formControlName="brnchNmMng" placeholder="Branch"
+                                [class.is-invalid]="getErrorAppForm('pcfcDtlsVo.brnchNmMng') !=''">
+                            <!-- (focusout)="getChange($event)" -->
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcDtlsVo.brnchNmMng')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcDtlsVo">
+                        <label class="col-sm-5 col-form-label">DP Code </label>
+                        <div class="col-sm-7">
+
+                            <input maxlength="5" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="dpCodeMng" placeholder="DP Code" maxlength="5"
+                                [class.is-invalid]="getErrorAppForm('pcfcDtlsVo.dpCodeMng') !=''">
+
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcDtlsVo.dpCodeMng')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+
+            </div>
+            <h6 class="mt-2"><b>
+                    SUB: REQUEST FOR PACKING CREDIT IN FOREIGN CURRENCY. </b></h6><br>
+            <p>equest you to grant us PCFC (Packing Credit -Foreign Currency) for Domestic Use / Import Payment as per
+                the details given below</p>
+            <div class="form-row" style="padding-bottom:15px" formGroupName="pcfcDtlsVo">
+                <div class="col-sm-3"></div>
+
+                <div class="col-sm-3">
+                    <div class="form-check form-check-inline col-sm-12">
+                        <input class="form-check-input" type="radio" formControlName="pcfcDomesticImport"
+                            value="PCFC_DOMESTIC">
+                        <label class="form-check-label">
+                            PCFC - Domestic Use
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline col-sm-12">
+                        <input class="form-check-input" type="radio" formControlName="pcfcDomesticImport"
+                            value="PCFC_IMPORT">
+                        <label class="form-check-label">
+                            PCFC Import
+                        </label>
+                    </div>
+                </div>
+                <div class="red ml-2" style="text-align: right!important;">
+                    {{getErrorAppForm('pcfcDtlsVo.pcfcDomesticImport')}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <h6 class="mt-2"><b>I. DETAILS OF THE DRAWER (EXPORTER) </b></h6>
+        <hr />
+
+        <div class="card">
+            <!-- <div class="card-body"> -->
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Customer ID: </label>
+                        <div class="col-sm-7">
+
+                            <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="custId" placeholder="CUSTOMER ID"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.custId') !=''"
+                                 >
+                            <!-- (focusout)="getChange($event)" -->
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.custId')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Account No: </label>
+                        <div class="col-sm-7">
+
+                            <select class="form-control form-control-sm" formControlName="accNo"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.accNo') !=''"
+                                data-role="select-dropdown" minlength="12" maxlength="14">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                    {{con}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.accNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label" style="font-size: 14px;">Customer Name: <span
+                                class="red">*</span>
+                        </label>
+                        <div class="col-sm-7">
+                            <input type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="custNm" placeholder="CUSTOMER NAME"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.custNm') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.custNm')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Branch: </label>
+                        <div class="col-sm-7">
+                            <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                formControlName="brnchNm" placeholder="BRANCH"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.brnchNm') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.brnchNm')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">DP Code: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly   maxlength="5" type="text" class="form-control form-control-sm"
+                                formControlName="dpCode" placeholder="DP CODE" maxlength="5"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.dpCode') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.dpCode')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row " formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Telephone: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="number" class="form-control form-control-sm" formControlName="telNo"
+                                     placeholder=" "> -->
+                            <input NumbersOnly type="text" maxlength="13" max="13" class="form-control form-control-sm"
+                                formControlName="telNo" placeholder="TELEPHONE"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.telNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.telNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Mobile No: </label>
+                        <div class="col-sm-7">
+                            <!-- <input type="number" class="form-control form-control-sm"  formControlName="mobNo"
+                                  placeholder=" "> -->
+                            <input NumbersOnly type="text" maxlength="13" class="form-control form-control-sm"
+                                formControlName="mobNo" max="13" placeholder="MOBILE NO"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.mobNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.mobNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Email: </label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control form-control-sm" formControlName="eMail"
+                                placeholder="EMAIL" maxlength="70" max="70"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.eMail') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.eMail')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control form-control-sm" formControlName="altEmail"
+                                placeholder="ALTERNATE EMAIL"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.altEmail') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.altEmail')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address1" maxlength="35"
+                                placeholder="ADDRESS LINE 1"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.address1') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.address1')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address2" maxlength="35"
+                                placeholder="ADDRESS LINE 2"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.address2') !=''"></textarea>
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.address2')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" formControlName="address3" maxlength="35"
+                                placeholder="ADDRESS LINE 3"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.address3') !=''"></textarea>
+                            {{getErrorAppForm('pcfcCustDtlsVo.address3')}}
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.address3')}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="cntryId"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country " value="{{con.countryId}}">
+                                    {{con.name}}</option>
+                            </select>
+
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.cntryId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">PAN No.: </label>
+                        <div class="col-sm-7">
+                            <input inputmode="numeric" maxlength="10" minlength="10"
+                                class="form-control form-control-sm" formControlName="panNo" placeholder="PAN NO"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.panNo') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.panNo')}} </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcCustDtlsVo">
+                        <label class="col-sm-5 col-form-label">IE Code: </label>
+                        <div class="col-sm-7">
+                            <input inputmode="numeric" maxlength="10" minlength="10"
+                                class="form-control form-control-sm" formControlName="ieCode" placeholder="IE Code"
+                                [class.is-invalid]="getErrorAppForm('pcfcCustDtlsVo.ieCode') !=''">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('pcfcCustDtlsVo.ieCode')}} </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+
+
+        <h6 class="mt-2"><b> FINANCE REQUIRED</b> </h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Currency: </label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="currency"
+                                [class.is-invalid]="getErrorAppForm('currency') !=''" data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                    {{currency.code}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('currency')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Amount: </label>
+                        <div class="col-sm-7">
+                            <input NumbersOnly type="text" class="form-control form-control-sm" formControlName="amount"
+                                placeholder="AMOUNT" [class.is-invalid]="getErrorAppForm('amount') !=''" maxlength="22"
+                                (keyup)="inputChange($event)">
+                            <div class="invalid-feedback">
+                                {{getErrorAppForm('amount')}} </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control form-control-sm" formControlName="amntWords"
+                                placeholder="AMOUNT IN WORDS">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcDtlsVo">
+                        <label for="text" class="col-sm-3 col-form-label">CHARGES TO BE COLLECTED FROM
+                        </label>
+                        <div class="col-sm-9">
+                            <input type="text" NumbersOnly class="form-control form-control-sm" formControlName="colltnChrg"
+                                placeholder="CHARGES TO BE COLLECTED FROM" [class.is-invalid]="getErrorAppForm('pcfcDtlsVo.colltnChrg') !=''" >
+                                <div class="invalid-feedback">
+                                    {{getErrorAppForm('pcfcDtlsVo.colltnChrg')}} </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- </div> -->
+        </div>
+
+
+    </div>
+
+</form>

@@ -1,0 +1,15 @@
+[
+  {
+      "beneId": "12278",
+      "beneficiaryType": "FTP",
+      "beneShrtNam": "XYZ",
+      "beneNam": "AJAY",
+      "addr1": "BKC",
+      "addr2": "8TH FLOORE BANDRA",
+      "zipCode": "400051",
+      "beneAcct": "IBAN0005254625866",
+      "beneBankNam": "BANK OF NEW YORK MELLION",
+      "swiftCode": "IFVTUS33XXX",
+      "countryName":"IN"
+  }
+]

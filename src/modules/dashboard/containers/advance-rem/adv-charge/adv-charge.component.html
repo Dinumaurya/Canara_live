@@ -1,0 +1,213 @@
+<form [formGroup]="advChargeDetails" >
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col" (change)="ChangeDetailTable($event)">
+                    <fieldset [disabled]="advChargeDetails.disabled">  
+                        <div class="form-check" >
+
+                            <input type="checkbox" class="form-check-input"
+                                [checked]='isDtlsofFrwdCntrct' 
+                                (change)="isDtlsofFrwdCntrct =  !isDtlsofFrwdCntrct">
+                            <label class="form-check-label">
+                                Details of forward contract booked to be utilized for this
+                                transaction</label>
+                            <!-- <div class="red ml-2"
+                                *ngIf=" istotalGreaterThanFc() && !isDtlsofFrwdCntrct ">
+                                <p>Total Amount is Greater than FC
+                                </p>
+                            </div> -->
+                        </div>
+                    </fieldset>
+
+
+                </div>
+
+            </div>
+                   
+            <div class="row" *ngIf="isDtlsofFrwdCntrct">
+                <div class="col-md-12">
+
+                    <fieldset [disabled]="advChargeDetails.disabled"> 
+                        <div style="text-align: center;">
+                            <table class="table table-bordered ">
+                                <tr
+                                    style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                                    <th class="th-lg"> Forward Contract No. </th>
+                                    <th class="th-lg"> FCY </th>
+                                    <th class="th-lg">Original Amount </th>
+                                    <th class="th-lg"> Utilized Amount </th>
+                                    <th class="th-lg">Amount to be Utilized</th>
+                                    <th class="th-lg">Foreign Bank Charges(FBK)</th>
+                                    <th class="th-lg">Action</th>
+                                </tr>
+                                <tbody>
+                                    <tr *ngFor="let row of conversionList;let indexOfelement=index;">
+                                        <td>
+                                            <input inputmode="numeric" NumbersOnly maxlength="16"
+                                                minlength="16" class="form-control form-control-sm"
+                                                placeholder="FORWORD CONTRACT"
+                                                [(ngModel)]="row.frwdCntrctNo"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.frwdCntrctNoReq  && this.submittedChargeForm4 && !isDtlsofFrwdCntrct">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group col">
+
+                                                <select class="form-control form-control-sm"
+                                                    data-role="select-dropdown" [(ngModel)]="row.fcy"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                    <!-- options -->
+                                                    <option value="">SELECT</option>
+                                                    <option *ngFor="let currency of currency "
+                                                        value="{{currency.currencyMstId}}">
+                                                        {{currency.code}}
+                                                    </option>
+                                                </select>
+                                                <div class="red ml-2"
+                                                    *ngIf=" row.fcyReq  && this.submittedChargeForm4">
+                                                    <p>This filed is required</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" inputmode="numeric"
+                                                NumbersOnly class="form-control form-control-sm"
+                                                placeholder="ORIGINAL AMOUNT"
+                                                [(ngModel)]="row.orgnlAmnt"
+                                                [ngModelOptions]="{standalone: true}" maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.orgnlAmntReq && this.submittedChargeForm4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text" inputmode="numeric"
+                                                NumbersOnly class="form-control form-control-sm"
+                                                placeholder="UTILIZED AMOUNT"
+                                                [(ngModel)]="row.utlizAmnt"
+                                                [ngModelOptions]="{standalone: true}" maxlength="22">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.utlizAmntReq && this.submittedChargeForm4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="AMOUNT TO BE UTILIZED" maxlength="22"
+                                                (keyup)="getConversationDetailForm1Total()"
+                                                [(ngModel)]="row.amntUtilizd"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf=" row.amntUtilizdReq  && this.submittedChargeForm4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input NumbersOnly inputmode="numeric" type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="FOREIGN BANK CHARGES"
+                                                [(ngModel)]="row.frgnBnkChrgs" maxlength="22"
+                                                [ngModelOptions]="{standalone: true}">
+                                            <div class="red ml-2"
+                                                *ngIf="row.frgnBnkChrgsReq  && this.submittedChargeForm4">
+                                                <p>This filed is required</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                                (click)="deleteConversionDetail(indexOfelement)"
+                                                *ngIf="!isEditable"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> Total</td>
+                                        <td>
+                                            <input type="number" class="form-control form-control-sm"
+                                                placeholder="TOTAL" disabled="disabled"
+                                                [(ngModel)]="conversationDetailForm1Total"
+                                                [ngModelOptions]="{standalone: true}">
+                                        </td>
+                                        <td> </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn btn-primary m-1 mb-0 btn-sm"
+                                                (click)="onAddRowConvrsion()" style="width: 70px;"
+                                                *ngIf="!isEditable">
+                                                Add +
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                     </fieldset>
+                </div>
+                <div class="red ml-2" *ngIf="conversionList && conversionList.length === 0  && submittedChargeForm4 ">
+                    <p>Detail forward table is required</p>
+                </div>
+            </div>
+
+            <br>
+     
+            <br>
+          
+            <!-- !isRtCvrdwithTrdr -->
+            <!-- <div class="red ml-2"
+                *ngIf="!isRtCvrdwithTrdr &&   rtCvrDtlsVoListArray && rtCvrDtlsVoListArray.length === 0  && submittedChargeForm4 ">
+                <p>Rate Coverd table is required</p>
+            </div> -->
+            <div class="red ml-2" *ngIf=" istotalGreaterThanFc() ">
+                <p>Total Amount is Greater than FC
+                </p>
+            </div>
+            <div class="form-row">
+               <!--  <h6 class="mt-2"><b>Charges On</b></h6>
+                
+                <div class="form-row" style="padding-bottom:15px">
+        
+        
+                    <div class="col-sm-3 offset-3">
+                        <div class="form-check form-check-inline col-sm-12">
+                            <input class="form-check-input" type="radio" formControlName="Charges" value="Ourselves">
+                            <label class="form-check-label">
+                               OUR
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="form-check form-check-inline col-sm-12">
+                            <input class="form-check-input" type="radio" formControlName="Charges" value="All">
+                            <label class="form-check-label">
+                               SHA
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="red offset-3" style="text-align: right!important;">
+                            {{getChargeError('Charges')}}
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="col-12" >
+                    <label> <b>ADDITIONAL INFORMATION </b> <span class="red"> *</span></label>
+                    <textarea name="message" class="form-control form-control-sm" rows="10" cols="30" wrap="off"
+                        formControlName="addInfo" placeholder="Description of Goods / Services "
+                        [class.is-invalid]="getChargeError('addInfo') !=''"
+                        style="resize: none;">Description of Goods / Services</textarea>
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getChargeError('addInfo')}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

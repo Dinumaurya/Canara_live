@@ -1,0 +1,458 @@
+<form [formGroup]="billBankBenefiacry" *ngIf="applicatFormValue.billPayment != 'FOR_PAYMENT'">
+    <div class="card">
+        <h6 class="mt-2"> <b>III. SUPPLIERS DETAILS</b> <span class="red"> *</span></h6>
+        <hr />
+        <fieldset [disabled]="billbankValue.dscrpncyDtlsVo.isDiscrpntLC == '1'">
+            <div class="form-row" formGroupName="importBillsSupDrwDtlsVo">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">CIF ID:</label>
+                        <div class="col-sm-7">
+                            <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.cifId') !=''">
+                            <div class="invalid-feedback">{{formErr('importBillsSupDrwDtlsVo.cifId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label"> Name:</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" formControlName="beneNam"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.beneNam') !=''"
+                                (change)="beneficiarySelected()">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneNam}}">
+                                    {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{formErr('importBillsSupDrwDtlsVo.beneNam')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Beneficiary Name:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" formControlName="name"
+                                placeholder="Beneficiary Name"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.name') !=''">
+                            <div class="invalid-feedback">
+                                {{formErr('importBillsSupDrwDtlsVo.name')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" formGroupName="importBillsSupDrwDtlsVo">
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Account Number:</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control form-control-sm" formControlName="bnfAccNo"
+                                placeholder="Account Number" disabled="disabled"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.bnfAccNo') !=''">
+                            <div class="invalid-feedback">
+                                {{formErr('importBillsSupDrwDtlsVo.bnfAccNo')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required">
+                        <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr1"
+                                placeholder="ADDRESS LINE 1" disabled="disabled"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.addr1') !=''"></textarea>
+                            <div class="invalid-feedback">{{formErr('importBillsSupDrwDtlsVo.addr1')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr2"
+                                placeholder="ADDRESS LINE 2" disabled="disabled"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.addr2') !=''"></textarea>
+                            <div class="invalid-feedback">{{formErr('importBillsSupDrwDtlsVo.addr2')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-group row required" formGroupName="importBillsSupDrwDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country:</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                                [class.is-invalid]="formErr('importBillsSupDrwDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country; let i =index " value="{{con.countryId}}">
+                                    {{con.name}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">{{formErr('importBillsSupDrwDtlsVo.cntryId')}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-row" formGroupName="dscrpncyDtlsVo" (change)="onChecked($event)">
+            <div class="col-12 col-form-label">
+                <div class="form-check m-2">
+                    <input type="checkbox" class="form-check-input" formControlName="isDiscrpntLC" value="1">
+                    <label class="form-check-label">If above table is Discrepant as per details in LC</label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="form-row" [hidden]="!billBeneficiaryDetailsVal.dscrpncyDtlsVo.isDiscrpntLC">
+            <div class="card ">
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">CIF ID:</label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                            placeholder=" "> -->
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                                    [class.is-invalid]="formErr('dscrpncyDtlsVo.cifId') !=''">
+                                <div class="invalid-feedback">{{formErr('dscrpncyDtlsVo.cifId')}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label"> Name:</label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                                    formControlName="name" placeholder=" Name"
+                                    [class.is-invalid]="formErr('dscrpncyDtlsVo.name') !=''">
+                                <div class="invalid-feedback">{{formErr('dscrpncyDtlsVo.name')}}</div>
+                            </div>
+                            <div class="invalid-feedback">
+                                {{formErr('importBillsSupDrwDtlsVo.name')}}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" maxlength="35" formControlName="addr1"
+                                    placeholder="ADDRESS LINE 1"
+                                    [class.is-invalid]="formErr('dscrpncyDtlsVo.addr1') !=''"></textarea>
+                                <div class="invalid-feedback">{{formErr('dscrpncyDtlsVo.addr1')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" maxlength="35" formControlName="addr2"
+                                    placeholder="ADDRESS LINE 2"
+                                    [class.is-invalid]="formErr('dscrpncyDtlsVo.addr2') !=''"></textarea>
+                                <div class="invalid-feedback">{{formErr('dscrpncyDtlsVo.addr2')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="dscrpncyDtlsVo">
+                            <label class="col-sm-5 col-form-label">Country:</label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" placeholder="Select"
+                                    formControlName="cntryId"
+                                    [class.is-invalid]="formErr('dscrpncyDtlsVo.cntryId') !=''"
+                                    data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of country " value="{{con.countryId}}">
+                                        {{con.name}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">{{formErr('dscrpncyDtlsVo.cntryId')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+
+                </div>
+            </div>
+        </div>
+        <h6 class="mt-2"> <b>VII. REMITTING BANK DETAILS</b> <span class="red"> *</span></h6>
+        <hr />
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.cifId') !=''">
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.cifId')}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Bank Name:</label>
+                    <div class="col-sm-7">
+                        <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                            formControlName="drweBnkNm" placeholder="Bank Name"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.drweBnkNm') !=''">
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.drweBnkNm')}}
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        {{formErr('importBillsDrweBnkDtlsVo.drweBnkNm')}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr1"
+                            placeholder="ADDRESS LINE 1"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.addr1') !=''"></textarea>
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.addr1')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="addr2"
+                            placeholder="ADDRESS LINE 2"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.addr2') !=''"></textarea>
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.addr2')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Country:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.cntryId') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let con of country;let i =index " value="{{con.countryId}}">
+                                {{con.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.cntryId')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Swift Code</label>
+                    <div class="col-sm-7">
+                        <input type="text" maxlength="11" class="form-control form-control-sm"
+                            formControlName="swiftCode" placeholder="Swift Code"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.swiftCode') !=''">
+                        <div class="invalid-feedback">{{formErr('importBillsDrweBnkDtlsVo.swiftCode')}}
+                        </div>
+                    </div>
+                    <div class="invalid-feedback">
+                        {{formErr('importBillsDrweBnkDtlsVo.swiftCode')}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group row" formGroupName="importBillsDrweBnkDtlsVo">
+                    <label class="col-sm-5 col-form-label">Intermediary bank SWIFT CODE (If any)</label>
+                    <div class="col-sm-7">
+                        <input type="text" maxlength="11" class="form-control form-control-sm"
+                            formControlName="interSwiftCode" placeholder="Intermediary bank SWIFT CODE (If any)"
+                            [class.is-invalid]="formErr('importBillsDrweBnkDtlsVo.interSwiftCode') !=''">
+                        <div class="invalid-feedback">
+                            {{formErr('importBillsDrweBnkDtlsVo.interSwiftCode')}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label for=""><b>VIII. DOCUMENTS ATTACHED (No. Of Documents)</b> </label>
+        <fieldset [disabled]="billBankBenefiacry.disabled">
+            <table class="table table-bordered container-fluid" style="border-color: black" style="font-size: 14px;">
+                <tr style="text-align: center;background-color: rgb(181, 181, 247);">
+                    <th class="th-lg">Document Type</th>
+                    <th class="th-lg">Description</th>
+                    <th class="th-lg">Document Code</th>
+                    <th class="th-lg">No. of Originals</th>
+                    <th class="th-lg">No. of Copies</th>
+                    <th class="th-lg">Document Ref No.</th>
+                    <th class="th-lg">Date</th>
+                    <th class="th-lg">Attachment</th>
+                    <th class="th-lg">Action</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let row of beneficiaryDetailList;let beneIndex=index;">
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docTp" [ngModelOptions]="{standalone: true}"
+                                    (change)="docDescList(row,beneIndex)">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of getDocType " value="{{con}}">
+                                        {{con}}
+                                    </option>
+
+                                </select>
+                                <div class="red ml-2" *ngIf="row.docTpReqq  && this.submitted ">
+                                    <p>Document Type is required</p>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docDesc" [ngModelOptions]="{standalone: true}"
+                                    (change)="getDocCodeList(row,beneIndex)">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of masterDocType(beneIndex);let indexOfelement=i; "
+                                        value="{{con.docShortDesc}}">
+                                        {{con.docLongDesc}}</option>
+                                </select>
+                                <div class="red ml-2" *ngIf=" row.docDescReq  && this.submitted ">
+                                    <p>Document Description is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="row.docCd" [ngModelOptions]="{standalone: true}">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of masterDocCd(beneIndex) " value="{{con.docCode}}">
+                                        {{con.docShortDesc}}
+                                    </option>
+                                </select>
+                                <div class="red ml-2" *ngIf=" row.docCdReqq  && this.submitted ">
+                                    <p>Document Code is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                                placeholder="NO OF ORIGINAL" maxlength="1" [(ngModel)]="row.noOfOrgnls"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.noOfOrgnlsReqq  && this.submitted ">
+                                <p>No. of Originals is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                                placeholder="NO OF COPIES" maxlength="1" [(ngModel)]="row.noOfCopies"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.noOfCopiesReqq  && this.submitted ">
+                                <p>No. of Copies is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" inputmode="numeric" NumbersOnly class="form-control form-control-sm"
+                                placeholder="DOCUMENTS REF NO" maxlength="35" [(ngModel)]="row.docRefNo"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" row.docRefNoReqq  && this.submitted ">
+                                <p>Document Ref is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" maxlength="35"
+                                name="docDt" placeholder="Date" [(ngModel)]="row.docDt"
+                                [ngModelOptions]="{standalone: true}">
+                            </ng-bootstrap-datetime-angular>
+                            <div class="red ml-2" *ngIf="row.docDtReqq  && this.submitted ">
+                                <p>To Date is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" [(ngModel)]="row.atchmnt"
+                                        (change)="setFileForDocument($event,beneIndex)"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <label class="custom-file-label" for="inputGroupFile01">
+                                        {{getFileText(beneIndex)}}
+                                    </label>
+
+                                </div>
+                                <div class="red ml-2" *ngIf="row.atchmntReqq  &&  this.submitted">
+                                    <p>To Attachment is required</p>
+                                </div>
+                            </div>
+                            <h6 class="md-1 ml-2" style="color:blue">
+                                <a href="#" (click)="viewDoc(row)">
+                                    {{getImageText(row.docTp,beneIndex)}}
+                                </a>
+                            </h6>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger m-1 mb-0 btn-sm" (click)="deleteConDtlRemitance(beneIndex)"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                (click)="onAddRowDetailsRemitance()">Add+</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <div class="red ml-2" *ngIf=" beneficiaryDetailList.length === 0  && submitted ">
+            <p>DOCUMENTS ATTACHED table is required</p>
+        </div>
+    </div>
+
+</form>
+<ng-template #contentbodyred let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p class="red">{{modal_body_2}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

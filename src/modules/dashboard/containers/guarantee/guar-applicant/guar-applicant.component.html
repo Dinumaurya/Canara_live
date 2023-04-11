@@ -1,0 +1,423 @@
+<form [formGroup]="GuarApplicantForm">
+  
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="SYSTEM REF.NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Trans Ref No: </label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="transRefNo"
+                            placeholder="TRANS REF NO" disabled>
+                        <div class="invalid-feedback">
+                            {{getError('transRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">System Ref Date: </label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+                        formControlName="sysRefDt" name="sysRefDt" disabled="disabled" >
+                        </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{getError('sysRefDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h6 class="mt-2"><b> APPLICANT DETAILS (IMPORTER)</b></h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Customer ID: </label>
+                            <div class="col-sm-7">
+                               
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="custId" placeholder="CUSTOMER ID"  
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.custId') !=''"
+                                      >
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.custId')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Account No: </label>
+                            <div class="col-sm-7">
+
+                                <select class="form-control form-control-sm" formControlName="accNo"
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.accNo') !=''"
+                                    data-role="select-dropdown"  minlength="12" maxlength="14">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of accountNumberList " value="{{con}}">
+                                        {{con}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.accNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label" style="font-size: 14px;">Customer Name: <span class="red">*</span>
+                            </label>
+                            <div class="col-sm-7">
+                                <input type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="custNm"
+                                    placeholder="CUSTOMER NAME" 
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.custNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.custNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Branch: </label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="brnchNm"
+                                    placeholder="BRANCH" [class.is-invalid]="getError('guaranteeCustDtlsVo.brnchNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.brnchNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">DP Code: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="dpCode"
+                                    placeholder=" "> -->
+                                <input NumbersOnly  inputmode="numeric" type="text"
+                                    class="form-control form-control-sm" formControlName="dpCode"
+                                    placeholder="DP CODE" maxlength="5" minlength="5"
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.dpCode') !=''" >
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.dpCode')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row " formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Telephone: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="number" class="form-control form-control-sm" formControlName="telNo"
+                                     placeholder=" "> -->
+                                <input NumbersOnly type="text" maxlength="15" max="15"
+                                    class="form-control form-control-sm" formControlName="telNo"
+                                    placeholder="TELEPHONE"
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.telNo') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.telNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Mobile No: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="number" class="form-control form-control-sm"  formControlName="mobNo"
+                                  placeholder=" "> -->
+                                <input NumbersOnly type="text" maxlength="15" class="form-control form-control-sm"
+                                    formControlName="mobNo"  max="15" placeholder="MOBILE NO"
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.mobNo') !=''" >
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.mobNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Email: </label>
+                            <div class="col-sm-7">
+                                <input type="email"  class="form-control form-control-sm"
+                               
+                                formControlName="eMail"
+                                    placeholder="EMAIL"  maxlength="70" max="70" [class.is-invalid]="getError('guaranteeCustDtlsVo.eMail') !=''"
+                                    >
+                                <div class="invalid-feedback" >
+                                    {{getError('guaranteeCustDtlsVo.eMail')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">  
+                        <div class="form-group row" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Alternate Email: </label>
+                            <div class="col-sm-7">
+                                <input type="email" class="form-control form-control-sm" formControlName="altEmail"
+                                    placeholder="ALTERNATE EMAIL" 
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.altEmail') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.altEmail')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address1" maxlength="35"
+                                    placeholder="ADDRESS LINE 1" 
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.address1') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.address1')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address2" maxlength="35"
+                                    placeholder="ADDRESS LINE 2" 
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.address2') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.address2')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="address3" maxlength="35"
+                                    placeholder="ADDRESS LINE 3" 
+                                   
+                                    [class.is-invalid]="getError('guaranteeCustDtlsVo.address3') !=''"></textarea>
+                                {{getError('guaranteeCustDtlsVo.address3')}}
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.address3')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">PAN No.: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="10" minlength="10"
+                               
+                                    class="form-control form-control-sm" formControlName="panNo" 
+                                    placeholder="PAN NO" [class.is-invalid]="getError('guaranteeCustDtlsVo.panNo') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.panNo')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeCustDtlsVo">
+                            <label class="col-sm-5 col-form-label">IE Code: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="10" minlength="10"
+                                    class="form-control form-control-sm" formControlName="ieCode" 
+                                   
+                                    placeholder="IE Code" [class.is-invalid]="getError('guaranteeCustDtlsVo.ieCode') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeCustDtlsVo.ieCode')}} </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col"></div>
+                </div>
+            <!-- </div> -->
+        </div>
+        <h6 class="mt-2"><b>II. Guarantee to be transmitted through</b> <span class="red"> *</span></h6>
+        <hr />
+      
+        <div class="card">
+            <!-- <div class="card-body"> -->
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">CIF ID: </label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                    placeholder=" "> -->
+                                <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="cifId" placeholder="CIF ID"   disabled="disabled"
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.cifId') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.cifId')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Bank Name: </label>
+                            <div class="col-sm-7">
+                                <input appAlphabetOnly type="text" maxlength="35"
+                                    class="form-control form-control-sm" formControlName="bnkNm"
+                                    placeholder="BANK NAME" 
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.bnkNm') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.bnkNm')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Address Line 1: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr" maxlength="35"
+                                    placeholder="ADDRESS LINE 1"
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.fullAddr') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.fullAddr')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Address Line 2: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr1" maxlength="35"
+                                    placeholder="ADDRESS LINE 2" 
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.fullAddr1') !=''"></textarea>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.fullAddr1')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Address Line 3: </label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" formControlName="fullAddr2" maxlength="35"
+                                    placeholder="ADDRESS LINE 3" 
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.fullAddr2') !=''"></textarea>
+                              
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.fullAddr2')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Country: </label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="cntryId"
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.cntryId') !=''" 
+                                    data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let con of country " value="{{con.countryId}}">
+                                        {{con.name}}</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.cntryId')}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="guaranteeTransBnkVo">
+                            <label class="col-sm-5 col-form-label">Swift Code: </label>
+                            <div class="col-sm-7">
+                                <input inputmode="numeric" maxlength="11"
+                                    class="form-control form-control-sm" formControlName="swiftCode"
+                                    placeholder="Swift Code" 
+                                    [class.is-invalid]="getError('guaranteeTransBnkVo.swiftCode') !=''">
+                                <div class="invalid-feedback">
+                                    {{getError('guaranteeTransBnkVo.swiftCode')}} </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            <!-- </div> -->
+        </div>
+        <h6 class="mt-2"><b>III. GUARANTEE AMOUNT DETAILS</b> </h6>
+        <hr />
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Currency: </label>
+                            <div class="col-sm-7">
+                                <select class="form-control form-control-sm" formControlName="currency" 
+                                    [class.is-invalid]="getError('currency') !=''" data-role="select-dropdown">
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{getError('currency')}} </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">Amount: </label>
+                            <div class="col-sm-7">
+                                <input NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="amount" placeholder="AMOUNT"
+                                    [class.is-invalid]="getError('amount') !=''" maxlength="22" 
+                                    (keyup)="inputChange($event)">
+                                <div class="invalid-feedback">
+                                    {{getError('amount')}} </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label for="text" class="col-sm-3 col-form-label">Amount In Words:
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control form-control-sm" formControlName="amntWords" placeholder="AMOUNT IN WORDS"
+                                    > </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+
+    </div>
+
+</form>

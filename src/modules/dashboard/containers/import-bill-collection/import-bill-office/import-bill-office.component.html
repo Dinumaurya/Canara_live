@@ -1,0 +1,475 @@
+<form [formGroup]="billOfficeform" aria-disabled="true" class="m-2">
+  <fieldset [disabled]="true">
+    <!--Add by sonali hide office use unwanted fields-->
+    <div *ngIf="hideOfcUseTabFeilds">
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group row required">
+            <label class="col-sm-4 col-form-label">Other Bank Ref No: </label>
+            <div class="col-sm-6">
+              <input maxlength="16" type="text" class="form-control form-control-sm" formControlName="othrBnkRefNo"
+                placeholder="Other Bank Ref No:" [class.is-invalid]="getErrorBillOfficeForm('othrBnkRefNo') !=''" />
+
+              <div class="invalid-feedback">
+                {{getErrorBillOfficeForm('othrBnkRefNo')}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="card-body">
+    <!--Add by sonali hide office use unwanted fields-->
+
+    <div *ngIf="hideOfcUseTabFeilds">
+      <h5><b>Settlement Instructions</b></h5>
+      <fieldset [disabled]="true">
+        <div class="row" formGroupName="officeUseVo">
+          <div class="col-sm-6">
+            <label class="form-check-label" for="exampleCheck1">
+              Debit all amount payable by the Applicant to the Applicant`s Account
+              No <span class="red">*</span>
+            </label>
+          </div>
+          <div class="form-check col-sm-5">
+            <div class="form-group">
+              <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="ACCOUNT NO"
+                minlength="12" maxlength="14" formControlName="accNo"
+                [class.is-invalid]="getErrorBillOfficeForm('officeUseVo.accNo') !=''" />
+              <div class="invalid-feedback" style="font-size: 16px;">
+                {{getErrorBillOfficeForm('officeUseVo.accNo')}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" formGroupName="officeUseVo" style="padding-bottom:-200px">
+          <div class="col-sm-4">
+            <div class="col form-group row required">
+              <p>
+                <label class=""><b> Concession in Charges<span class="red"> *</span></b></label>
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-4" (change)="onChangecnssn($event)">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="YES" />
+              <label class="form-check-label"> YES </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="NO" />
+              <label class="form-check-label">NO</label>
+            </div>
+          </div>
+        </div>
+        <div class="red ml-2" style="text-align: right!important;" formGroupName="officeUseVo">
+          {{getErrorBillOfficeForm('officeUseVo.cncssionChrg')}}
+        </div>
+        <div class="" formGroupName="officeUseVo">
+          <fieldset [disabled]="officeformVal?.officeUseVo.cncssionChrg == 'NO'">
+            <table class="table table-bordered">
+              <thead style="background-color: rgb(194, 200, 212);">
+                <tr>
+                  <th class="th-lg"></th>
+                  <th class="th-lg">% (Concession)</th>
+                  <th class="th-lg">Fixed Amount</th>
+                  <th class="th-lg"></th>
+                  <th class="th-lg">% (Concession)</th>
+                  <th class="th-lg">Fixed Amount</th>
+                  <th class="th-lg">Sanction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Commission</td>
+
+                  <td>
+                    <div class="form-group">
+                      <input NumbersOnly type="text" class="form-control form-control-sm" placeholder="PERCENTAGE"
+                        formControlName="cncssionPrcntg" maxlength="4" />
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="form-group">
+                      <input NumbersOnly type="text" class="form-control form-control-sm" placeholder="AMOUNT"
+                        formControlName="cncssionFixdAmnt" maxlength="22" />
+                    </div>
+                  </td>
+                  <td>SWIFT charges</td>
+                  <td>
+                    <div class="form-group">
+                      <input NumbersOnly type="text" class="form-control form-control-sm" placeholder="PERCENTAGE"
+                        formControlName="swiftPrcntg" maxlength="4" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input NumbersOnly type="text" class="form-control form-control-sm" placeholder="AMOUNT"
+                        formControlName="swiftFixdAmnt" maxlength="22" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <div class="input-group-prepend"></div>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" formControlName="atchmntSanctn" />
+
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <div class="invalid-feedback">
+                          {{getErrorBillOfficeForm('officeUseVo.atchmntSanctn')}}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
+        </div>
+      </fieldset>
+    </div>
+
+    <!--end by sonali hide office use unwanted fields-->
+
+    <br />
+    <p><b> Documents enclosed (Please tick all that is relevant)</b></p>
+    <div class="col" *ngFor="let outwardDoc of outwardMandatoryDocList;let i =index">
+      <div class="row">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" (ngModelChange)="checkedFileList($event, i, outwardDoc)"
+            [(ngModel)]="outwardDoc.isChckd" [ngModelOptions]="{standalone: true}" [checked]="outwardDoc.isChckd" />
+        </div>
+        <div class="">
+          <div class="col">
+            <label class="form-check-label" for="exampleCheck1">
+              {{outwardDoc.attchNm}}
+              <span *ngIf="isThisFieldRequired(outwardDoc,i)" class="red">
+                *
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="input-group md-1 ml-3" [hidden]="outwardDoc.isChckd != true">
+          <div [hidden]="getImageText(outwardDoc.attchCd) !=''">
+            <div class="input-group-prepend"></div>
+            <div class="custom-file col-6">
+              <input type="file" class="custom-file-input" (change)="setFileForDocument($event,i)" />
+              <label class="custom-file-label" for="exampleCheck1">{{getFileText(outwardDoc.attchCd)}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h6 class="md-1 ml-2" class="red"
+        *ngIf="isThisFieldRequired(outwardDoc,i)  && submittedillofficeForm6">
+        This field is required
+      </h6>
+      <h6 class="md-1 ml-2" style="color:blue">
+        <a href="#" (click)="viewDoc(outwardDoc)">
+          {{getImageText(outwardDoc.attchCd)}}
+        </a>
+      </h6>
+    </div>
+    <!--Add by sonali hide office use unwanted fields-->
+    <div *ngIf="hideOfcUseTabFeilds">
+      <fieldset [disabled]="true">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-sm" placeholder="DETAILS OF OTHER DOCUMENTS"
+              maxlength="35" formControlName="othrDoc" [class.is-invalid]="getErrorBillOfficeForm('othrDoc') !=''" />
+            <div class="invalid-feedback" style="font-size: 16px;">
+              {{getErrorBillOfficeForm('othrDoc')}}
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="card-body">
+
+        <label for=""> <b> Declaration By Branch</b></label>
+        <fieldset [disabled]="true">
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">
+                  Customer is KYC & AML Complied</label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">
+                  Guinness of the above transaction is satisfied by the
+                  Branch
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">
+                  Customer is replicated in FCC (Global ticked in CIM09 & Corporate
+                  ticked in CH021)
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">I.E. code of the Customer is maintained in
+                  FCC</label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">
+                  Limit is available for this transaction
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" />
+                <label class="form-check-label" for="exampleCheck1">All the Terms and conditions of the sanction has
+                  been
+                  complied
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+
+        <br />
+        <div class="row">
+          <div class="col">
+            <p>
+              <b>
+                FCC Account statement Instruction maintained by Branch<span class="red">
+                  *</span>
+              </b>
+            </p>
+          </div>
+        </div>
+        <fieldset [disabled]="true">
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col-md-2" (change)="onChangeFccAcc($event)">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="1" formControlName="isFccAccStlment" />
+                <label class="form-check-label">YES</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="0" formControlName="isFccAccStlment" />
+                <label class="form-check-label">NO,</label>
+              </div>
+            </div>
+
+            <div class="red ml-2" style="text-align: right!important;">
+              {{getErrorBillOfficeForm('officeUseVo.isFccAccStlment')}}
+            </div>
+
+            <div class="col-sm-4">Please mention the Account No.</div>
+            <div class="col-sm-5">
+              <fieldset [disabled]="officeformVal?.officeUseVo.isFccAccStlment == '1'">
+                <div class="form-group">
+                  <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="ACCOUNT NO"
+                    minlength="12" maxlength="14" formControlName="fccAccNo" />
+                  <div class="invalid-feedback" style="font-size: 16px;">
+                    {{getErrorBillOfficeForm('officeUseVo.fccAccNo')}}
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col-md-4"> <b> MIS Details<span class="red"> *</span></b> </div>
+          </div>
+          <br>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col ">RBI-PURPOSE CODE: </div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" formControlName="misValue">
+                  <option value="">SELECT</option>
+
+                  <option *ngFor="let purpose of purposecode" placeholder="CODE" value="{{purpose.purposeId}}">
+                    {{purpose.code}}
+                  </option>
+                </select>
+                <div class="invalid-feedback" style="font-size: 16px;">
+                  {{getErrorBillOfficeForm('officeUseVo.misValue')}}
+                </div>
+              </div>
+
+            </div>
+            <div class="col">BSR-CODE: </div>
+            <div class="col">
+              <div class="form-group" formGroupName="misDtlsList1">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <option value="">SELECT</option>
+
+                  <option *ngFor="let data of misBSR_CODEList" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+                <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                    {{getErrorBillOfficeForm('misDtlsList1.misValue')}}
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col">SECTOR:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <option value="">SELECT</option>
+
+                  <option *ngFor="let data of misSECTORList" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+
+
+              </div>
+            </div>
+            <div class="col">SSISUBSEC:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misSSISUBSECList" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+                <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getErrorBillOfficeForm('misDtlsList3.misValue')}}
+                    </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col">BASEL-II:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misBase_2List" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+                <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getErrorBillOfficeForm('misDtlsList4.misValue')}}
+                    </div> -->
+              </div>
+            </div>
+            <div class="col">STATUSIB:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <!-- options -->
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misSTATUSIBList" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+                <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getErrorBillOfficeForm('misDtlsList5.misValue')}}
+                    </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col">SCHEMES:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misSCHEMES" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+                <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getErrorBillOfficeForm('misDtlsList6.misValue')}}
+                    </div> -->
+              </div>
+            </div>
+            <div class="col">PRINPRI:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <!-- options -->
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misPRI_NPRI" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+
+              </div>
+            </div>
+          </div>
+          <div class="row" formGroupName="officeUseVo">
+            <div class="col">GAU-COVER:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misGUA_COVER" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col">SPL-BENEF:</div>
+            <div class="col">
+              <div class="form-group">
+                <select class="form-control form-control-sm" data-role="select-dropdown" data-profile="minimal">
+                  <option value="">SELECT</option>
+                  <option *ngFor="let data of misSPL_BENEF" value="{{data.code}}">
+                    {{data.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <!--end by sonali hide office use unwanted fields-->
+
+  </div>
+</form>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{modal_title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>{{modal_body}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+  </div>
+</ng-template>

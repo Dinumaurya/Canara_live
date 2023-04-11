@@ -1,0 +1,29 @@
+{
+    "commonMstId": 1,
+    "mstType": "OFFICE_TYPE",
+    "mstValue": "Office Type",
+    "isUserEdit": 0,
+    "commonMstSubId": null,
+    "subCommonMasterList": [
+      {
+        "commonMstSubId": 1,
+        "code": "BRNCH",
+        "value": "Branch",
+        "crUser": "admin",
+        "crDate": "2018-08-13T08:36:41.099+0000",
+        "mdUser": null,
+        "mdDate": null,
+        "srNo": 1
+      },
+      {
+        "commonMstSubId": 2,
+        "code": "HD_OFFICE",
+        "value": "Head Office",
+        "crUser": "admin",
+        "crDate": "2018-08-13T08:36:41.099+0000",
+        "mdUser": null,
+        "mdDate": null,
+        "srNo": 2
+      }
+    ]
+  }

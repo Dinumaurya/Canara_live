@@ -1,0 +1,141 @@
+<div class="card-body">
+    <form [formGroup]="GuarChargeDetails">
+        <h6>VII. GUARANTEE CHARGES INSTRUCTIONS</h6>
+
+        <div class="row">
+            <div class="row" formGroupName="guaranteeChrgDtlsVo">
+                <div class="col" style="padding-right: 35px;">
+                    All Bank Charges outside INDIA are to the account of
+                    <span class="red">*</span>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" formControlName="accOf" value="APPLICANT">
+                    <label class="form-check-label" for="radio1" style="padding-right: 20px;">
+                        Applicant </label>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" formControlName="accOf" value="BENEFICIARY">
+                    <label class="form-check-label" for="radio1"> Beneficiary </label>
+                </div>
+            </div>
+            <br>
+            <br>
+        </div>
+        <br>
+        <div class="form-row" formGroupName="guaranteeChrgDtlsVo">
+            <div class="row" (change)="onCheckbboxSelect($event)">
+                <div class="col">
+                    <p> Confirmation:<span class="red">*</span> </p>
+                    <!-- <span class="red" >*</span> -->
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="WITH">
+                    <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                        With </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="WITHOUT">
+                    <label class="form-check-label" for="radio2" style="padding-right: 10px;"> Without </label>
+                </div>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" formControlName="chrgCnfrm" value="MAY_ADD">
+                    <label class="form-check-label" for="radio2" style="padding-right: 30px;"> May add </label>
+                </div>
+
+            </div>
+
+        </div>
+        <div formGroupName="guaranteeChrgDtlsVo">
+            <fieldset [disabled]="chargeValue?.chrgCnfrm == 'WITHOUT'">
+
+                <div class="row col">
+                    <p style="padding-right: 5px;"> Confirmation Charges (if any) for account of: </p>
+                    <span class="red" style="padding-right: 10px;">*</span>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="cnfrmChrsAccOf" value="APPLICANT">
+                        <label class="form-check-label" for="radio1" style="padding-right: 10px;">
+                            Applicant </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="cnfrmChrsAccOf"
+                            value="BENEFICIARY">
+                        <label class="form-check-label" for="radio2" style="padding-right: 10px;"> Beneficiary
+                        </label>
+                    </div>
+
+
+                </div>
+            </fieldset>
+            <div class="red ml-2" *ngIf="getWithout('cnfrmChrsAccOf')">
+                This field is required
+            </div>
+        </div>
+
+        <p>Note :- Discrepancy fees will be for the account of beneficiary.
+        </p>
+        <div class="form-row" formGroupName="guaranteeChrgDtlsVo">
+            <div class="col-sm-7">
+                <label for="form-check-label">INSTRUCTIONS TO THE PAYING/ACCEPTING/NEGOTIATING BANK</label>
+                <div class="form-group required">
+                    <textarea class="form-control form-control-sm" rows="3" formControlName="pymntInstruc"
+                        maxlength="780" placeholder="INSTRUCTIONS TO THE PAYING/ACCEPTING/NEGOTIATING BANK"
+                        [class.is-invalid]="getlcErrorCon('pymntInstruc') !=''"></textarea>
+                    <div class="invalid-feedback">
+                    {{getlcErrorCon('guaranteeChrgDtlsVo.pymntInstruc')}}
+                 </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <label for="form-check-label">SENDER TO RECEIVER INFORMATION</label>
+                <div class="form-group required">
+                    <textarea class="form-control form-control-sm" rows="3" formControlName="sndrRcvrInfo"
+                        maxlength="210" placeholder="SENDER TO RECEIVER INFORMATION"
+                        [class.is-invalid]="getlcErrorCon('pymntInstruc') !=''"></textarea>
+                    <div class="invalid-feedback">
+                    {{getlcErrorCon('guaranteeChrgDtlsVo.sndrRcvrInfo')}}
+                 </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" formGroupName="guaranteeChrgDtlsVo">
+
+            <div class="col-sm-5">
+                <label for="form-check-label">ADDITIONAL CONDITIONS <span class="red">*</span></label>
+                <div class="form-group required">
+                    <textarea class="form-control form-control-sm" rows="3" formControlName="addCondition"
+                        maxlength="6500" placeholder="ADDITIONAL CONDITIONS"
+                        [class.is-invalid]="getlcErrorCon('addCondition') !=''"></textarea>
+                    <div class="invalid-feedback">
+                    {{getlcErrorCon('guaranteeChrgDtlsVo.addCondition')}}
+                 </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4" style="padding: 10px;">
+            <div class="col-1">
+                <label for="name">Place</label>
+                <span class="red">*</span>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input type="text" appAlphabetOnly class="form-control form-control-sm" formControlName="formPlace"
+                        placeholder="PLACE" maxlength="35" [class.is-invalid]="getlcErrorCon('formPlace') !=''">
+                    <div class="invalid-feedback">
+                        {{getlcErrorCon('formPlace')}} </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <label for="name">Date</label>
+                <span class="red">*</span>
+            </div>
+            <div class="col-sm-5">
+                <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" name="sysRefDt"
+                    formControlName="formDt" placeholder="DATE" [class.is-invalid]="getlcErrorCon('formDt') !=''">
+                </ng-bootstrap-datetime-angular>
+                <div class="invalid-feedback">
+                    {{getlcErrorCon('formDt')}} </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,231 @@
+<form [formGroup]="lcshipmentDetails">
+	<div class="m-3">
+		<b> Shipment Details
+			<span class="red">*</span>
+		</b>
+	</div>
+	<hr />
+	<div class="card-body">
+		<div class="card" style="background-color: rgb(245, 244, 240);padding: 10px;">
+			<div class="row form-group row required"></div>
+			<div class="row form-group">
+				<div class="col col-form-label">
+					<label for="name">Place of Receipt</label>
+				</div>
+				<div class="col">
+					<div class="form-group" formGroupName="lCShipDtlsVo">
+						<input type="text" class="form-control form-control-sm" formControlName="plRcpt"
+							placeholder="Place of Receipt" maxlength="35">
+						<!-- <div class="invalid-feedback">
+                                {{getlcErrornew('lCShipDtlsVo.plRcpt')}} </div> -->
+					</div>
+				</div>
+				<div class="col col-form-label">
+					<label for="name">Port of Landing/ Airport of Destination
+						<span class="red">*</span>
+					</label>
+				</div>
+				<div class="col">
+					<div class="form-group" formGroupName="lCShipDtlsVo">
+						<input type="text" class="form-control form-control-sm"
+							placeholder="Port of Landing/ Airport of Destination" formControlName="pol" maxlength="65"
+							[class.is-invalid]="getlcErrornew('lCShipDtlsVo.pol') !=''">
+						<div class="invalid-feedback" style="text-align: right;">
+							{{getlcErrornew('lCShipDtlsVo.pol')}} </div>
+					</div>
+				</div>
+				<div class="col col-form-label">
+					<label for="name">Port of Discharge/ Airport of Destination
+						<span class="red">*</span>
+					</label>
+				</div>
+				<div class="col">
+					<div class="form-group" formGroupName="lCShipDtlsVo">
+						<input type="text" class="form-control form-control-sm"
+							placeholder="Port of Discharge/ Airport of Destination" formControlName="pod" maxlength="65"
+							[class.is-invalid]="getlcErrornew('lCShipDtlsVo.pod') !=''">
+						<div class="invalid-feedback" style="text-align: right;">
+							{{getlcErrornew('lCShipDtlsVo.pod')}} </div>
+					</div>
+				</div>
+			</div>
+			<div class="row form-group">
+				<div class="col-2 col-form-label">
+					<label for="name">Place of Delivery
+
+					</label>
+				</div>
+				<div class="col-2">
+					<div class="form-group" formGroupName="lCShipDtlsVo">
+						<input type="text" appAlphabetOnly class="form-control form-control-sm"
+							placeholder="Place of Delivery" formControlName="plDlvry" maxlength="35">
+						<!-- <div class="invalid-feedback">
+                                {{getlcErrornew('lCShipDtlsVo.plDlvry')}} </div> -->
+					</div>
+				</div>
+				<div class="col-2 col-form-label">
+					<label for="name">Latest Shipment Date
+						<span class="red">*</span>
+					</label>
+				</div>
+				<div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+					<div class="form-group row required" formGroupName="lCShipDtlsVo">
+						<div class="col-sm-7">
+							<ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm"
+								formControlName="ltstShpMntDt" placeholder="Latest shipment detail"
+								[class.is-invalid]="getlcErrornew('lCShipDtlsVo.ltstShpMntDt') !=''"
+								[disabled]="lcshipmentDetails.disabled">
+							</ng-bootstrap-datetime-angular>
+							<div class="invalid-feedback">
+								{{getlcErrornew('lCShipDtlsVo.ltstShpMntDt')}} </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="form-row">
+			<div class="col-12" formGroupName="lCShipDtlsVo">
+				<label> <b>Description of Goods / Services (Goods & Services and relevant INCOTERMS * 2010, Brief
+						description of goods & country of origin</b> <span class="red"> *</span></label>
+				<textarea name="message" class="form-control form-control-sm" rows="10" cols="30" wrap="off"
+					formControlName="descGdsRmrks" placeholder="Description of Goods / Services "
+					[class.is-invalid]="getlcErrornew('lCShipDtlsVo.descGdsRmrks') !=''"
+					style="resize: none;">Description of Goods / Services</textarea>
+				<div class="invalid-feedback" style="text-align: right;">
+					{{getlcErrornew('lCShipDtlsVo.descGdsRmrks')}} </div>
+			</div>
+		</div>
+		<br>
+		<div class="form-row">
+			<div class="col-sm-2 col-form-label">
+				<label for="name" style="padding-left: 15px;">H. S. Code
+					<span class="red">*</span>
+				</label>
+			</div>
+			<div class="col-sm-3">
+				<div class="form-group" formGroupName="lCShipDtlsVo">
+					<input type="text" NumbersOnly inputmode="numeric" class="form-control form-control-sm"
+						placeholder="H.S. Code " formControlName="hsCode" maxlength="8"
+						[class.is-invalid]="getlcErrornew('lCShipDtlsVo.hsCode') !=''" (change)="loadPurposeDtls();">
+					<div class="invalid-feedback" style="text-align: right;">
+						{{getlcErrornew('lCShipDtlsVo.hsCode')}} </div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="form-group" formGroupName="lCShipDtlsVo">
+					<input type="text" class="form-control form-control-sm" placeholder="H.S Description"
+						formControlName="hsDesc" [class.is-invalid]="getlcErrornew('lCShipDtlsVo.hsDesc') !=''"
+						disabled>
+					<div class="invalid-feedback" style="text-align: right;">
+						{{getlcErrornew('lCShipDtlsVo.hsDesc')}} </div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<a class="col-md-auto" (click)="hsCodeDoc('hs-cd')"> View H. S. Code </a>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col col-form-label">
+				<label for="name" style="padding-left: 10px;">Purchase Order/ Performa Invoice No
+					<span class="red">*</span>
+				</label>
+			</div>
+			<div class="col">
+				<div class="form-group" formGroupName="lCShipDtlsVo">
+					<input type="text" class="form-control form-control-sm"
+						placeholder="Purchase Order/ Performa Invoice No" formControlName="proInvNo" maxlength="35"
+						[class.is-invalid]="getlcErrornew('lCShipDtlsVo.proInvNo') !=''">
+					<div class="invalid-feedback" style="text-align: right;">
+						{{getlcErrornew('lCShipDtlsVo.proInvNo')}}
+					</div>
+				</div>
+			</div>
+			<div class="col"></div>
+		</div>
+		<div class="form-group" formGroupName="lCShipDtlsVo">
+			<div class="form-row required" (change)="changeLicnce($event)">
+				<div class="col-sm-2" style="padding-left: 15px;font-size: 14px;"> License Details
+					<span class="red">*</span>
+				</div>
+
+				<div class="col-sm-5" style="font-size: 14px;">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" value="NO_IMP_LIC_NO" formControlName="dgftPolicy">
+						<label class="form-check-label"> Non Negative list as per DGFT Policy in force OR</label>
+					</div>
+				</div>
+				<div class="col-sm-2" style="font-size: 14px;">
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" value="IMP_LIC_NO" formControlName="dgftPolicy"
+							(click)="isImport()">
+						<label class="form-check-label">Import License No</label>
+					</div>
+					<div class="red" style="text-align: left;">
+						{{getlcErrornew('lCShipDtlsVo.dgftPolicy')}}
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<fieldset [disabled]="AppUserVal.lCShipDtlsVo?.dgftPolicy == 'NO_IMP_LIC_NO'">
+						<div class="col">
+							<div class="form-row">
+								<input type="text" class="form-control form-control-sm" placeholder="Import License No"
+									formControlName="impLicNo" maxlength="35">
+							</div>
+						</div>
+					</fieldset>
+
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group row required" formGroupName="lCShipDtlsVo">
+				<div class="col-sm-2">
+					<label class=" col-form-label" style="font-size: 14!important;">INCOTERMS 2010: </label>
+				</div>
+				<div class="col-sm-5">
+					<select class="form-control form-control-sm" formControlName="inCoTerms"
+						[class.is-invalid]="getlcErrornew('lCShipDtlsVo.inCoTerms') !=''" data-role="select-dropdown">
+						<option value="">SELECT</option>
+						<option *ngFor="let data of incotermsList" value="{{data.code}}">
+							{{data.value}}
+						</option>
+					</select>
+					<div class="invalid-feedback" style="text-align: right;">
+						{{getlcErrornew('lCShipDtlsVo.inCoTerms')}}
+					</div>
+				</div>
+				<div class="col-sm-4"></div>
+			</div>
+		</div>
+	</div>
+</form>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">{{modal_title}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<p>{{modal_body}}</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #contentbodyred let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">{{modal_title}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<p class="red">{{modal_body_2}}</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

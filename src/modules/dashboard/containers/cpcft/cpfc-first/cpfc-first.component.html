@@ -1,0 +1,231 @@
+<form [formGroup]="cpcftForm">
+    <div class="card-body">
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Name of beneficiary/Account holder</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="nmOfBen"
+                            placeholder="Name of beneficiary/Account holder"
+                            [class.is-invalid]="getErrorInvertBill('nmOfBen') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('nmOfBen')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">(Canara /e-syndicate Customer)</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="custNm"
+                            placeholder="(Canara /e-syndicate Customer)"
+                            [class.is-invalid]="getErrorInvertBill('custNm') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('custNm')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter - sender/Remitter Name</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="rmtrNM"
+                            placeholder="Enter - sender/Remitter Name"
+                            [class.is-invalid]="getErrorInvertBill('rmtrNM') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('rmtrNM')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">(Outside India)</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="(Outside India)" [class.is-invalid]="getErrorInvertBill('sysRefNo') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('sysRefNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter - Expected Remmitancde</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="expRemm"
+                            placeholder="Enter-sender/Remitter Name"
+                            [class.is-invalid]="getErrorInvertBill('expRemm') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('expRemm')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">CUR</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" formControlName="currency"
+                        [class.is-invalid]="getErrorInvertBill('currency') !=''"
+                        data-role="select-dropdown">
+                        <option value="">SELECT</option>
+                        <option *ngFor="let currency of currency " value="{{currency.currencyMstId}}">
+                            {{currency.code}}
+                        </option>
+                    </select>
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('currency')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Amount</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="amount"
+                            placeholder="Amount" [class.is-invalid]="getErrorInvertBill('amount') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('amount')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter date of Remittance</label>
+                    <div class="col-sm-7">
+                        <ng-bootstrap-datetime-angular inputDatetimeFormat="dd-MMM-yyyy HH:mm" formControlName="rmntncDt"
+                        placeholder="Enter date of Remittance" 
+                        [class.is-invalid]="getErrorInvertBill('rmntncDt') !=''">
+                    </ng-bootstrap-datetime-angular>
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('rmntncDt')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">(Approximate if date is not known)</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="rmntncDt"
+                            placeholder="(Approximate if date is not known)"
+                            [class.is-invalid]="getErrorInvertBill('rmntncDt') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('rmntncDt')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+        </div>
+        <div class="form-row">
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter Name and country of the bank</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="bnkCntry"
+                            placeholder="Enter Name and country of the bank"
+                            [class.is-invalid]="getErrorInvertBill('bnkCntry') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('bnkCntry')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter swift code/Reffrence number</label>
+                    <div class="col-sm-7">
+                        <input type="text" NumbersOnly maxlength="5" class="form-control form-control-sm" formControlName="swiftCode"
+                            placeholder="Enter swift code/Reffrence number"
+                            [class.is-invalid]="getErrorInvertBill('swiftCode') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('swiftCode')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Convert to indian rupees and credit to my account
+                        Number</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="amntWords"
+                            placeholder="Convert to indian rupees and credit to my account Number"
+                            [class.is-invalid]="getErrorInvertBill('amntWords') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('amntWords')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <!-- <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Enter Account Number</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="sysRefNo"
+                            placeholder="Enter Account Number" [class.is-invalid]="getErrorInvertBill('sysRefNo') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('sysRefNo')}} </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Do not convert - Credit to EEFC</label>
+                    <div class="col-sm-7">
+                        <input type="text" NumbersOnly class="form-control form-control-sm" formControlName="crditAccNo"
+                            placeholder="Do not convert - Credit to EEFC" maxlength="12" 
+                            [class.is-invalid]="getErrorInvertBill('crditAccNo') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('crditAccNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">EEFC Account no</label>
+                    <div class="col-sm-7">
+                        <input type="text" NumbersOnly class="form-control form-control-sm" formControlName="eefcAccNo"
+                        maxlength="11" placeholder="EEFC Account no" [class.is-invalid]="getErrorInvertBill('eefcAccNo') !=''">
+                        <div class="invalid-feedback">
+                            {{ getErrorInvertBill('eefcAccNo')}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Any Other instructions</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm" formControlName="instruction"
+                            placeholder="Any Other instructions"
+                            [class.is-invalid]="getErrorInvertBill('instruction') !=''">
+                        <!-- <div class="invalid-feedback">
+                            {{ getErrorInvertBill('sysRefNo')}} </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-4">
+                <div class="form-group row required">
+                    <label class="col-sm-5 col-form-label">Please mention if any forward contract is avilable for this
+                        credit or details of rate obtained is any</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control form-control-sm"
+                            placeholder="Please mention if any forward contract  is avilable for this credit or details of rate obtained is any">
+                        <!-- <div class="invalid-feedback">
+                            {{ getErrorInvertBill('sysRefNo')}} </div>  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

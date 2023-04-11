@@ -1,0 +1,504 @@
+<form [formGroup]="exportOfficeform" aria-disabled="true">
+    <div style="margin:10px">
+
+    </div>
+    <div class="card-body">
+        <div [hidden]="true">
+            <h5><b>Settlement Instructions</b></h5>
+            <div class="row" formGroupName="officeUseVo">
+                <div class="col-sm-6">
+                    <label class="form-check-label" for="exampleCheck1">
+                        Debit all amount payable by the Applicant to the Applicant`s Account No
+                    </label>
+                </div>
+                <div class="form-check col-sm-5">
+                    <div class="form-group">
+                        <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="ACCOUNT NO"
+                            minlength="12" maxlength="14" formControlName="accNo"
+                            [class.is-invalid]="getErrorShipmentForm('officeUseVo.accNo') !=''">
+                        <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getErrorShipmentForm('officeUseVo.accNo')}} </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" formGroupName="officeUseVo" style="padding-bottom:-200px"
+                (change)="onChangecnssn($event)">
+                <div class="col-sm-4">
+                    <div class="col form-group row required">
+                        <p><label class=""><b> Concession in Charges</b></label></p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="YES">
+                        <label class="form-check-label">
+                            YES
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" formControlName="cncssionChrg" value="NO">
+                        <label class="form-check-label">NO</label>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-5"></div> -->
+            </div>
+            <div class="red ml-2" style="text-align: right!important;" formGroupName="officeUseVo">
+                {{getErrorShipmentForm('officeUseVo.cncssionChrg')}}
+            </div>
+            <div class="" formGroupName="officeUseVo">
+
+                <fieldset [disabled]="officeformVal?.officeUseVo.cncssionChrg == 'NO'">
+
+                    <table class="table table-bordered">
+                        <thead style="background-color: rgb(194, 200, 212);">
+                            <tr>
+                                <th class="th-lg"></th>
+                                <th class="th-lg">% (Concession)</th>
+                                <th class="th-lg">Fixed Amount</th>
+                                <th class="th-lg"></th>
+                                <th class="th-lg">% (Concession)</th>
+                                <th class="th-lg">Fixed Amount</th>
+                                <th class="th-lg">Sanction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>Commission </td>
+
+                                <td>
+                                    <div class="form-group ">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="PERCENTAGE" formControlName="cncssionPrcntg" maxlength="4">
+                                        <!-- <div class="invalid-feedback" style="font-size: 14px;">
+                                        {{getErrorShipmentForm('officeUseVo.cncssionPrcntg')}}
+                                    </div> -->
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="form-group ">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="AMOUNT" formControlName="cncssionFixdAmnt" maxlength="22">
+                                        <!-- <div class="invalid-feedback" style="font-size: 14px;">
+                                        {{getErrorShipmentForm('officeUseVo.cncssionFixdAmnt')}}
+                                    </div> -->
+                                    </div>
+                                </td>
+                                <td>SWIFT charges </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="PERCENTAGE" formControlName="swiftPrcntg" maxlength="4">
+                                        <!-- <div class="invalid-feedback" style="font-size: 14px;">
+                                        {{getErrorShipmentForm('officeUseVo.swiftPrcntg')}}
+                                    </div> -->
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <input NumbersOnly type="text" class="form-control form-control-sm"
+                                            placeholder="AMOUNT" formControlName="swiftFixdAmnt" maxlength="22">
+                                        <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                                        {{getErrorShipmentForm('officeUseVo.swiftFixdAmnt')}}
+                                    </div> -->
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="form-group ">
+                                        <div class="input-group-prepend"> </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input"
+                                                formControlName="atchmntSanctn">
+
+                                            <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                file</label>
+                                            <div class="invalid-feedback">
+                                                {{getErrorShipmentForm('officeUseVo.atchmntSanctn')}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+
+            <div class="card">
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="col " style="margin-left: 10px;">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">LIBOR INTEREST RATE</label>
+                            <div class="col-sm-7">
+
+                                <input maxlength="6" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="liboreIntrstRt" placeholder="LIBOR INTEREST RATE"
+                                    [class.is-invalid]="getErrorShipmentForm('liboreIntrstRt') !=''">
+
+                                <div class="invalid-feedback">
+                                    {{getErrorShipmentForm('liboreIntrstRt')}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group row required">
+                            <label class="col-sm-5 col-form-label">SPREAD </label>
+                            <div class="col-sm-7">
+                                <input maxlength="6" NumbersOnly type="text" class="form-control form-control-sm"
+                                    formControlName="spreat" placeholder="LIBOR INTEREST RATE"
+                                    [class.is-invalid]="getErrorShipmentForm('spreat') !=''">
+
+                                <div class="invalid-feedback">
+                                    {{getErrorShipmentForm('spreat')}} </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <br>
+            <label for=""> <b> Declaration By Branch</b></label>
+            <fieldset [disabled]="true">
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1"> Customer is KYC & AML Complied</label>
+                            <!-- <div class="invalid-feedback">
+                {{getErrorShipmentForm('sttlmntDclrtn0.dclrtnCd')}} </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1"> Guinness of the above transaction is
+                                satisfied
+                                by
+                                the Branch</label>
+                            <!-- <div class="invalid-feedback">
+                    {{getErrorShipmentForm('sttlmntDclrtn1.dclrtnCd')}} </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1"> Customer is replicated in FCC (Global
+                                ticked in
+                                CIM09 & Corporate ticked in CH021)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1">I.E. code of the Customer is maintained
+                                in
+                                FCC</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1"> Limit is available for this transaction
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="exampleCheck1">All the Terms and conditions of the
+                                sanction
+                                has
+                                been complied </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <br>
+        </div>
+
+        <p> <b> Documents enclosed (Please tick all that is relevant)</b></p>
+        <fieldset [disabled]="exportOfficeform.disabled">
+            <div *ngFor="let outwardDoc of outwardMandatoryDocList;let i =index">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input"
+                                (ngModelChange)="checkedFileList($event, i, outwardDoc)"
+                                [(ngModel)]="outwardDoc.isChckd" [ngModelOptions]="{standalone: true}"
+                                [checked]="outwardDoc.isChckd">
+
+                            <div>
+                                <label class="form-check-label" for="exampleCheck1">
+                                    {{outwardDoc.attchNm}} <span *ngIf="isThisFieldRequired(outwardDoc,i)" class="red">
+                                        *
+                                    </span>
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="input-group md-1 ml-3" [hidden]="outwardDoc.isChckd != true">
+                            <div [hidden]="getImageText(outwardDoc.attchCd) !=''">
+                                <div class="input-group-prepend"> </div>
+                                <div class="custom-file col-6">
+                                    <input type="file" class="custom-file-input"
+                                        (change)="setFileForDocument($event,i)" />
+                                    <label class="custom-file-label"
+                                        for="exampleCheck1">{{getFileText(outwardDoc.attchCd)}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="md-1 ml-2 red" *ngIf="isThisFieldRequired(outwardDoc,i)  && submittedlcForm6">
+                    This field is required
+                </h6>
+                <h6 class="md-1 ml-2" style="color:blue">
+                    <a href="#" (click)="viewDoc(outwardDoc)"> {{getImageText(outwardDoc.attchCd)}}
+                    </a>
+                </h6>
+            </div>
+        </fieldset>
+        <br>
+        <div [hidden]="true">
+
+            <div class="row" formGroupName="officeUseVo">
+                <div class="col">
+                    <p> <b> FCC Account statement Instruction maintained by Branch<span class="red"> *</span> </b></p>
+                </div>
+            </div>
+
+            <div class="row" formGroupName="officeUseVo">
+
+                <div class="col-md-2" (change)="onChangeFccAcc($event)">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" value="1" formControlName="isFccAccStlment">
+                        <label class="form-check-label">YES</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" value="0" formControlName="isFccAccStlment">
+                        <label class="form-check-label">NO,</label>
+                    </div>
+                </div>
+
+                <div class="red ml-2" style="text-align: right!important;">
+                    {{getErrorShipmentForm('officeUseVo.isFccAccStlment')}}
+                </div>
+
+                <div class="col-sm-4">Please mention the Account No. </div>
+                <div class="col-sm-5">
+
+                    <fieldset [disabled]="officeformVal?.officeUseVo.isFccAccStlment == '1'">
+
+                        <div class="form-group">
+                            <input type="text" NumbersOnly class="form-control form-control-sm" placeholder="ACCOUNT NO"
+                                minlength="12" maxlength="14" formControlName="fccAccNo">
+                            <div class="invalid-feedback" style="font-size: 16px;">
+                                {{getErrorShipmentForm('officeUseVo.fccAccNo')}} </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4"> <b> MIS Details<span class="red"> *</span></b> </div>
+            </div>
+            <br>
+            <fieldset [disabled]="true">
+                <div class="row" formGroupName="officeUseVo">
+                    <div class="col ">RBI-PURPOSE CODE: <b> </b> </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                formControlName="misValue">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let purpose of purposecode" placeholder="CODE"
+                                    value="{{purpose.purposeId}}">
+                                    {{purpose.code}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback" style="font-size: 16px;">
+                                {{getErrorShipmentForm('officeUseVo.misValue')}}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col">BSR-CODE: </div>
+                    <div class="col">
+                        <div class="form-group" formGroupName="misDtlsList1">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <option value="">SELECT</option>
+
+                                <option *ngFor="let data of misBSR_CODEList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                        {{getErrorShipmentForm('misDtlsList1.misValue')}}
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" formGroupName="officeUseVo">
+                    <div class="col">SECTOR:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+
+                                <option *ngFor="let data of misSECTORList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+
+
+                        </div>
+                    </div>
+                    <div class="col">SSISUBSEC:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSSISUBSECList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getErrorShipmentForm('misDtlsList3.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" formGroupName="officeUseVo">
+                    <div class="col">BASEL-II:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misBase_2List" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getErrorShipmentForm('misDtlsList4.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col">STATUSIB:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSTATUSIBList" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getErrorShipmentForm('misDtlsList5.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" formGroupName="officeUseVo">
+                    <div class="col">SCHEMES:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSCHEMES" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                            <!-- <div class="invalid-feedback" style="font-size: 16px;">
+                            {{getErrorShipmentForm('misDtlsList6.misValue')}}
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="col">PRINPRI:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <!-- options -->
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misPRI_NPRI" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" formGroupName="officeUseVo">
+                    <div class="col">GAU-COVER:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misGUA_COVER" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">SPL-BENEF:</div>
+                    <div class="col">
+                        <div class="form-group">
+                            <select class="form-control form-control-sm" data-role="select-dropdown"
+                                data-profile="minimal">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let data of misSPL_BENEF" value="{{data.code}}">
+                                    {{data.value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_title}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

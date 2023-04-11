@@ -1,0 +1,299 @@
+<form [formGroup]="guaranteeficiaryForm">
+
+
+    <h6 class="mt-2"><b> IV. DETAILS OF BENEFICIARY</b> </h6>
+    <div class="card" style="background-color: rgb(245, 244, 240);padding: 10px;">
+        <div class="row form-group row required">
+
+            <div class="col-2 col-form-label">
+                <label for="name">Pincode</label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <input type="text" class="form-control form-control-sm" formControlName="pinCode"
+                        placeholder="pinCode" [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.pinCode') !=''">
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.pinCode')}} </div>
+                </div>
+            </div>
+            <div class="col-2 col-form-label">
+                <label for="name">Address 1</label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <input type="text" class="form-control form-control-sm" formControlName="addr1"
+                        placeholder="ADDRESS 1" [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.addr1') !=''">
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.addr1')}} </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="guaranteeBnfDtlsVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7">
+                        <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                placeholder=" "> -->
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID" disabled="disabled"
+                            [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.cifId') !=''">
+                        <div class="invalid-feedback">{{getBeneError('guaranteeBnfDtlsVo.cifId')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-2 col-form-label">
+                <label for="name">Address 2 <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <input type="text" class="form-control form-control-sm" placeholder="ADDRESS 2"
+                        formControlName="addr2" [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.addr2') !=''">
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.addr2')}} </div>
+                </div>
+            </div>
+            <div class="col-2 col-form-label">
+                <label for="name">Address 3 <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <input type="text" class="form-control form-control-sm" placeholder="ADDRESS 3"
+                        formControlName="addr3" [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.addr3') !=''">
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.addr3')}} </div>
+                </div>
+            </div>
+            <div class="col-2 col-form-label">
+                <label for="name">Country <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <!-- <input type="text" class="form-control form-control-sm"
+                        placeholder="COUNTRY" formControlName="cntryId"
+                        [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.cntryId') !=''"
+                       > -->
+                    <select class="form-control form-control-sm" formControlName="cntryNm"
+                        [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.cntryNm') !=''"
+                        data-role="select-dropdown">
+                        <!-- options -->
+                        <option value="">SELECT</option>
+                        <option *ngFor="let con of country" value="{{con.alfaCode}">
+                            {{con.name}}</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.cntryNm')}} </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2 col-form-label">
+                <label for="name">Name <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="guaranteeBnfDtlsVo">
+                    <!-- <input type="text" class="form-control form-control-sm" placeholder="NAME" formControlName="name"
+                        [class.is-invalid]="getBeneError('guaranteeBnfDtlsVo.name') !=''" maxlength="35"> -->
+                    <select class="form-control form-control-sm" formControlName="name"
+                        [class.is-invalid]="getBeneError('othrTransBnkVo.name') !=''" (change)="beneficiarySelected()">
+                        <!-- options -->
+                        <option value="">SELECT</option>
+                        <option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneNam}}">
+                            {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        {{getBeneError('guaranteeBnfDtlsVo.name')}} </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="card">
+        <h6 class="mt-2"><b>V. DETAILS OF ADVISING BANK</b> </h6>
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row required" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label">CIF ID:</label>
+                    <div class="col-sm-7">
+                        <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                placeholder=" "> -->
+                        <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                            formControlName="cifId" placeholder="CIF ID"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.cifId') !=''">
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.cifId')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label"> Name:</label>
+                    <div class="col-sm-7">
+                        <!-- <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                            formControlName="bnkNm" placeholder=" Name"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.bnkNm') !=''"> -->
+                        <select class="form-control form-control-sm" formControlName="bnkNm"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.bnkNm') !=''"
+                            (change)="beneficiarySelected()">
+                            <!-- options -->
+                            <option value="">SELECT</option>
+                            <option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneNam}}">
+                                {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+                        </select>
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.bnkNm')}}</div>
+                    </div>
+                    <div class="invalid-feedback">
+                        {{getBeneError('othrTransBnkVo.bnkNm')}}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="fullAddr1"
+                            placeholder="ADDRESS LINE 1"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.fullAddr1') !=''"></textarea>
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.fullAddr1')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+
+            <div class="col">
+                <div class="form-group row" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="fullAddr2"
+                            placeholder="ADDRESS LINE 2"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.fullAddr2') !=''"></textarea>
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.fullAddr2')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row required" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label">Country:</label>
+                    <div class="col-sm-7">
+                        <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.cntryId') !=''"
+                            data-role="select-dropdown">
+                            <option value="">SELECT</option>
+                            <option *ngFor="let con of country " value="{{con.alfaCode}}">
+                                {{con.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.cntryId')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required" formGroupName="othrTransBnkVo">
+                <label class="col-sm-5 col-form-label">Swift code:</label>
+                <div class="col-sm-7">
+                    <input appAlphabetOnly type="text" maxlength="35" class="form-control form-control-sm"
+                        formControlName="swiftCode" placeholder="Swift code"
+                        [class.is-invalid]="getBeneError('othrTransBnkVo.swiftCode') !=''">
+                    <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.swiftCode')}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group row required" formGroupName="othrTransBnkVo">
+                    <label class="col-sm-5 col-form-label">Address Line :</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" maxlength="35" formControlName="fullAddr"
+                            placeholder="ADDRESS LINE 1"
+                            [class.is-invalid]="getBeneError('othrTransBnkVo.fullAddr') !=''"></textarea>
+                        <div class="invalid-feedback">{{getBeneError('othrTransBnkVo.fullAddr')}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h6 class="mt-2"><b>VI. OTHER DETAILS</b><span class="red">*</span></h6>
+    <hr />
+    <div class="form-row">
+        <div class="col">
+            <div class="form-group row required">
+                <label class="col col-form-label">Tenor:</label>
+                <div class="col">
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" formControlName="draftTenor" value="SIGHT"
+                            for="radio1">
+                        <label class="form-check-label">Sight</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" formControlName="draftTenor" value="USANCE"
+                            for="radio2">
+                        <label class="form-check-label">Usance</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="red ml-2">
+            {{getBeneError('draftTenor')}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group row required">
+                <label class="col col-form-label">Type of Security attached (if any):</label>
+                <div class="col">
+                    <div class="form-check form-check-inline col">
+                        <input class="form-check-input" type="radio" formControlName="tpSecurity" value="CASH_MARGIN"
+                            for="radio2">
+                        <label class="form-check-label">100% CASH margin</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check form-check-inline col">
+                        <input class="form-check-input" type="radio" formControlName="tpSecurity" value="OTHER"
+                            for="radio1">
+                        <label class="form-check-label">Other Security</label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="red ml-2">
+            {{getBeneError('tpSecurity')}}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-row">
+            <div class="col-sm-4 col-form-label">
+                <label for="name" style="padding-left: 15px;">H. S. Code
+                    <span class="red">*</span>
+                </label>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input type="text" NumbersOnly inputmode="numeric" class="form-control form-control-sm"
+                        placeholder="H.S. Code " formControlName="hsCode" maxlength="8"
+                        [class.is-invalid]="getBeneError('hsCode') !=''" (change)="loadPurposeDtls();">
+                    <div class="invalid-feedback" style="text-align: right;">
+                        {{getBeneError('hsCode')}} </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <a class="col-md-auto" (click)="hsCodeDoc('hs-cd')"> View H. S. Code </a>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-sm" placeholder="H.S Description"
+                    formControlName="hsDesc" [class.is-invalid]="getBeneError('hsDesc') !=''" disabled>
+                <div class="invalid-feedback" style="text-align: right;">
+                    {{getBeneError('hsDesc')}} </div>
+            </div>
+        </div>
+    </div>
+</form>

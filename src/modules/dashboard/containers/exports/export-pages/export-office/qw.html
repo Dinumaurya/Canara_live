@@ -1,0 +1,108 @@
+    <div class="row">
+            <div class="col-12 col-form-label" formGroupName="formCmmnAccVo">
+                <div class="form-check m-2">
+                    <input type="checkbox" class="form-check-input" formControlName="isRtCvrdwithTrdr">
+                    <label class="form-check-label">Rate Covered IF ANY with our Trader, please mention the details
+                        below</label>
+                </div>
+            </div>
+        </div>
+        <div class="" [hidden]="!officeformVal.formCmmnAccVo..isRtCvrdwithTrdr">
+            <fieldset [disabled]="exportBeneficiaryForm.disabled">
+                <table class="table table-bordered">
+                    <tr style="text-align: center;text-align: center; font-size: 14px;">
+                        <th class="th-lg">From FCY/LCY </th>
+                                <th class="th-lg"> To FCY/LCY </th>
+                                <th class="th-lg">Amount </th>
+                                <th class="th-lg">Rate </th>
+                                <th class="th-lg">RET-AD NO</th>
+                                <th class="th-lg">Action</th>
+                    </tr>
+                    <tr *ngFor="let rtCvrDtlsVo of rtCvrDtlsVoListArray; let indexOfelement = index">
+                        <td>
+
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" data-role="select-dropdown"
+                                    [(ngModel)]="rtCvrDtlsVo.frmFcy" [ngModelOptions]="{standalone: true}">
+                                  
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let currency of currency "
+                                        value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option>
+                                </select>
+                                <div class="red ml-2"
+                                    *ngIf=" rtCvrDtlsVo.frmFcyReq  && this.submittedlcForm6">
+                                    <p>This filed is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control form-control-sm" [(ngModel)]="rtCvrDtlsVo.toFcy"
+                                    [ngModelOptions]="{standalone: true}" data-role="select-dropdown">
+                                   
+                                    <option value="">SELECT</option>
+                                    <option *ngFor="let currency of currency "
+                                        value="{{currency.currencyMstId}}">
+                                        {{currency.code}}
+                                    </option>
+                                </select>
+                                <div class="red ml-2"
+                                    *ngIf=" rtCvrDtlsVo.rateReq  && this.submittedlcForm6">
+                                    <p>This filed is required</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <input NumbersOnly inputmode="numeric" type="text"
+                                class="form-control form-control-sm" placeholder="AMOUNT" maxlength="22"
+                                (keyup)="getConversationDetailTotal()" [(ngModel)]="rtCvrDtlsVo.amnt"
+                                [ngModelOptions]="{standalone: true}">
+                            <div class="red ml-2" *ngIf=" rtCvrDtlsVo.amntReq  && this.submittedlcForm6">
+                                <p>This filed is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input NumbersOnly inputmode="numeric" type="text"
+                                class="form-control form-control-sm" placeholder="RATE"
+                                [(ngModel)]="rtCvrDtlsVo.rate" maxlength="22"
+                                [ngModelOptions]="{standalone: true}" maxlength="8">
+                            <div class="red ml-2" *ngIf=" rtCvrDtlsVo.rateReq  && this.submittedlcForm6">
+                                <p>This filed is required</p>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control form-control-sm" placeholder="RET-AD NO"
+                                disabled [(ngModel)]="rtCvrDtlsVo.retAdno"
+                                [ngModelOptions]="{standalone: true}">
+                                <!-- <div class="red ml-2" *ngIf=" rtCvrDtlsVo.retAdnoReq  && this.submittedlcForm6">
+                                    <p>This filed is required</p>
+                                </div> -->
+                        </td>
+                        <td>
+                            <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                (click)="deleteConversionRateDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                    class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td> Total</td>
+                        <td>
+                            <input [(ngModel)]="conversationDetailTotal" type="number" 
+                                class="form-control form-control-sm" placeholder="TOTAL"
+                                [ngModelOptions]="{standalone: true}" disabled="disabled">
+                        </td>
+                        <td> </td>
+                        <td> </td>
+                        <td>
+                            <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                (click)="onAddRowConvrsionRate()" style="width: 70px;"
+                                *ngIf="!isEditable">Add
+                                +</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>

@@ -1,0 +1,383 @@
+http://localhost:8181/CNDMSNETBNK/InstructionMaster/InstructionCode
+[
+  {
+    "insCodeId": 803,
+    "insCode": "GBP_USANCE",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.102822  WITH ABN AMRO BANK, 101, MOORGATE, LONDON, U.K., EC 2M 6SB SWIFT: ABNAGB2L QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 804,
+    "insCode": "GBP_SIGHT",
+    "insCodeDesc": "PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.102822  WITH ABN AMRO BANK, 101, MOORGATE, LONDON, U.K., EC 2M 6SB SWIFT: ABNAGB2L QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 805,
+    "insCode": "EUR_USANCE",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.5602317/007  WITH ABN AMRO BANK [DEUTSCHLAND] AG, MAINZER LANDASTRASSE 65, 60329, FRANKFURT, GERMANY SWIFT: ABNADEFF QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 806,
+    "insCode": "EUR_SIGHT",
+    "insCodeDesc": "PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.5602317/007  WITH ABN AMRO BANK [DEUTSCHLAND] AG, MAINZER LANDASTRASSE 65, 60329, FRANKFURT, GERMANY SWIFT: ABNADEFF QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 807,
+    "insCode": "CHF_USANCE",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO. N 300240 A   WITH ABN AMRO BANK [SWITZERLAND], P.O.BOX 5239, BEETHOVENSTRASSE 33, CH-8022,ZURICH  SWIFT: ABNACHZ8AZRH QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 808,
+    "insCode": "CHF_SIGHT",
+    "insCodeDesc": "PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.   N 300240 A   WITH ABN AMRO BANK [SWITZERLAND], P.O.BOX 5239, BEETHOVENSTRASSE 33, CH-8022,ZURICH  SWIFT: ABNACHZ8AZRH QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 750,
+    "insCode": "ADVICE_PYMT",
+    "insCodeDesc": "ADVISE PAYMENT OF BILL / MAIL /  FAX / SWIFT."
+  },
+  {
+    "insCodeId": 751,
+    "insCode": "C_FORM",
+    "insCodeDesc": "COLLECT SALES TAX FORM C FROM THE DRAWERS OR RS. …"
+  },
+  {
+    "insCodeId": 752,
+    "insCode": "CHARGE_APPL",
+    "insCodeDesc": "ALL CHARGES ARE TO APPLICANTS ACCOUNT."
+  },
+  {
+    "insCodeId": 753,
+    "insCode": "CHARGE_BENFY",
+    "insCodeDesc": "ALL CHARGES ARE TO BENEFICIARYS ACCOUNT."
+  },
+  {
+    "insCodeId": 754,
+    "insCode": "LCCONFIRM",
+    "insCodeDesc": "THE ABOVE LETTER OF CREDIT HAS BEEN ISSUED BY YOU."
+  },
+  {
+    "insCodeId": 755,
+    "insCode": "CONFIRM1",
+    "insCodeDesc": "PLEASE ADVICE ACCEPTANCE AND CONFIRM DUE DATE IMMEDIATELY."
+  },
+  {
+    "insCodeId": 756,
+    "insCode": "CONFIRM2",
+    "insCodeDesc": "ON RECEIPT OF YOUR DUE DATE CONFIRMATION, WE WILL PROCEED TO DISCOUNT THE BILL ON THE EXPRESS UNDERSTANDING THAT THE CONFIRMATION IS SIGNED BY AUTHORISED OFFICIAL OF THE BANK AND ALSO THAT THE ABOVE CONDITIONS HAVE BEEN ACCEPTED / COMPLIED WITH."
+  },
+  {
+    "insCodeId": 757,
+    "insCode": "CREDIT NOTE",
+    "insCodeDesc": "REMIT PROCEEDS BY IOT / TT/ CREDIT ADVICE."
+  },
+  {
+    "insCodeId": 758,
+    "insCode": "DELIVER_ACPT",
+    "insCodeDesc": "DELIVER DOCUMENTS AGAINST ACCEPTANCE."
+  },
+  {
+    "insCodeId": 759,
+    "insCode": "DELIVER_PYMT",
+    "insCodeDesc": "DELIVER DOCUMENTS AGAINST PAYMENT"
+  },
+  {
+    "insCodeId": 760,
+    "insCode": "DELIVER_RCPT",
+    "insCodeDesc": "PRESENT DOCUMENTS IMMEDIATELY ON RECEIPT."
+  },
+  {
+    "insCodeId": 761,
+    "insCode": "DUE DATE",
+    "insCodeDesc": "ON DUE DATE REMIT PROCEEDS BY MEANS OF YOUR DEMAND DRAFT FAVOURING CANARA BANK A/C PAYABLE AT ........................................QUOTING OUR REF NO........................"
+  },
+  {
+    "insCodeId": 762,
+    "insCode": "INTEREST",
+    "insCodeDesc": "CHARGE INTEREST @      %  P.A. IF THE BILL IS NOT PAID ON THE DUE DATE."
+  },
+  {
+    "insCodeId": 763,
+    "insCode": "LC TERMS",
+    "insCodeDesc": "WE CERTIFY THAT ALL TERMS OF LETTER OF CREDIT HAS BEEN COMPLIED WITH."
+  },
+  {
+    "insCodeId": 764,
+    "insCode": "NEGOTIATED",
+    "insCodeDesc": "WE HAVE NEGOTIATED THE DOCUMENTS AS PER THE TERMS OF LC. PLEASE CONFIRM THE DUE DATE IMMEDIATELY ON RECEIPT."
+  },
+  {
+    "insCodeId": 765,
+    "insCode": "NON_ACCEPT",
+    "insCodeDesc": "ADVISE IMMEDIATELY NON-ACCEPTANCE WITH REASONS BY MAIL / FAX / SWIFT."
+  },
+  {
+    "insCodeId": 766,
+    "insCode": "NON_PAYMENT",
+    "insCodeDesc": "ADVISE IMMEDIATELY NON-PAYMENT OF BILL WITH REASONS BY MAIL / FAX / SWIFT."
+  },
+  {
+    "insCodeId": 767,
+    "insCode": "OTHERS",
+    "insCodeDesc": "USER DEFINED"
+  },
+  {
+    "insCodeId": 768,
+    "insCode": "OUR CHARGES",
+    "insCodeDesc": "RECOVER OUR CHARGES FROM DRAWEES."
+  },
+  {
+    "insCodeId": 769,
+    "insCode": "REFERENCE",
+    "insCodeDesc": "PLEASE ACKNOWLEDGE RECEIPT, QUOTING BOTH YOUR AND OUR REFERENCE NUMBERS."
+  },
+  {
+    "insCodeId": 770,
+    "insCode": "RETURN1",
+    "insCodeDesc": "REFER TO US BEFORE RETURNING THE BILL."
+  },
+  {
+    "insCodeId": 771,
+    "insCode": "RETURN2",
+    "insCodeDesc": "RETURN THE BILL IF NOT PAID TO US WITHIN       DAYS OF PRESENTATION."
+  },
+  {
+    "insCodeId": 772,
+    "insCode": "SHORT_PYMT",
+    "insCodeDesc": "PLEASE REMIT TOTAL PROCEEDS AS PER DOCUMENTARY CREDITS WITHOUT ANY DEDUCTIONS. SHORT RECEIPT OF PAYMENT IS NOT ACCEPTABLE TO US."
+  },
+  {
+    "insCodeId": 773,
+    "insCode": "SIGNATORIES",
+    "insCodeDesc": "THE SIGNATORIES TO THE LETTER OF CREDIT HAVE REQUISITE AUTHORITY FOR ISSUING THE SAME."
+  },
+  {
+    "insCodeId": 774,
+    "insCode": "URC 522",
+    "insCodeDesc": "PRESENTATION / COLLECTION IS SUBJECT TO UNIFORM RULES FOR COLLECTION, 1995 REVISION, ICC PUBLICATION NO. 522."
+  },
+  {
+    "insCodeId": 775,
+    "insCode": "URC 525",
+    "insCodeDesc": "REIMBURSEMENT IS SUBJECT TO UNIFORM RULES FOR REIMBURSEMENT, 1995 REVISION, ICC PUBLICATION NO. 525."
+  },
+  {
+    "insCodeId": 776,
+    "insCode": "URC 500",
+    "insCodeDesc": "PRESENTATION IS SUBJECT TO UNIFORM CUSTOMS AND PRACTICE FOR DOCUMENTARY CREDITS (1993 REVISION), ICC PUBLICATION 500."
+  },
+  {
+    "insCodeId": 777,
+    "insCode": "BG01",
+    "insCodeDesc": "OUR LIABILITY UNDER THIS BANK GUARANTEE SHALL NOT EXCEED RS.                      (RUPEES                                                          ONLY)"
+  },
+  {
+    "insCodeId": 778,
+    "insCode": "BG02",
+    "insCodeDesc": "THIS BANK GUARANTEE SHALL BE VALID UPTO DD/MM/YYYY."
+  },
+  {
+    "insCodeId": 779,
+    "insCode": "BG03",
+    "insCodeDesc": "WE ARE LIABLE TO PAY THE GUARANTEE AMOUNT OR ANY PART THEREOF UNDER THIS BANK GUARANTEE ONLY IF YOU SERVE UPON US A WRITTEN CLAIM OR DEMAND ON OR BEFORE MM/DD/YYYY."
+  },
+  {
+    "insCodeId": 780,
+    "insCode": "BG04",
+    "insCodeDesc": "THE GUARANTEE IS TO BE RETURNED TO US WITHIN 15 DAYS FROM THE DATE IT CEASES TO BE IN FORCE.IF THE GUARANTEE IS NOT RECEIVED BACK BY US WITHIN THAT DATE,IT SHALL BE DEEMED TO BE  AUTOMATICALLY CANCELLED."
+  },
+  {
+    "insCodeId": 781,
+    "insCode": "ACKNOWLEDGE",
+    "insCodeDesc": "PLEASE ACKNOWLEDGE RECEIPT QUOTING BOTH YOUR AND OUR REFERENCE NUMBER."
+  },
+  {
+    "insCodeId": 782,
+    "insCode": "ACCEPTANCE",
+    "insCodeDesc": "ADVISE ACCEPTANCE / DUE DATE BY SWIFT OR TELEX."
+  },
+  {
+    "insCodeId": 783,
+    "insCode": "NON_ACCEPT.",
+    "insCodeDesc": "ADVISE NON ACCEPTANCE OF BILL  WITH REASONS BY SWIFT / TELEX.."
+  },
+  {
+    "insCodeId": 784,
+    "insCode": "YOUR CHARGES",
+    "insCodeDesc": "ALL CHARGES ARE FOR ACCOUNT OF DRAWEE."
+  },
+  {
+    "insCodeId": 785,
+    "insCode": "PAYMENT",
+    "insCodeDesc": "ADVISE PAYMENT OF BILL BY  MAIL / SWIFT / TELEX."
+  },
+  {
+    "insCodeId": 786,
+    "insCode": "INDEMNITY",
+    "insCodeDesc": "WE HOLD DRAWER'S LETTER OF GUARANTEE COVERING DISCREPANCIES."
+  },
+  {
+    "insCodeId": 787,
+    "insCode": "DISCOUNT",
+    "insCodeDesc": "DISCOUNT THE DRAFT AND PAY AT SIGHT. INTEREST AND DISCOUNT CHARGES ARE FOR THE ACCOUNT OF BUYER."
+  },
+  {
+    "insCodeId": 788,
+    "insCode": "INSURANCE",
+    "insCodeDesc": "INSURE AND PROTECT GOODS."
+  },
+  {
+    "insCodeId": 789,
+    "insCode": "INSTRUCTIONS",
+    "insCodeDesc": "HOLD"
+  },
+  {
+    "insCodeId": 790,
+    "insCode": "INSTTEST",
+    "insCodeDesc": "SHQWKLDH D KLQWHD DKL QWHDKLQWH QKLHASK SKLADH KSDLAHD DKLQW DKLQWJDQW D QWKLDJQWKL DKLQWDHKLQWDH DHKLWQDHKLQD"
+  },
+  {
+    "insCodeId": 791,
+    "insCode": "ARRANGE",
+    "insCodeDesc": "KINDLY ARRANGE FUNDS TO HONOUR THE BILL ON THE DUE DATE."
+  },
+  {
+    "insCodeId": 792,
+    "insCode": "PROCEEDS",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT THE PROCEEDS BY SWIFT TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI, ACCOUNT NO............WITH ...................QUOTING OUR REFERENCE AND UNDER SWIFT ADVICE TO US."
+  },
+  {
+    "insCodeId": 793,
+    "insCode": "MATURITY",
+    "insCodeDesc": "PLEASE NOTE THAT DUE DATE FOR PAYMENT IS"
+  },
+  {
+    "insCodeId": 794,
+    "insCode": "PROTEST",
+    "insCodeDesc": "IN CASE OF DISHONOUR,PROTEST FOR NON PAYMENT / NON ACCEPTANCE."
+  },
+  {
+    "insCodeId": 795,
+    "insCode": "CHARGE_DRAWE",
+    "insCodeDesc": "COLLECT YOUR CHARGES FROM DRAWEE"
+  },
+  {
+    "insCodeId": 796,
+    "insCode": "OUR_CHARGES",
+    "insCodeDesc": "COLLECT OUR CHARGES OF .................. FROM THE DRAWEE."
+  },
+  {
+    "insCodeId": 797,
+    "insCode": "FORM C",
+    "insCodeDesc": "C FORM TO BE SUBMITTED OR RS.          TO BE PAID EXTRA"
+  },
+  {
+    "insCodeId": 798,
+    "insCode": "IBC_ DUE",
+    "insCodeDesc": "THE BILLS HAS HAVE TO BE ACCEPTED / RETIRED ON OR BEFORE.............."
+  },
+  {
+    "insCodeId": 799,
+    "insCode": "OD_INTEREST",
+    "insCodeDesc": "OVERDUE INTEREST @  18% P.A. HAS TO BE PAID AFTER THE DUE DATE."
+  },
+  {
+    "insCodeId": 800,
+    "insCode": "THEIR_REF",
+    "insCodeDesc": "THIS DOCUMENT IS UNDER LC REF NO..........................  DATED ..............."
+  },
+  {
+    "insCodeId": 801,
+    "insCode": "USD_SIGHT",
+    "insCodeDesc": "PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.91-291245-1121 WITH UNION BANK OF CALIFORNIA, NA, INTERNATIONAL BRANCH OFFICE, 40 WALL STREET, 23RD FLOOR, NEWYORK NY 10005-1339, SWIFT: BOFCUS33NYK QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 802,
+    "insCode": "USD_USANCE",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO.91-291245-1121 WITH UNION BANK OF CALIFORNIA, NA, INTERNATIONAL BRANCH OFFICE, 40 WALL STREET, 23RD FLOOR, NEWYORK NY 10005-1339, SWIFT: BOFCUS33NYK QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 809,
+    "insCode": "JPY_USANACE",
+    "insCodeDesc": "ON MATURITY PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO. 009-008764-026  WITH HONGKONG AND SHANGHAI BANKING CORPORATION LTD.1-2 MATUNOUCHI J - CHOME CHLYODA-KU, TOKYO 100 JAPAN  SWIFT: HSBCJPJT QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 810,
+    "insCode": "JPY_SIGHT",
+    "insCodeDesc": "PLEASE REMIT PROCEEDS BY TELEX / CABLE TO OUR INTERNATIONAL BANKING DIVISION, MUMBAI ACCOUNT NO. N 300240 A   WITH ABN AMRO BANK [SWITZERLAND], P.O.BOX 5239, BEETHOVENSTRASSE 33, CH-8022,ZURICH  SWIFT: ABNACHZ8AZRH QOUTING OUR REFERENCE NO."
+  },
+  {
+    "insCodeId": 811,
+    "insCode": "REIMBURSEMNT",
+    "insCodeDesc": "IN TERMS OF THE CREDIT AND AS AUTHORISED THEREIN, WE WILL CLAIM REIMBURSEMENT FROM"
+  },
+  {
+    "insCodeId": 812,
+    "insCode": "EXCH_CONTROL",
+    "insCodeDesc": "ENSURE COMPLIANCE OF EXCHANGE CONTROL FORMALITIES BEFORE DELIVERY OF DUCUMENTS."
+  },
+  {
+    "insCodeId": 813,
+    "insCode": "DIARISE D/L",
+    "insCodeDesc": "DIARISE DATE OF DELINKING / DUE DATE"
+  },
+  {
+    "insCodeId": 814,
+    "insCode": "EXCHANG RATE",
+    "insCodeDesc": "COLLECT PAYMENT AT THE RULING EXCHANGE RATE ON THE DATE OF PAYMENT OR DELINKING WHICHEVER IS EARLIER, UNLESS A FORWARD CONTRACT HAS BEEN ENTERED INTO."
+  },
+  {
+    "insCodeId": 815,
+    "insCode": "COLLECT_COMM",
+    "insCodeDesc": "COLLECT COMMISSION AT 0.175% (WITH A MIN. OF RS. 1000 + ST & CESS AND REMIT THE SAME TO US (AS PER HO CIR 306/2012)"
+  },
+  {
+    "insCodeId": 816,
+    "insCode": "REPORT_SALE",
+    "insCodeDesc": "REPORT SALE OVER PHONE ON PAYMENT OR DELINKING."
+  },
+  {
+    "insCodeId": 817,
+    "insCode": "ASCERTAIN",
+    "insCodeDesc": "ASCERTAIN ARRIVAL DATE OF STEAMER FROM CLEARING AGENTS.  NOTIFY OUR LIEN TO SHIPPING COMPANY AND ARRANGE FOR CLEARANCE, WAREHOUSING AND INSURANCE WHEREVER NECESSARY"
+  },
+  {
+    "insCodeId": 818,
+    "insCode": "FORM A1",
+    "insCodeDesc": "SEND FORM A1/AND IMPORT LICENCE ALONGWITH YOUR BRANCH ADVICE.  FORM A1/S SHOULD BE DULY COMPLETED AND SIGNED BY THE IMPORTER."
+  },
+  {
+    "insCodeId": 819,
+    "insCode": "DELINK",
+    "insCodeDesc": "PLEASE DELINK THE BILL IF NOT PAID ON OR BEFORE"
+  },
+  {
+    "insCodeId": 841,
+    "insCode": "VB124",
+    "insCodeDesc": "BB345"
+  },
+  {
+    "insCodeId": 842,
+    "insCode": "MAH11",
+    "insCodeDesc": "MAHARASTRA"
+  },
+  {
+    "insCodeId": 844,
+    "insCode": "TESTINGINS",
+    "insCodeDesc": "TESTING"
+  },
+  {
+    "insCodeId": 845,
+    "insCode": "TestingIns",
+    "insCodeDesc": "TestOnly"
+  },
+  {
+    "insCodeId": 821,
+    "insCode": "BB",
+    "insCodeDesc": "BB"
+  },
+  {
+    "insCodeId": 843,
+    "insCode": "CRT",
+    "insCodeDesc": "FHHFHFH"
+  }
+]

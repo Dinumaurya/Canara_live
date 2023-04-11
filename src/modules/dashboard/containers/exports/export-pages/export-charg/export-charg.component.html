@@ -1,0 +1,359 @@
+<form [formGroup]="exportChargeForm">
+    <div class="card">
+        <h6 class="mt-2"> <b>IV. REMITTING BANK DETAILS</b> <span class="red"> *</span></h6>
+        <hr />
+        <fieldset [disabled]="isPcfcDomestic">
+            <div class="form-row">
+
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">CIF ID:</label>
+                        <div class="col-sm-7">
+                            <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                    placeholder=" "> -->
+                            <input maxlength="11" NumbersOnly type="text" class="form-control form-control-sm"
+                                formControlName="bankDtlsCifId" placeholder="CIF ID" disabled="disabled"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.bankDtlsCifId') !=''">
+                            <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.bankDtlsCifId')}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">Name</label>
+                        <div class="col-sm-7">
+                            <!-- <input appAlphabetOnly type="text" class="form-control form-control-sm"
+                                formControlName="name" placeholder="Name"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.name') !=''"> -->
+                            <select class="form-control form-control-sm" formControlName="name"
+                                [class.is-invalid]="getexportChargeError('pcfcBuyersDtlsVo.name') !=''"
+                                (change)="beneficiarySelected()">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let beneficiary of beneficiaryList" value="{{beneficiary.beneId}}">
+                                    {{beneficiary.beneNam}} ({{beneficiary.beneShrtNam}})</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getexportChargeError('pcfcBankDtlsVo.name')}} </div>
+                        </div>
+
+                        <div class="invalid-feedback">
+                            {{getexportChargeError('pcfcBankDtlsVo.name')}}</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 1:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr1"
+                                placeholder="ADDRESS LINE 1"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.addr1') !=''"></textarea>
+                            <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.addr1')}}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group row" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">Address Line 2:</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" maxlength="35" formControlName="addr2"
+                                placeholder="ADDRESS LINE 2"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.addr2') !=''"></textarea>
+                            <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.addr2')}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">Country:</label>
+                        <div class="col-sm-7">
+                            <select class="form-control form-control-sm" placeholder="Select" formControlName="cntryId"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.cntryId') !=''"
+                                data-role="select-dropdown">
+                                <option value="">SELECT</option>
+                                <option *ngFor="let con of country " value="{{con.countryId}}">
+                                    {{con.name}}
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.cntryId')}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="col">
+                        <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                            <label class="col-sm-5 col-form-label">Beneficiary BANK Account No. Or IBAN</label>
+                            <div class="col-sm-7">
+                                <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                        placeholder=" "> -->
+                                <input maxlength="34" type="text" class="form-control form-control-sm"
+                                    formControlName="bnfAccNo" placeholder="Beneficiary BANK Account No. Or IBAN"
+                                    [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.bnfAccNo') !=''">
+                                <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.bnfAccNo')}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="col">
+                    <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                        <label class="col-sm-5 col-form-label">Swift Code:</label>
+                        <div class="col-sm-7">
+                            <!-- <input type="text" class="form-control form-control-sm" formControlName="custId"
+                                    placeholder=" "> -->
+                            <input type="text" class="form-control form-control-sm" formControlName="swiftCode"
+                                placeholder="Swift Code" maxlength="13"
+                                [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftCode') !=''">
+                            <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.swiftCode')}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row" formGroupName="pcfcBankDtlsVo">
+                    <label class="col-sm-5 col-form-label">Intermediary bank SWIFT CODE (If any):</label>
+                    <div class="col-sm-7">
+                        <input maxlength="11" type="text" class="form-control form-control-sm"
+                            formControlName="interSwiftCode" placeholder="Intermediary bank SWIFT CODE (If any)"
+                            [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.interSwiftCode') !=''">
+                        <div class="invalid-feedback">{{getexportChargeError('pcfcBankDtlsVo.interSwiftCode')}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+
+        </div>
+        <div class="row" formGroupName="pcfcBankDtlsVo" (change)="onChecked($event)">
+            <div class="col-12 col-form-label">
+                <div class="form-check m-2">
+                    <input type="checkbox" class="form-check-input" formControlName="isSwiftCodeNotAvl">
+                    <label class="form-check-label">If Beneficiary Bank SWIFT Code not
+                        available</label>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row" [hidden]="!advBeneficiaryDetailsVal.pcfcBankDtlsVo.isSwiftCodeNotAvl">
+            <div class="col-2 col-form-label">
+                <label for="name">Bank Name <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group" formGroupName="pcfcBankDtlsVo">
+                    <input type="text" class="form-control form-control-sm" placeholder="BANK NAME"
+                        formControlName="swiftBnkNm"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkNm') !=''">
+                    <div class="red" *ngIf="!isNoBeneficiary()" maxlength="35">
+                        This field is required </div>
+                </div>
+            </div>
+            <!-- <div class="col-2">
+                <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                    <input type="text" class="form-control form-control-sm"
+                        formControlName="swiftBnkNm" placeholder="Bank Name"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkNm') !=''">
+                   
+                </div>
+                <div class="invalid-feedback">
+                    {{getexportChargeError('pcfcBankDtlsVo.swiftBnkNm')}}
+                </div>
+            </div> -->
+            <div class="col-2 col-form-label">
+                <label for="name">Address Line 1<span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                    <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAddr1"
+                        placeholder="Full Address" maxlength="35"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkAddr1') !=''">
+                    <div class="red" *ngIf="!isNoBeneficiary()">
+                        This field is required </div>
+                </div>
+
+            </div>
+            <div class="col-2 col-form-label">
+                <label for="name">Address Line 2<span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                    <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAddr2"
+                        placeholder="Full Address" maxlength="35"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkAddr2') !=''">
+                    <div class="red" *ngIf="!isNoBeneficiary()">
+                        This field is required </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row " [hidden]="!advBeneficiaryDetailsVal.pcfcBankDtlsVo.isSwiftCodeNotAvl">
+            <div class="col-2 ">
+                <label for="name">ABA Code <span class="red">*</span></label>
+            </div>
+            <div class="col-2">
+                <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                    <select class="form-control form-control-sm" formControlName="swiftBnkAbacd"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkAbacd') !=''">
+                        <!-- options -->
+                        <option value="">SELECT</option>
+
+                        <option *ngFor="let data of ABA_CDlist" value="{{data.code}}">
+                            {{data.value}}
+                        </option>
+                    </select>
+                    <div class="red" *ngIf="!isNoBeneficiary()">
+                        This field is required </div>
+                </div>
+
+            </div>
+            <div class="col-2">
+                <label for="name">ABA Code Description</label>
+            </div>
+            <div class="col-2">
+                <div class="form-group row required" formGroupName="pcfcBankDtlsVo">
+                    <input type="text" class="form-control form-control-sm" formControlName="swiftBnkAbaCdDesc"
+                        placeholder="ABA Code Description"
+                        [class.is-invalid]="getexportChargeError('pcfcBankDtlsVo.swiftBnkAbaCdDesc') !=''"
+                        maxlength="32">
+                    <div class="invalid-feedback">
+                        {{getexportChargeError('pcfcBankDtlsVo.swiftBnkAbaCdDesc')}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <fieldset [disabled]="exportChargeForm.disabled">
+            <div class="form-check" (change)="changeToFrwrd($event)">
+                <div class="col-12 col-form-label" formGroupName="formCmmnAccVo">
+                    <div class="form-check m-2">
+                        <input type="checkbox" class="form-check-input" formControlName="isFrwdCntrct">
+                        <label class="form-check-label">To utilized Forward Contract booked if any, as detailed herewith
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="row" [hidden]="!advBeneficiaryDetailsVal.formCmmnAccVo.isFrwdCntrct">
+        <div class="col-md-12">
+
+            <fieldset [disabled]="exportChargeForm.disabled">
+                <div style="text-align: center;">
+                    <table class="table table-bordered ">
+                        <tr style="text-align: center;background-color: rgb(181, 181, 247);font-size: 14px;">
+                            <th class="th-lg"> Forward Contract No. </th>
+                            <th class="th-lg"> FCY </th>
+                            <th class="th-lg">Original Amount </th>
+                            <th class="th-lg"> Utilized Amount </th>
+                            <th class="th-lg">Amount to be Utilized</th>
+                            <th class="th-lg">Foreign Bank Charges(FBK)</th>
+                            <th class="th-lg">Action</th>
+                        </tr>
+                        <tbody>
+                            <tr *ngFor="let row of conversionList;let indexOfelement=index;">
+                                <td>
+                                    <input inputmode="numeric" NumbersOnly maxlength="16" minlength="16"
+                                        class="form-control form-control-sm" placeholder="FORWORD CONTRACT"
+                                        [(ngModel)]="row.frwdCntrctNo" [ngModelOptions]="{standalone: true}">
+                                    <div class="red ml-2" *ngIf=" row.frwdCntrctNoReq  && this.exportsubmittedFrom4">
+                                        <p>This filed is required</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col">
+
+                                        <select class="form-control form-control-sm" data-role="select-dropdown"
+                                            [(ngModel)]="row.fcy" [ngModelOptions]="{standalone: true}">
+                                            <!-- options -->
+                                            <option value="">SELECT</option>
+                                            <option *ngFor="let currency of currency "
+                                                value="{{currency.currencyMstId}}">
+                                                {{currency.code}}
+                                            </option>
+                                        </select>
+                                        <div class="red ml-2" *ngIf=" row.fcyReq  && this.exportsubmittedFrom4">
+                                            <p>This filed is required</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input NumbersOnly type="text" inputmode="numeric"
+                                        class="form-control form-control-sm" placeholder="ORIGINAL AMOUNT"
+                                        [(ngModel)]="row.orgnlAmnt" [ngModelOptions]="{standalone: true}"
+                                        maxlength="22">
+                                    <div class="red ml-2" *ngIf=" row.orgnlAmntReq && this.exportsubmittedFrom4">
+                                        <p>This filed is required</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input NumbersOnly type="text" inputmode="numeric"
+                                        class="form-control form-control-sm" placeholder="UTILIZED AMOUNT"
+                                        [(ngModel)]="row.utlizAmnt" [ngModelOptions]="{standalone: true}"
+                                        maxlength="22">
+                                    <div class="red ml-2" *ngIf=" row.utlizAmntReq && this.exportsubmittedFrom4">
+                                        <p>This filed is required</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input NumbersOnly type="text" class="form-control form-control-sm"
+                                        placeholder="AMOUNT TO BE UTILIZED" maxlength="22"
+                                        (keyup)="getConversationDetailForm1Total()" [(ngModel)]="row.amntUtilizd"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <div class="red ml-2" *ngIf=" row.amntUtilizdReq  && this.exportsubmittedFrom4">
+                                        <p>This filed is required</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input NumbersOnly inputmode="numeric" type="text"
+                                        class="form-control form-control-sm" placeholder="FOREIGN BANK CHARGES"
+                                        [(ngModel)]="row.frgnBnkChrgs" maxlength="22"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <div class="red ml-2" *ngIf="row.frgnBnkChrgsReq  && this.exportsubmittedFrom4">
+                                        <p>This filed is required</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger m-1 mb-0 btn-sm" type="button"
+                                        (click)="deleteConversionDetail(indexOfelement)" *ngIf="!isEditable"><i
+                                            class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> </td>
+                                <td> </td>
+                                <td> </td>
+                                <td> Total</td>
+                                <td>
+                                    <input type="number" class="form-control form-control-sm" placeholder="TOTAL"
+                                        disabled="disabled" value="{{conversationDetailForm1Total}}">
+                                </td>
+                                <td> </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary m-1 mb-0 btn-sm"
+                                        (click)="onAddRowConvrsion()" style="width: 70px;" *ngIf="!isEditable">
+                                        Add +
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+
+    </div>
+    <div class="red ml-2" *ngIf="conversionList && conversionList.length === 0  && exportsubmittedFrom4 ">
+
+    </div>
+</form>
